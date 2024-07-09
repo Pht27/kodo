@@ -8,4 +8,4 @@ Clear Knopf in Spiel eintragen
 Grafiken / Statistiken
 Startpunkte
 2 Fischaugen
-Reset Doppelkopf und Extrapunkte etc
+css für mobile -> tabs und/oder flexible boxen
