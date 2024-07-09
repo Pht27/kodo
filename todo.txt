@@ -5,5 +5,7 @@ Profilseite
 Match History
 Letzte Teams als Default
 Clear Knopf in Spiel eintragen
-Grafikem / Statistiken
+Grafiken / Statistiken
 Startpunkte
+2 Fischaugen
+Reset Doppelkopf und Extrapunkte etc
