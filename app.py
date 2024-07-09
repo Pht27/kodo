@@ -29,7 +29,6 @@ def overview():
 @app.route('/api/players', methods=['GET'])
 def get_players():    
     players = load_players()
-    print(players)
     players = players[players['active']]
     players_list = players.to_dict(orient='records')
     return jsonify(players_list)
@@ -43,7 +42,7 @@ def add_player():
     if new_name:
         new_id = players['player_id'].max() + 1 if not players.empty else 1
         new_id = int(new_id)
-        new_player = pd.DataFrame([[new_id, new_name, True]], columns=['player_id', 'name', 'active'])
+        new_player = pd.DataFrame([[new_id, new_name, True]], columns=['player_id', 'name', 'active', 'start_points'])
         players = pd.concat([players, new_player], ignore_index=True)
         save_players(players)
     

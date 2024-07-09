@@ -16,7 +16,7 @@ def load_players():
     try:
         return pd.read_csv(csv_file_players, index_col=False)
     except FileNotFoundError:
-        df = pd.DataFrame(columns=['player_id', 'name', 'active'])
+        df = pd.DataFrame(columns=['player_id', 'name', 'active', 'start_points'])
         df.to_csv(csv_file_players, index=False)
         return df
 

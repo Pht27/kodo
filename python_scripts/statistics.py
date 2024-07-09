@@ -31,7 +31,7 @@ def total_points_per_player():
     
     data = data.merge(rounds, on='round_id')   
     
-    data = data[['player_id', 'name', 'team_id', 'no_team_members', 'party', 'round_id', 'winning_party', 'points']]
+    data = data[['player_id', 'name', 'team_id', 'no_team_members', 'party', 'round_id', 'winning_party', 'points', 'start_points']]
 
     data.loc[data['party']!=data['winning_party'], 'points'] *= -1
 
@@ -41,10 +41,12 @@ def total_points_per_player():
     data = data.astype({'points':float})
     data.loc[:, 'points'] /= data['no_team_members']
 
-    data = data[['player_id', 'name', 'points', 'won', 'played']]
+    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points']]
+    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points']]
     
-    data = data.groupby(['player_id', 'name']).sum().reset_index()
+    data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = data['won'] / data['played']
+    data['points'] += data['start_points']
 
     data = data[['name', 'points', 'winrate']]
 

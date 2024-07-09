@@ -6,3 +6,4 @@ Match History
 Letzte Teams als Default
 Clear Knopf in Spiel eintragen
 Grafikem / Statistiken
+Startpunkte
