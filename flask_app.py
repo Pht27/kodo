@@ -1,14 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
-import os
 
 from python_scripts.data_management import *
 from python_scripts.statistics import *
 
 app = Flask(__name__)
-
-# Sicherstellen, dass der Ordner existiert
-os.makedirs(csv_dir, exist_ok=True)
 
 # Route für die Startseite
 @app.route('/')
@@ -42,7 +38,7 @@ def add_player():
     if new_name:
         new_id = players['player_id'].max() + 1 if not players.empty else 1
         new_id = int(new_id)
-        new_player = pd.DataFrame([[new_id, new_name, True]], columns=['player_id', 'name', 'active', 'start_points'])
+        new_player = pd.DataFrame([[new_id, new_name, True, 0]], columns=['player_id', 'name', 'active', 'start_points'])
         players = pd.concat([players, new_player], ignore_index=True)
         save_players(players)
     

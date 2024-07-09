@@ -2,14 +2,7 @@ import os
 import pandas as pd
 from datetime import date
 
-
-csv_dir = 'data'
-csv_file_players = os.path.join(csv_dir, 'players.csv')
-csv_file_teams = os.path.join(csv_dir, 'teams.csv')
-csv_file_rounds = os.path.join(csv_dir, 'rounds.csv')
-csv_file_player_team = os.path.join(csv_dir, 'player_is_in_team.csv')
-csv_file_specials = os.path.join(csv_dir, 'specials.csv')
-csv_file_team_round = os.path.join(csv_dir, 'teams_in_round.csv')
+from python_scripts.saved_paths import *
 
 # Funktion zum Laden der Spieler aus der CSV-Datei
 def load_players():
@@ -26,19 +19,19 @@ def save_players(players):
 
 # Funktion um ein Spiel zu speichern
 def save_game(data):
-    teams = pd.read_csv(csv_file_teams)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
     team_id = teams.shape[0] + 1
 
-    rounds = pd.read_csv(csv_file_rounds)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
     round_id = int(rounds.shape[0] + 1)
 
-    player_team_relations = pd.read_csv(csv_file_player_team)
+    player_team_relations = pd.read_csv(csv_file_player_team, index_col=False)
     player_team_relations_index = player_team_relations.shape[0] + 1
 
-    team_round_relations = pd.read_csv(csv_file_team_round)
+    team_round_relations = pd.read_csv(csv_file_team_round, index_col=False)
     team_round_relations_index = team_round_relations.shape[0] + 1
 
-    all_players = pd.read_csv(csv_file_players)
+    all_players = pd.read_csv(csv_file_players, index_col=False)
 
     specials = pd.read_csv(csv_file_specials)
     specials_id = specials.shape[0] + 1
