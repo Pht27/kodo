@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Spieler{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Spieler</h1>
+    <ul id="player-list">
+        <!-- Spieler werden hier durch JS hinzugefügt -->
+    </ul>
+    <h2>Neuen Spieler hinzufügen</h2>
+    <form id="add-player-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <button type="submit">Spieler hinzufügen</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

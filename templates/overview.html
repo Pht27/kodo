@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Zusammenfassung{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/overview.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Punktetabelle</h1>
+    <table id="summary">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Punkte</th>
+                <th>Winrate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Spieler werden hier durch JS hinzugefügt -->
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/overview.js') }}"></script>
+{% endblock %}
