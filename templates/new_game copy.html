@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Neues Spiel{% endblock %}
+{% block title %}New Game{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/new_game.css') }}">
@@ -9,16 +9,8 @@
 {% block content %}
 <div class="container">
     <h1>Teams eingeben</h1>
-    <div class="tab">
-        <button class="tablinks" onclick="openTeam(event, 'team1')">Team 1</button>
-        <button class="tablinks" onclick="openTeam(event, 'team2')">Team 2</button>
-        <button class="tablinks" onclick="openTeam(event, 'team3')">Team 3</button>
-        <button class="tablinks" onclick="openTeam(event, 'team4')">Team 4</button>
-    </div>
     <div class="teams-container">
-
-        <!-- Tab content -->
-        <div id="team1" class="tabcontent">
+        <div class="team" id="team1">
             <h2>Team 1</h2>
             <input type="text" id="team1-player-name" placeholder="Add Player">
             <ul id="team1-suggestions" class="suggestions-list"></ul>
@@ -142,9 +134,11 @@
             </div>
         </div>
 
-        <div id="team2" class="tabcontent">
-            <h2>Team 2</h2>
+        <!-- ------------------------------------------------------- -->
+        <!-- ------------------------------------------------------- -->
 
+        <div class="team" id="team2">
+            <h2>Team 2</h2>
             <input type="text" id="team2-player-name" placeholder="Add Player">
             <ul id="team2-suggestions" class="suggestions-list"></ul>
             <ul id="team2-players" class="team-players"></ul>
@@ -267,9 +261,12 @@
             </div>
         </div>
 
-        <div id="team3" class="tabcontent">
-            <h2>Team 3</h2>
+        <!-- ------------------------------------------------------- -->
+        <!-- ------------------------------------------------------- -->
 
+
+        <div class="team" id="team3">
+            <h2>Team 3</h2>
             <input type="text" id="team3-player-name" placeholder="Add Player">
             <ul id="team3-suggestions" class="suggestions-list"></ul>
             <ul id="team3-players" class="team-players"></ul>
@@ -392,9 +389,11 @@
             </div>
         </div>
 
-        <div id="team4" class="tabcontent">
-            <h2>Team 4</h2>
+        <!-- ------------------------------------------------------- -->
+        <!-- ------------------------------------------------------- -->
 
+        <div class="team" id="team4">
+            <h2>Team 4</h2>
             <input type="text" id="team4-player-name" placeholder="Add Player">
             <ul id="team4-suggestions" class="suggestions-list"></ul>
             <ul id="team4-players" class="team-players"></ul>
@@ -516,10 +515,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
     <!-- ------------------------------------------------------- -->
     <!-- ------------------------------------------------------- -->
     <!-- ------------------------------------------------------- -->
