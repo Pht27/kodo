@@ -298,3 +298,22 @@
 .save-button:hover {
     background-color: #45a049;
 }
+
+/* Media Queries für kleinere Bildschirme */
+@media screen and (max-width: 768px) {
+    .tab button {
+        width: 100%;
+        /* Tabs in einer Reihe bei kleineren Bildschirmen */
+    }
+
+    .tabcontent {
+        width: 90%;
+        /* Breitere Inhalte für kleinere Bildschirme */
+        margin: 10px auto;
+        /* Zentriere die Inhalte */
+    }
+
+    .teams-container {
+        justify-content: center;
+    }
+}
