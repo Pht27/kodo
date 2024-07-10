@@ -1,26 +1,24 @@
 .teams-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
-.team {
+.tabcontent {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 10px;
     width: calc(25% - 20px);
-    /* Adjust width to fit four teams in a row */
     margin-bottom: 20px;
     box-sizing: border-box;
-    /* Ensures padding and border are included in width calculation */
     position: relative;
-    /* Ensure relative positioning for absolute elements */
     display: flex;
     flex-direction: column;
-    /* Stile für die Special Conditions */
+    align-items: center;
+    text-align: center;
 }
 
-.team select {
+.tabcontent select {
     margin-top: 10px;
     width: 100%;
     padding: 8px;
@@ -49,6 +47,7 @@
     margin-top: 25px;
     list-style-type: none;
     padding: 0;
+    text-align: center;
 }
 
 .team-players li {
@@ -65,11 +64,11 @@
     color: red;
 }
 
-.team .team-type {
+.tabcontent .team-type {
     margin-top: 10px;
 }
 
-.team .team-type label {
+.tabcontent .team-type label {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -79,7 +78,7 @@
     user-select: none;
 }
 
-.team .team-type label input {
+.tabcontent .team-type label input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -87,7 +86,7 @@
     width: 0;
 }
 
-.team .team-type label .checkmark {
+.tabcontent .team-type label .checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -97,25 +96,25 @@
     border-radius: 50%;
 }
 
-.team .team-type label:hover input~.checkmark {
+.tabcontent .team-type label:hover input~.checkmark {
     background-color: #bbb;
 }
 
-.team .team-type label input:checked~.checkmark {
-    background-color: #56af6e;
+.tabcontent .team-type label input:checked~.checkmark {
+    background-color: #005500;
 }
 
-.team .team-type label .checkmark:after {
+.tabcontent .team-type label .checkmark:after {
     content: '';
     position: absolute;
     display: none;
 }
 
-.team .team-type label input:checked~.checkmark:after {
+.tabcontent .team-type label input:checked~.checkmark:after {
     display: block;
 }
 
-.team .team-type label .checkmark:after {
+.tabcontent .team-type label .checkmark:after {
     top: 9px;
     left: 9px;
     width: 7px;
@@ -124,53 +123,28 @@
     background: white;
 }
 
-.team .extra-points label {
-    display: flex;
+.tabcontent .extra-points label,
+.tabcontent .special-conditions label {
+    display: block;
     align-items: center;
+    margin-bottom: 8px;
+    text-align: left;
 }
 
-.team .extra-points input[type="checkbox"] {
+.tabcontent .extra-points input[type="checkbox"],
+.tabcontent .special-conditions input[type="checkbox"] {
     margin-right: 5px;
-    /* Platz zwischen Checkbox und Text */
-    height: 12px;
-    /* Höhe der Checkbox */
+    height: 16px;
     width: 16px;
-    /* Breite der Checkbox */
 }
 
-.team .extra-points .checkbox-label {
+.tabcontent .extra-points .checkbox-label,
+.tabcontent .special-conditions .checkbox-label {
     flex: 1;
-    /* Flexbox-Eigenschaft, um Text flexibel zu gestalten */
     overflow-wrap: break-word;
-    /* Automatischer Umbruch des Texts bei Bedarf */
     margin-left: 25px;
-    /* Einrückung der zweiten Zeile */
 }
 
-.team .special-conditions label {
-    display: flex;
-    align-items: center;
-}
-
-.team .special-conditions input[type="checkbox"] {
-    margin-right: 5px;
-    /* Platz zwischen Checkbox und Text */
-    height: 12px;
-    /* Höhe der Checkbox */
-    width: 16px;
-    /* Breite der Checkbox */
-}
-
-.team .special-conditions .checkbox-label {
-    flex: 1;
-    /* Flexbox-Eigenschaft, um Text flexibel zu gestalten */
-    overflow-wrap: break-word;
-    /* Automatischer Umbruch des Texts bei Bedarf */
-    margin-left: 25px;
-    /* Einrückung der zweiten Zeile */
-}
-
-/* Round information section */
 .round-info-container {
     margin-top: 20px;
     padding: 20px;
@@ -220,7 +194,7 @@
     display: block;
     width: 10px;
     height: 10px;
-    background-color: #5d67d3;
+    background-color: #005500;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -261,7 +235,6 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 7px solid #000;
-    /* Ändern Sie die Farbe nach Bedarf */
     transition: transform 0.3s ease;
     vertical-align: middle;
     margin-left: 5px;
@@ -277,7 +250,6 @@
     margin: 20px auto;
     padding: 10px;
     background-color: #4CAF50;
-    /* Grün */
     color: white;
     border: none;
     border-radius: 5px;
@@ -294,27 +266,32 @@
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    text-align: center;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-    background-color: inherit;
-    float: left;
+    background-color: #ddd;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    color: #333;
+    font-weight: bold;
+    width: 33.33%;
+    float: left;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #ccc;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+    background-color: #005500;
+    color: white;
 }
 
 /* Style the tab content */
@@ -323,4 +300,155 @@
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+    text-align: center;
+}
+
+.tabcontent {
+    animation: fadeEffect 1s;
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.team-players {
+    margin-top: 25px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-players li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: #f4f4f4;
+    margin-bottom: 4px;
+    border-radius: 4px;
+}
+
+.delete-player {
+    cursor: pointer;
+    color: red;
+}
+
+.tabcontent .team-type {
+    margin-top: 10px;
+}
+
+.tabcontent .team-type label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+}
+
+.tabcontent .team-type label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.tabcontent .team-type label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.tabcontent .team-type label:hover input~.checkmark {
+    background-color: #bbb;
+}
+
+.tabcontent .team-type label input:checked~.checkmark {
+    background-color: #56af6e;
+}
+
+.tabcontent .team-type label .checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.tabcontent .team-type label input:checked~.checkmark:after {
+    display: block;
+}
+
+.tabcontent .team-type label .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+
+/* Team section */
+.tabcontent {
+    /* Andere Stile */
+    display: flex;
+    flex-direction: column;
+    /* Stile für die Special Conditions */
+}
+
+.tabcontent .extra-points label {
+    display: flex;
+    align-items: center;
+}
+
+.tabcontent .extra-points input[type="checkbox"] {
+    margin-right: 5px;
+    /* Platz zwischen Checkbox und Text */
+    height: 12px;
+    /* Höhe der Checkbox */
+    width: 16px;
+    /* Breite der Checkbox */
+}
+
+.tabcontent .extra-points .checkbox-label {
+    flex: 1;
+    /* Flexbox-Eigenschaft, um Text flexibel zu gestalten */
+    overflow-wrap: break-word;
+    /* Automatischer Umbruch des Texts bei Bedarf */
+    margin-left: 25px;
+    /* Einrückung der zweiten Zeile */
+}
+
+.tabcontent .special-conditions label {
+    display: flex;
+    align-items: center;
+}
+
+.tabcontent .special-conditions input[type="checkbox"] {
+    margin-right: 5px;
+    /* Platz zwischen Checkbox und Text */
+    height: 12px;
+    /* Höhe der Checkbox */
+    width: 16px;
+    /* Breite der Checkbox */
+}
+
+.tabcontent .special-conditions .checkbox-label {
+    flex: 1;
+    /* Flexbox-Eigenschaft, um Text flexibel zu gestalten */
+    overflow-wrap: break-word;
+    /* Automatischer Umbruch des Texts bei Bedarf */
+    margin-left: 25px;
+    /* Einrückung der zweiten Zeile */
 }
