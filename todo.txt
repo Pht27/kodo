@@ -1,11 +1,12 @@
-Feigheit einbauen
-Re Kontra Radio schöner machen (in Teams)
+Feigheit einbauen?
+Re Kontra Radio schöner machen (in Teams)?
 Profilbilder -> Karten
 Profilseite
 Match History
-Letzte Teams als Default
-Clear Knopf in Spiel eintragen
+Letzte Teams als Default?
+Clear Knopf in Spiel eintragen?
 Grafiken / Statistiken
-Startpunkte
-2 Fischaugen
-css für mobile -> tabs und/oder flexible boxen
+2 Fischaugen?
+Regelseite
+
+FIXEN INTEGER EINGABE KEIN MINUS

@@ -39,7 +39,7 @@ def total_points_per_player():
     data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points']]
     
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
-    data['winrate'] = data['won'] / data['played']
+    data['winrate'] = round(data['won'] / data['played'], 4)
     data['points'] += data['start_points']
 
     data = data[['name', 'points', 'winrate']]
