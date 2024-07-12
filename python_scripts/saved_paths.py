@@ -1,6 +1,6 @@
 import os
 
-csv_dir = '/home/Pht/kodo/data'
+csv_dir = '/home/Pht/data'
 csv_file_players = os.path.join(csv_dir, 'players.csv')
 csv_file_teams = os.path.join(csv_dir, 'teams.csv')
 csv_file_rounds = os.path.join(csv_dir, 'rounds.csv')
