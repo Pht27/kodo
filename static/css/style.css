@@ -11,6 +11,7 @@ body {
     background-color: #333;
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .navbar ul {
@@ -21,7 +22,7 @@ body {
 }
 
 .navbar li {
-    margin: 0 0px;
+    margin: 0;
     background-color: #333;
 }
 
@@ -41,6 +42,42 @@ body {
 .navbar .active {
     background-color: #5c5c5ce5;
     color: #56af6e;
+}
+
+/* Mobile Styles */
+.navbar-toggle {
+    display: none;
+    background-color: #333;
+    color: rgb(42, 173, 99);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        left: 0;
+    }
+
+    .navbar li {
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+}
+
+.navbar-menu.show {
+    display: flex;
 }
 
 /* Container für Inhalte */

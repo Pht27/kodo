@@ -11,7 +11,8 @@
 
 <body>
     <nav class="navbar">
-        <ul>
+        <button class="navbar-toggle" id="navbar-toggle">&#9776;</button>
+        <ul class="navbar-menu" id="navbar-menu">
             <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' }}">Spieler</a></li>
             <li><a href="{{ url_for('new_game') }}" class="{{ 'active' if request.endpoint == 'new_game' }}">Neues
                     Spiel</a></li>
