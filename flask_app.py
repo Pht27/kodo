@@ -8,8 +8,9 @@ app = Flask(__name__)
 
 # Route für die Startseite
 @app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/players')
+def players():
+    return render_template('players.html')
 
 @app.route('/new_game')
 def new_game():

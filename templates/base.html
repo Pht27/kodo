@@ -13,7 +13,8 @@
     <nav class="navbar">
         <button class="navbar-toggle" id="navbar-toggle">&#9776;</button>
         <ul class="navbar-menu" id="navbar-menu">
-            <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' }}">Spieler</a></li>
+            <li><a href="{{ url_for('players') }}" class="{{ 'active' if request.endpoint == 'players' }}">Spieler</a>
+            </li>
             <li><a href="{{ url_for('new_game') }}" class="{{ 'active' if request.endpoint == 'new_game' }}">Neues
                     Spiel</a></li>
             <li><a href="{{ url_for('overview') }}"
@@ -29,7 +30,7 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 
