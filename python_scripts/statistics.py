@@ -81,7 +81,6 @@ def total_points_per_player():
 
     # # drop unimportant cols
     data = data[['name', 'points', 'winrate']]
-    print(data)
 
     data = data.sort_values(by=['points'],  ascending=False)
     
