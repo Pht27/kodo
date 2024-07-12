@@ -129,23 +129,22 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
 
     const gameTypeSelect = document.getElementById('game-type');
-    const footnote = document.getElementById('footnote');
+    const footnote = document.querySelector('.footnote');
 
-    gameTypeSelect.addEventListener('change', (event) => {
-        const selectedValue = event.target.value;
+    const checkAndToggleFootnote = () => {
+        const selectedValue = gameTypeSelect.value;
         if (solos.includes(selectedValue)) {
             footnote.classList.remove('hidden');
         } else {
             footnote.classList.add('hidden');
         }
-    });
+    };
 
     // Initial check to see if the default selected value should show the footnote
-    if (solos.includes(gameTypeSelect.value)) {
-        footnote.classList.remove('hidden');
-    } else {
-        footnote.classList.add('hidden');
-    }
+    checkAndToggleFootnote();
+
+    // Add change event listener to select element
+    gameTypeSelect.addEventListener('change', checkAndToggleFootnote);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
