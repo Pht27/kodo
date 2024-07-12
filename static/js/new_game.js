@@ -333,3 +333,25 @@ function openTeam(evt, teamName) {
 }
 
 document.getElementById("defaultOpen").click();
+
+// Function to toggle visibility of content sections
+function toggleVisibility(contentId) {
+    var content = document.getElementById(contentId);
+    if (content.style.display === "none") {
+        content.style.display = "block";
+    } else {
+        content.style.display = "none";
+    }
+}
+
+// Add event listeners to toggle sections
+document.querySelectorAll('.toggle-section').forEach(function (section) {
+    section.addEventListener('click', function () {
+        var content = this.nextElementSibling;
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    });
+});
