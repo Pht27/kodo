@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Spieler{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rules.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<main class="faq">
+    <div class="faq__holder">
+        <h1 class="faq__heading">Spielregeln</h1>
+
+        <p class="intro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
+            accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus. Morbi
+            facilisis vulputate arcu, porta accumsan quam accumsan vel. Ut feugiat fringilla pharetra. Maecenas
+            molestie,
+            leo id tincidunt sagittis, risus lorem sodales magna, quis vestibulum nunc nibh sed ipsum. Maecenas
+            ullamcorper
+            tincidunt aliquam. Vivamus sagittis justo arcu, sed semper mi vulputate vel. Praesent non arcu tincidunt,
+            pretium nulla a, suscipit magna. Nam interdum, velit eget volutpat ornare, dui ipsum efficitur purus, sit
+            amet
+            tincidunt enim dui aliquet quam. Vestibulum metus nisl, euismod eu magna sed, elementum congue urna.
+            Phasellus
+            nisi arcu, molestie at varius ac, gravida vel diam. Nulla molestie non lectus sit amet auctor. Nam ultricies
+            auctor justo, non auctor eros hendrerit quis.
+        </p>
+
+        <details class="category">
+            <summary class="category_title"><span class="faq__question">How many team members can I invite?</span>
+            </summary>
+            <p class="faq__text">You can invite up to 2 additional users on the Free plan. There is no limit on team
+                members for the Premium plan.</p>
+        </details>
+
+        <details class="category">
+            <summary class="category_title"><span class="faq__question">What is the maximum file upload size?</span>
+            </summary>
+            <p class="faq__text">No more than 2GB. All files in your account must fit your allotted storage space.</p>
+        </details>
+
+    </div>
+</main>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/rules.js') }}"></script>
+{% endblock %}

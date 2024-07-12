@@ -1,0 +1,114 @@
+.faq {
+    background-color: #fff;
+    border-radius: 25px;
+    margin: 50px 5% 5% 5%;
+}
+
+.faq__heading {
+    color: var(--blue-dark);
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.category {
+    border-bottom: 1px solid hsl(240, 5%, 91%);
+    margin: 20px 0 0 0;
+    padding: 5px 0 20px 0;
+}
+
+.category_title:hover,
+.category_title:active {
+    color: var(--orange);
+    cursor: pointer;
+}
+
+.category[open]>.category_title {
+    font-weight: 700;
+}
+
+.category:not([open])>.category_title {
+    font-weight: 400;
+    /* Ensures normal weight when details is closed */
+}
+
+.category_title {
+    list-style: none;
+}
+
+.category_title::-webkit-details-marker {
+    display: none;
+}
+
+.category_title {
+    display: block;
+    padding: 0;
+    position: relative;
+    text-align: right;
+}
+
+.category_title:after {
+    display: inline-block;
+    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    text-align: right;
+    padding-bottom: 20px;
+}
+
+details[open] .category_title:after {
+    display: inline-block;
+    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    text-align: right;
+    transform: scaleY(-1);
+}
+
+.faq__question {
+    left: 0;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 90%;
+}
+
+.faq__question {
+    display: inline-block;
+    margin: 5px 0;
+    text-align: left;
+    width: 90%;
+}
+
+.category_title {
+    color: var(--blue-dark);
+    font-size: 1.4rem;
+}
+
+.category_title:focus {
+    color: var(--orange);
+    font-weight: bold;
+    outline: none;
+}
+
+.faq__text {
+    color: var(--blue-mid);
+    font-size: var(--base-font-size);
+    line-height: 1.6;
+    margin: 10px 0 0 0;
+    margin-top: 20px;
+}
+
+.hidden-lg {
+    display: block;
+}
+
+.visible-lg {
+    display: none;
+}
+
+
+
+
+.intro {
+    font-size: large;
+}

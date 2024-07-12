@@ -11,7 +11,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-
 @app.route('/new_game')
 def new_game():
     return render_template('new_game.html')
@@ -20,6 +19,11 @@ def new_game():
 def overview():
     return render_template('overview.html')
 
+@app.route('/rules')
+def rules():
+    return render_template('rules.html')
+
+############ APIs #############
 
 # API-Route zum Abrufen der Spieler
 @app.route('/api/players', methods=['GET'])

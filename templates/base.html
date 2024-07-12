@@ -18,6 +18,8 @@
             <li><a href="{{ url_for('overview') }}"
                     class="{{ 'active' if request.endpoint == 'overview' }}">Standings</a>
             </li>
+            <li><a href="{{ url_for('rules') }}" class="{{ 'active' if request.endpoint == 'rules' }}">Spielregeln</a>
+            </li>
         </ul>
     </nav>
     <div class="container">
