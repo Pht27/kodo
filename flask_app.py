@@ -23,6 +23,14 @@ def overview():
 def rules():
     return render_template('rules.html')
 
+@app.route('/statistics')
+def statistics():
+    return render_template('statistics.html')
+
+@app.route('/players/inactive_players')
+def inactive_players():
+    return render_template('inactive_players.html')
+
 ############ APIs #############
 
 # API-Route zum Abrufen der Spieler
@@ -30,6 +38,14 @@ def rules():
 def get_players():    
     players = load_players()
     players = players[players['active']]
+    players_list = players.to_dict(orient='records')
+    return jsonify(players_list)
+
+# API-Route zum Abrufen der Spieler
+@app.route('/api/inactive_players', methods=['GET'])
+def get_inactive_players():    
+    players = load_players()
+    players = players[~players['active']]
     players_list = players.to_dict(orient='records')
     return jsonify(players_list)
 
@@ -75,8 +91,11 @@ def add_game():
 # API-Route zum Abrufen der Zusammenfassung
 @app.route('/api/stats', methods=['GET'])
 def get_overview_stats():
-    print(jsonify(total_points_per_player().to_dict(orient='records')))
     return jsonify(total_points_per_player().to_dict(orient='records'))
+
+@app.route('/api/stats/ts', methods=['GET'])
+def time_series_stats():
+    return jsonify(total_points_per_player_time_series().to_dict(orient='records'))
 
 if __name__ == '__main__':
     app.run(debug=True)

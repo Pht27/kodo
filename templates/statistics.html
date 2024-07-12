@@ -7,13 +7,10 @@
 {% endblock %}
 
 {% block content %}
-
-
-
-
-
+<div id="plot"></div> <!-- This div will hold the Plotly graph -->
 {% endblock %}
 
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/statistics.js') }}"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}

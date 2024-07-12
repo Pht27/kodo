@@ -58,3 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Spieler initial laden
     loadPlayers();
 });
+
+document.getElementById('show_inactive').addEventListener('click', function () {
+    window.location.href = "/players/inactive_players";
+});

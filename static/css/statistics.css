@@ -1,0 +1,32 @@
+/* Container for Content */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Heading Styles */
+h1,
+h2 {
+    color: #333;
+}
+
+/* Statistics Page Specific Styles */
+#plot {
+    width: 100%;
+    height: 500px;
+    margin: 20px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    #plot {
+        height: 300px;
+    }
+}

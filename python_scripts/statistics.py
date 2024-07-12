@@ -2,13 +2,16 @@ import os
 import pandas as pd
 import numpy as np
 
+from datetime import date
+import datetime as dt
+
 # DIRECTORIES
 
 from python_scripts.saved_paths import *
 
 # FUNCTIONS
 
-def total_points_per_player():
+def total_points_per_player(filter_active=True, date=None):
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
@@ -27,7 +30,11 @@ def total_points_per_player():
     data = data.merge(teams_rounds, on='team_id')
     
     # merge with rounds
-    data = data.merge(rounds, on='round_id')   
+    data = data.merge(rounds, on='round_id')
+
+    # if given a date, filter up to that date
+    if date is not None:
+        data = data[pd.to_datetime(data['date']).dt.date <= date]    
 
     # check if game was won
     data.loc[data['party']!=data['winning_party'], 'points'] *= -1
@@ -45,10 +52,7 @@ def total_points_per_player():
     ]
 
     data.loc[(data['game_type'].isin(solos)) & (data['party'] == 'Re'), 'points'] *= 3
-    
-    # drop unimportant cols
-    data = data[['player_id', 'name', 'team_id', 'no_team_members', 'party', 'round_id', 'winning_party', 'points', 'start_points']]
-
+ 
     # check if game was won
     data['won'] = np.where(data['party']==data['winning_party'], True, False)
 
@@ -77,11 +81,34 @@ def total_points_per_player():
     data.loc[data['winrate'].isnull(), 'winrate'] = -1
 
     # lastly, drop players who are inactive
-    data = data[data['active']]
+    if filter_active:
+        data = data[data['active']]
 
-    # # drop unimportant cols
-    data = data[['name', 'points', 'winrate']]
+    # drop unimportant cols
+    if date is None:
+        data = data[['name', 'points', 'winrate']]
+    else:
+        data = data[['name', 'points', 'winrate', 'player_id']]
 
     data = data.sort_values(by=['points'],  ascending=False)
     
     return data
+
+def total_points_per_player_time_series():
+    
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    players = pd.read_csv(csv_file_players, index_col=False)
+
+    time_series = players.rename(columns={"start_points" : "points"})[players['active']].drop('active', axis=1)
+    time_series['date'] = dt.date(2024, 7, 11)
+    time_series = time_series[['player_id', 'name', 'date', 'points']]
+
+    for datum in pd.to_datetime(rounds['date']).dt.date:
+        df = total_points_per_player(date=datum).drop('winrate', axis=1)
+        df['date'] = datum
+        df = df[['player_id', 'name', 'date', 'points']]
+
+        time_series = pd.concat([time_series, df], ignore_index=True)
+
+    return time_series
+    
