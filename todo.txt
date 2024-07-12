@@ -9,4 +9,4 @@ Grafiken / Statistiken
 2 Fischaugen?
 Regelseite
 
-FIXEN INTEGER EINGABE KEIN MINUS
+BEI SOLO PUNKTE EINTRAGEN ÄNDERN -> TEXT IN FELD ÄNDERN!

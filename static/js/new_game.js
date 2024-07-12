@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const teams = ['team1', 'team2', 'team3', 'team4'];
+
     let allPlayers = [];
     const teamData = {};
 
@@ -113,6 +114,38 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Check if we need to render footnote
+
+    const solos = [
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ];
+
+    const gameTypeSelect = document.getElementById('game-type');
+    const footnote = document.getElementById('footnote');
+
+    gameTypeSelect.addEventListener('change', (event) => {
+        const selectedValue = event.target.value;
+        if (solos.includes(selectedValue)) {
+            footnote.classList.remove('hidden');
+        } else {
+            footnote.classList.add('hidden');
+        }
+    });
+
+    // Initial check to see if the default selected value should show the footnote
+    if (solos.includes(gameTypeSelect.value)) {
+        footnote.classList.remove('hidden');
+    } else {
+        footnote.classList.add('hidden');
+    }
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -269,8 +302,6 @@ document.getElementById('save-game').addEventListener('click', () => {
     for (let i = 0; i < team4SpecialConditions.length; i++) {
         team4SpecialConditions[i].checked = false;
     }
-    // Repeat for Team 2, Team 3, and Team 4
-    // (Implement the same reset logic for other teams here)
 
     // Reset the round info
     document.getElementById('game-type').selectedIndex = 0;

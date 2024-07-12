@@ -317,3 +317,15 @@
         justify-content: center;
     }
 }
+
+.footnote {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8em;
+    color: #666;
+    /* oder eine andere Farbe deiner Wahl */
+}
+
+.hidden {
+    display: none;
+}

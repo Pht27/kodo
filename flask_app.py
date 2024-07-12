@@ -71,6 +71,7 @@ def add_game():
 # API-Route zum Abrufen der Zusammenfassung
 @app.route('/api/stats', methods=['GET'])
 def get_overview_stats():
+    print(jsonify(total_points_per_player().to_dict(orient='records')))
     return jsonify(total_points_per_player().to_dict(orient='records'))
 
 if __name__ == '__main__':

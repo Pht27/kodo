@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
             row.innerHTML = `
                 <td>${player.name}</td>
                 <td>${player.points}</td>
-                <td>${player.winrate * 100}%</td>
+                <td>${player.winrate < 0 ? 'NaN' : player.winrate * 100 + '%'}</td>
             `;
             summaryTable.appendChild(row);
         });
