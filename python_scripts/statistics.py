@@ -34,7 +34,7 @@ def total_points_per_player(filter_active=True, date=None):
 
     # if given a date, filter up to that date
     if date is not None:
-        data = data[pd.to_datetime(data['date']).dt.date <= date]    
+        data = data[pd.to_datetime(data['date']) <= date]    
 
     # check if game was won
     data.loc[data['party']!=data['winning_party'], 'points'] *= -1
@@ -100,15 +100,14 @@ def total_points_per_player_time_series():
     players = pd.read_csv(csv_file_players, index_col=False)
 
     time_series = players.rename(columns={"start_points" : "points"})[players['active']].drop('active', axis=1)
-    time_series['date'] = dt.date(2024, 7, 11)
+    time_series['date'] = dt.datetime(2024, 7, 11)
     time_series = time_series[['player_id', 'name', 'date', 'points']]
 
-    for datum in pd.to_datetime(rounds['date']).dt.date:
+    for datum in pd.to_datetime(rounds['date']):
         df = total_points_per_player(date=datum).drop('winrate', axis=1)
-        df['date'] = datum
+        df['date'] = datum.replace(second=0)
         df = df[['player_id', 'name', 'date', 'points']]
 
         time_series = pd.concat([time_series, df], ignore_index=True)
-
     return time_series
     

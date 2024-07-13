@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from datetime import date
+from datetime import datetime as dt
 
 from python_scripts.saved_paths import *
 
@@ -65,7 +65,7 @@ def save_game(data):
         'winning_party': data['winner'],
         'points': data['points'],
         'game_type':data['gameType'],
-        'date':date.today()
+        'date':dt.now().replace(microsecond=0)
         }, index=[round_id])], ignore_index=True)
 
     
