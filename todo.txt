@@ -2,8 +2,6 @@ Feigheit einbauen?
 Profilbilder -> Karten
 Profilseite
 Match History
-Letzte Teams als Default?
-Clear Knopf in Spiel eintragen?
 Grafiken / Statistiken
-2 Fischaugen?
-Regelseite
+Regelseite (Konzept)
+Design

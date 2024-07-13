@@ -111,3 +111,51 @@ def total_points_per_player_time_series():
         time_series = pd.concat([time_series, df], ignore_index=True)
     return time_series
     
+def winrates_of_teams():
+    # import data
+    players = pd.read_csv(csv_file_players, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+
+    # merge all necessary info
+    data = teams.merge(players_teams, on="team_id")
+    data = data.merge(teams_rounds, on="team_id")
+    data = data.merge(rounds, on="round_id")
+
+    # check if won
+    data['won'] = data['party']==data['winning_party']
+
+    # if wasnt won, negative points
+    data.loc[data['party']!=data['winning_party'], 'points'] *= -1
+
+    # add to count games
+    data['played'] = 1
+
+    # add players to the mix
+    data = data.merge(players, on="player_id")
+
+    # self join to get combinations
+    data = data.merge(data, on="team_id")
+    data = data[['player_id_x', 'player_id_y', 'won_x', 'points_x', 'game_type_x', 'name_x', 'name_y', 'party_x', 'played_x']]
+    data = data.rename(columns={'won_x' : 'won', 'points_x' : 'points', 'game_type_x' : 'game_type', 'party_x' : 'party', 'played_x' : 'played'})
+
+    # calc statistics
+    data = data.groupby(['player_id_x', 'name_x', 'player_id_y', 'name_y']).agg(
+        mean_points=('points', 'mean'),
+        winrate=('won', lambda x: round(x.mean() * 100, 2)),
+        total_games_played=('played', 'sum')
+        ).reset_index()
+
+    players = players[players['active']]
+
+    player_data = players.merge(players, how="cross")
+    player_data = player_data.rename(columns={'player_id' : 'player_id_y'})
+    player_data['player_id_x'] = player_data['player_id_y']
+
+
+    data = player_data.merge(data, on=['player_id_x', 'player_id_y', 'name_x', 'name_y'], how='outer')
+
+    data = data[['name_x', 'name_y', 'winrate']]
+    return data

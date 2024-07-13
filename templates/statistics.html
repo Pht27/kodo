@@ -7,7 +7,13 @@
 {% endblock %}
 
 {% block content %}
-<div id="plot"></div> <!-- This div will hold the Plotly graph -->
+<div class="container" id="time-series-plot">
+    <div id="ts-plot"></div>
+</div>
+
+<div class="container" id="teams">
+    <div id="team-winrates-plot"></div>
+</div>
 {% endblock %}
 
 {% block extra_js %}

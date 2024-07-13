@@ -98,5 +98,15 @@ def get_overview_stats():
 def time_series_stats():
     return jsonify(total_points_per_player_time_series().to_dict(orient='records'))
 
+@app.route('/api/stats/wr_teams', methods=['GET'])
+def winrate_team_stats():
+    data = winrates_of_teams().to_dict(orient='split')
+    # Replace NaN with None (which will be translated to null in JSON)
+    for entry in data['data']:
+        for i in range(len(entry)):
+            if pd.isna(entry[i]):
+                entry[i] = None
+    return jsonify(data)
+
 if __name__ == '__main__':
     app.run(debug=True)
