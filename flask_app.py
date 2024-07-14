@@ -11,6 +11,13 @@ app = Flask(__name__)
 @app.route('/players')
 def players():
     return render_template('players.html')
+    
+@app.route('/player/<int:player_id>')
+def specific_player(player_id):
+    # Fetch match history using the player ID
+    match_history = get_match_history_infos(specific_player_id=player_id)
+    return render_template('specific_player.html', player_id=player_id, match_history=match_history)
+
 
 @app.route('/new_game')
 def new_game():
@@ -116,6 +123,12 @@ def winrate_team_stats():
 def get_match_history_stats():
     data = get_match_history_infos().to_dict(orient='split')
     return jsonify(data)
+
+@app.route('/api/stats/match_history/<int:player_id>', methods=['GET'])
+def get_match_history_stats_for_player(player_id):
+    data = get_match_history_infos(specific_player_id=player_id).to_dict(orient='split')
+    return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

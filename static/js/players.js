@@ -11,12 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 data.forEach(player => {
                     const li = document.createElement('li');
                     li.innerHTML = `${player.name} <span class="delete-player" data-id="${player.player_id}">🗑️</span>`;
+                    li.addEventListener('click', function () {
+                        window.location.href = `/player/${player.player_id}`;
+                    });
                     playerList.appendChild(li);
                 });
 
                 // Event Listener für Lösch-Buttons hinzufügen
                 document.querySelectorAll('.delete-player').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', function (event) {
+                        event.stopPropagation(); // Prevent the click from propagating to the li element
                         if (confirm('Are you sure you want to delete this player?')) {
                             deletePlayer(button.getAttribute('data-id'));
                         }

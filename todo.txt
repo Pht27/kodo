@@ -1,7 +1,8 @@
-Feigheit einbauen?
 Profilbilder -> Karten
 Profilseite
-Match History
+Match History -> auf matche klicken können
 Grafiken / Statistiken
-Regelseite (Konzept)
+Regelseite (Konzept erstmal?)
 Design
+Match History und Statistiken für Handy anpassen?
+Match History filtern können

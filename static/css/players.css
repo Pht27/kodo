@@ -30,10 +30,17 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #e7e7e7;
+    background-color: #e7e7e7;
     margin: 5px 0;
     padding: 10px;
     border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #f0f0f0;
+    /* Highlight on hover */
 }
 
 .delete-player {

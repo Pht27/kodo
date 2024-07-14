@@ -160,13 +160,20 @@ def winrates_of_teams():
     data = data[['name_x', 'name_y', 'winrate']]
     return data
 
-def get_match_history_infos():
+def get_match_history_infos(specific_player_id=None):
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
     teams = pd.read_csv(csv_file_teams, index_col=False)
     rounds = pd.read_csv(csv_file_rounds, index_col=False)
     teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+
+    # filter rounds for player if given
+    if specific_player_id is not None:
+        rounds_tmp = rounds.merge(teams_rounds, on='round_id')
+        rounds_tmp = rounds_tmp.merge(players_teams, on='team_id')
+        rounds_tmp = rounds_tmp[rounds_tmp['player_id'] == specific_player_id]
+        rounds = rounds_tmp[rounds.columns]
 
     data = pd.DataFrame(columns=['round_id',
             'date',

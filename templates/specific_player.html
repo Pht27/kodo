@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Player Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/specific_player.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="match-history-container" data-player-id="{{ player_id }}">
+    <h1>Player Profile: {{ player_id }}</h1>
+    <h1>Gespielte Runden</h1>
+
+    <!-- Container for Match Info Headers -->
+    <div class="match-info-header">
+        <div class="match-column-header">Datum</div>
+        <div class="match-column-header">Spieltyp</div>
+        <div class="match-column-header">Re Teams</div>
+        <div class="match-column-header">Kontra Teams</div>
+        <div class="match-column-header">Siegerpartei</div>
+        <div class="match-column-header">Punkte</div>
+    </div>
+
+    <!-- Match Container -->
+    <div id="matchContainer" class="match-container">
+        <!-- Matches will be dynamically inserted here -->
+    </div>
+
+    <!-- Pagination -->
+    <div id="pagination">
+        <button id="loadMoreBtn">Weitere Spiele</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/specific_player.js') }}"></script>
+{% endblock %}
