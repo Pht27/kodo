@@ -252,5 +252,6 @@ def get_match_history_infos():
         this_round = pd.DataFrame([this_round])
 
         data = pd.concat([data, this_round], ignore_index=True)
-        
+    
+    data = data.sort_values(by='date', ascending=False)
     return data

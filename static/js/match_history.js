@@ -59,7 +59,7 @@ function displayMatches() {
 
         const matchHTML = `
             <div class="match" onclick="openMatchPage('${match[0]}')">
-                <div class="match-column">${datetimeDate}<br>${datetimeTime}</div> <!-- Date and Time -->
+                <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
                 <div class="match-column">${match[2]}</div> <!-- Game Type -->
                 <div class="match-column teams-wrapper">
                     <div class="re-kontra-container">
