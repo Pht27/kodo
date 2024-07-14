@@ -64,11 +64,13 @@ function displayMatches() {
                 <div class="match-column teams-wrapper">
                     <div class="re-kontra-container">
                         <div class="teams-column">
-                            <div class="team-label">Re</div>
                             ${reTeamsHTML}
                         </div>
+                    </div>
+                </div>
+                <div class="match-column teams-wrapper">
+                    <div class="re-kontra-container">
                         <div class="teams-column">
-                            <div class="team-label">Kontra</div>
                             ${kontraTeamsHTML}
                         </div>
                     </div>

@@ -69,21 +69,11 @@
 .re-kontra-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 
 .re-kontra-container .teams-column {
     flex: 1;
     text-align: center;
-    margin-right: 5px;
-    /* Add space to the right */
-    margin-left: 5px;
-    /* Add space to the right */
-}
-
-.re-kontra-container .team-label {
-    font-weight: bold;
-    margin-bottom: 10px;
 }
 
 /* Ensure alignment of team containers */
@@ -98,7 +88,6 @@
 }
 
 .player-name {
-    margin-bottom: 5px;
     display: block;
     /* Ensure space between player names */
 }
