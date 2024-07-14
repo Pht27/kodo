@@ -28,6 +28,10 @@ def rules():
 def statistics():
     return render_template('statistics.html')
 
+@app.route('/match_history')
+def match_history():
+    return render_template('match_history.html')
+
 @app.route('/players/inactive_players')
 def inactive_players():
     return render_template('inactive_players.html')
@@ -106,6 +110,11 @@ def winrate_team_stats():
         for i in range(len(entry)):
             if pd.isna(entry[i]):
                 entry[i] = None
+    return jsonify(data)
+
+@app.route('/api/stats/match_history', methods=['GET'])
+def get_match_history_stats():
+    data = get_match_history_infos().to_dict(orient='split')
     return jsonify(data)
 
 if __name__ == '__main__':

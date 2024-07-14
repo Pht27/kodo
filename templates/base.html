@@ -25,6 +25,9 @@
             <li><a href="{{ url_for('statistics') }}"
                     class="{{ 'active' if request.endpoint == 'statistics' }}">Statistiken</a>
             </li>
+            <li><a href="{{ url_for('match_history') }}"
+                    class="{{ 'active' if request.endpoint == 'match_history' }}">Rundenübersicht</a>
+            </li>
         </ul>
     </nav>
     <div class="container">

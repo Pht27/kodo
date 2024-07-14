@@ -159,3 +159,98 @@ def winrates_of_teams():
 
     data = data[['name_x', 'name_y', 'winrate']]
     return data
+
+def get_match_history_infos():
+    # import data
+    players = pd.read_csv(csv_file_players, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+
+    data = pd.DataFrame(columns=['round_id',
+            'date',
+            'game_type',
+            'team1_player1',
+            'team1_player2',
+            'team1_party',
+            'team2_player1',
+            'team2_player2',
+            'team2_party',
+            'team3_player1',
+            'team3_player2',
+            'team3_party',
+            'team4_player1',
+            'team4_player2',
+            'team4_party',
+            'winning_party',
+            'points'])
+
+    for index, match in rounds.iterrows():
+        teams_this_round = teams.merge(teams_rounds, on="team_id").merge(rounds, on="round_id")
+        teams_this_round = teams_this_round[teams_this_round['round_id'] == match['round_id']]
+
+        # get team1 players
+        team1_id = teams_this_round.iloc[0]['team_id']
+        team1_party = teams_this_round[teams_this_round['team_id'] == team1_id].iloc[0]['party']
+        team1_data = players.merge(players_teams, on="player_id")
+        team1_data = team1_data[team1_data['team_id']==team1_id]
+        team1_player1 = team1_data.iloc[0]['name']
+        team1_player2 = 'None'
+        if team1_data.shape[0] > 1:
+            team1_player2 = team1_data.iloc[1]['name']
+        
+        # get team2 players
+        team2_id = teams_this_round.iloc[1]['team_id']
+        team2_party = teams_this_round[teams_this_round['team_id'] == team2_id].iloc[0]['party']
+        team2_data = players.merge(players_teams, on="player_id")
+        team2_data = team2_data[team2_data['team_id']==team2_id]
+        team2_player1 = team2_data.iloc[0]['name']
+        team2_player2 = 'None'
+        if team2_data.shape[0] > 1:
+            team2_player2 = team2_data.iloc[1]['name']
+
+        # get team3 players
+        team3_id = teams_this_round.iloc[2]['team_id']
+        team3_party = teams_this_round[teams_this_round['team_id'] == team3_id].iloc[0]['party']
+        team3_data = players.merge(players_teams, on="player_id")
+        team3_data = team3_data[team3_data['team_id']==team3_id]
+        team3_player1 = team3_data.iloc[0]['name']
+        team3_player2 = 'None'
+        if team3_data.shape[0] > 1:
+            team3_player2 = team3_data.iloc[1]['name']
+
+        # get team4 players
+        team4_id = teams_this_round.iloc[3]['team_id']
+        team4_party = teams_this_round[teams_this_round['team_id'] == team4_id].iloc[0]['party']
+        team4_data = players.merge(players_teams, on="player_id")
+        team4_data = team4_data[team4_data['team_id']==team4_id]
+        team4_player1 = team4_data.iloc[0]['name']
+        team4_player2 = 'None'
+        if team4_data.shape[0] > 1:
+            team4_player2 = team4_data.iloc[1]['name']
+
+        this_round = {'round_id' : match['round_id'],
+            'date' : pd.to_datetime(match['date']).strftime("%d %b, %Y, %H:%M:%S"),
+            'game_type' : match['game_type'],
+            'team1_player1': team1_player1,
+            'team1_player2': team1_player2,
+            'team1_party' : team1_party,
+            'team2_player1': team2_player1,
+            'team2_player2': team2_player2,
+            'team2_party' : team2_party,
+            'team3_player1': team3_player1,
+            'team3_player2': team3_player2,
+            'team3_party' : team3_party,
+            'team4_player1': team4_player1,
+            'team4_player2': team4_player2,
+            'team4_party' : team4_party,
+            'winning_party' : match['winning_party'],
+            'points' : match['points']
+            }
+            
+        this_round = pd.DataFrame([this_round])
+
+        data = pd.concat([data, this_round], ignore_index=True)
+        
+    return data

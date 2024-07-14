@@ -1,0 +1,104 @@
+/* Header Styles */
+.match-info-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1c6c31;
+    /* Darker green background */
+    color: #fff;
+    font-size: 1.2em;
+    /* Slightly bigger font size */
+    font-weight: bold;
+    /* Make the font bold */
+    margin-bottom: 10px;
+    /* Small margin at the bottom */
+}
+
+.match-column-header {
+    flex: 1;
+    text-align: center;
+}
+
+/* Match Container Styles */
+.match {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.match:hover {
+    background-color: #f0f0f0;
+    /* Highlight on hover */
+}
+
+.match-column {
+    flex: 1;
+    text-align: center;
+    /* Center other columns vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-container {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f9f9f9;
+    width: 100%;
+    /* Ensure alignment with other side */
+    box-sizing: border-box;
+    /* Include padding and border in width */
+}
+
+.re-teams,
+.kontra-teams {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.re-kontra-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.re-kontra-container .teams-column {
+    flex: 1;
+    text-align: center;
+    margin-right: 5px;
+    /* Add space to the right */
+    margin-left: 5px;
+    /* Add space to the right */
+}
+
+.re-kontra-container .team-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ensure alignment of team containers */
+.teams-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-container:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.player-name {
+    margin-bottom: 5px;
+    display: block;
+    /* Ensure space between player names */
+}
