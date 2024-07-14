@@ -148,9 +148,6 @@ def winrates_of_teams(specific_player_id=None):
         total_games_played=('played', 'sum')
         ).reset_index()
 
-    # remove doubles
-    data = data[data['player_id_x'] <= data['player_id_y']]
-
     players = players[players['active']]
 
     player_data = players.merge(players, how="cross")
@@ -160,11 +157,7 @@ def winrates_of_teams(specific_player_id=None):
 
     data = player_data.merge(data, on=['player_id_x', 'player_id_y', 'name_x', 'name_y'], how='outer')
 
-    if specific_player_id is not None:
-        data = data[(data['player_id_x'] == specific_player_id) | (data['player_id_y'] == specific_player_id)]
-
     data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y']]
-
     return data
 
 def get_match_history_infos(specific_player_id=None):
@@ -366,7 +359,10 @@ def calc_stats_for_player(player_id):
     return data
 
 def calc_team_wr_for_player(specific_player_id):
-    data = winrates_of_teams(specific_player_id=specific_player_id)
+    data = winrates_of_teams()
+
+    data = data[data['player_id_x'] <= data['player_id_y']]
+    data = data[(data['player_id_x'] == specific_player_id) | (data['player_id_y'] == specific_player_id)]
 
     tmp = data[data['player_id_x'] != specific_player_id]
     data = data[data['player_id_x'] == specific_player_id]

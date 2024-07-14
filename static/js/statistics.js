@@ -83,17 +83,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }];
 
-
-
-
         const layout = {
             title: 'Team Winrates',
-            xaxis: { title: 'Spieler*in 1' },
-            yaxis: { title: 'Spieler*in 2' }
+            xaxis: {
+                title: 'Spieler*in 1'
+            },
+            yaxis: {
+                title: 'Spieler*in 2'
+            },
+            autosize: true
         };
 
         Plotly.newPlot('team-winrates-plot', heatmapData, layout);
     }
+
 
     loadTSStats();
     loadWRStats();
