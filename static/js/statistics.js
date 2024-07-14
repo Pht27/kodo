@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         const layout = {
-            title: 'Spieler Punkte über Zeit',
+            title: 'Spieler*in Punkte über Zeit',
             xaxis: {
                 title: 'Datum',
             },
@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const layout = {
             title: 'Team Winrates',
-            xaxis: { title: 'Spieler 1' },
-            yaxis: { title: 'Spieler 2' }
+            xaxis: { title: 'Spieler*in 1' },
+            yaxis: { title: 'Spieler*in 2' }
         };
 
         Plotly.newPlot('team-winrates-plot', heatmapData, layout);
