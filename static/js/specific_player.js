@@ -1,5 +1,6 @@
 function showMatchHistory(playerID) {
     let roundData = [];
+
     // Runden laden
     function loadRounds() {
         fetch(`/api/stats/match_history/${playerID}`)
@@ -58,29 +59,33 @@ function showMatchHistory(playerID) {
             const datetimeDate = datetimeParts.slice(0, 2).join(', '); // Join first two parts with a comma
             const datetimeTime = datetimeParts.slice(2).join(', '); // Join remaining parts with a comma
 
-            const matchHTML = `
-                <div class="match" onclick="openMatchPage('${match[0]}')">
-                    <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
-                    <div class="match-column">${match[2]}</div> <!-- Game Type -->
-                    <div class="match-column teams-wrapper">
-                        <div class="re-kontra-container">
-                            <div class="teams-column">
-                                ${reTeamsHTML}
-                            </div>
+            const matchElement = document.createElement('div');
+            matchElement.classList.add('match');
+            matchElement.classList.add(match[17] ? 'won' : 'lost');
+            matchElement.onclick = () => openMatchPage(match[0]);
+
+            matchElement.innerHTML = `
+                <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
+                <div class="match-column">${match[2]}</div> <!-- Game Type -->
+                <div class="match-column teams-wrapper">
+                    <div class="re-kontra-container">
+                        <div class="teams-column">
+                            ${reTeamsHTML}
                         </div>
                     </div>
-                    <div class="match-column teams-wrapper">
-                        <div class="re-kontra-container">
-                            <div class="teams-column">
-                                ${kontraTeamsHTML}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="match-column">${match[15]}</div> <!-- Winning Party -->
-                    <div class="match-column">${match[16]}</div> <!-- Points -->
                 </div>
+                <div class="match-column teams-wrapper">
+                    <div class="re-kontra-container">
+                        <div class="teams-column">
+                            ${kontraTeamsHTML}
+                        </div>
+                    </div>
+                </div>
+                <div class="match-column">${match[15]}</div> <!-- Winning Party -->
+                <div class="match-column">${match[16]}</div> <!-- Points -->
             `;
-            matchContainer.innerHTML += matchHTML;
+
+            matchContainer.appendChild(matchElement);
         }
         matchesShown += matchesPerPage;
 
@@ -98,8 +103,7 @@ function showMatchHistory(playerID) {
 
     // Event listener for load more button
     loadMoreBtn.addEventListener('click', displayMatches);
-
-};
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const playerContainer = document.querySelector('.match-history-container');

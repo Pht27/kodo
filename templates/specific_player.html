@@ -1,15 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}Player Profile{% endblock %}
+{% block title %}{{ data.player_name }}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/specific_player.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="match-history-container" data-player-id="{{ player_id }}">
-    <h1>Player Profile: {{ player_id }}</h1>
-    <h1>Gespielte Runden</h1>
+<div class="player-profile-container">
+    <!-- Left Section: Player Info -->
+    <div class="player-info">
+        <h1>Profil: {{ data.player_name }}</h1>
+        <!-- Placeholder for Profile Picture -->
+        <div class="profile-picture">
+            <!-- Insert profile picture here if needed -->
+            <!-- <img src="profile.jpg" alt="Profile Picture"> -->
+        </div>
+        <!-- Dummy Data for Player Info -->
+        <div class="player-stats">
+            <p>Winrate: 75%</p>
+            <p>Durchschnittliche Punkte: 120</p>
+            <!-- Add more player stats as needed -->
+        </div>
+    </div>
+
+    <!-- Right Section: Player Stats and Winrates -->
+    <div class="player-stats-winrates">
+        <!-- Dummy Data for Player Winrates with Other Players -->
+        <h2>Winrates mit anderen Spielern</h2>
+        <div class="winrates-with-players">
+            <div class="winrate-item">
+                <p>Mit Spieler A: 80%</p>
+            </div>
+            <div class="winrate-item">
+                <p>Mit Spieler B: 70%</p>
+            </div>
+            <!-- Add more winrate items as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Match History Section -->
+<div class="match-history-container" data-player-id="{{ data.player_id }}">
+    <h2>Gespielte Runden</h2>
 
     <!-- Container for Match Info Headers -->
     <div class="match-info-header">

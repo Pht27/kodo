@@ -173,7 +173,10 @@ def get_match_history_infos(specific_player_id=None):
         rounds_tmp = rounds.merge(teams_rounds, on='round_id')
         rounds_tmp = rounds_tmp.merge(players_teams, on='team_id')
         rounds_tmp = rounds_tmp[rounds_tmp['player_id'] == specific_player_id]
-        rounds = rounds_tmp[rounds.columns]
+        rounds_tmp = rounds_tmp.merge(teams, on='team_id')
+        rounds_tmp['won'] = rounds_tmp['party'] == rounds_tmp['winning_party']
+        rounds = rounds_tmp[np.concatenate([rounds.columns, ['won']])]
+        rounds.loc[rounds['won']==False, 'points'] *= -1
 
     data = pd.DataFrame(columns=['round_id',
             'date',
@@ -191,7 +194,9 @@ def get_match_history_infos(specific_player_id=None):
             'team4_player2',
             'team4_party',
             'winning_party',
-            'points'])
+            'points',
+            'won'
+        ])
 
     for index, match in rounds.iterrows():
         teams_this_round = teams.merge(teams_rounds, on="team_id").merge(rounds, on="round_id")
@@ -237,6 +242,12 @@ def get_match_history_infos(specific_player_id=None):
         if team4_data.shape[0] > 1:
             team4_player2 = team4_data.iloc[1]['name']
 
+        # handle won column
+        if specific_player_id is not None:
+            won = match['won']
+        else:
+            won = 'None'
+
         this_round = {'round_id' : match['round_id'],
             'date' : pd.to_datetime(match['date']).strftime("%d %b, %Y, %H:%M:%S"),
             'game_type' : match['game_type'],
@@ -253,7 +264,8 @@ def get_match_history_infos(specific_player_id=None):
             'team4_player2': team4_player2,
             'team4_party' : team4_party,
             'winning_party' : match['winning_party'],
-            'points' : match['points']
+            'points' : match['points'],
+            'won': won
             }
             
         this_round = pd.DataFrame([this_round])

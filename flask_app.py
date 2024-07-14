@@ -14,9 +14,10 @@ def players():
     
 @app.route('/player/<int:player_id>')
 def specific_player(player_id):
-    # Fetch match history using the player ID
-    match_history = get_match_history_infos(specific_player_id=player_id)
-    return render_template('specific_player.html', player_id=player_id, match_history=match_history)
+    players = load_players()
+    player_name = players[players['player_id'] == player_id].iloc[0]['name']
+    data = {'player_id' : player_id, 'player_name' : player_name}
+    return render_template('specific_player.html', data=data)
 
 
 @app.route('/new_game')

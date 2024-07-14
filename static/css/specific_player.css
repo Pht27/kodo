@@ -1,39 +1,107 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+/* Styles for Player Profile Page */
+
+/* Player Profile Container */
+.player-profile-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+/* Player Info Section */
+.player-info {
+    flex: 1;
+    margin-right: 20px;
 }
 
-h1,
-h2 {
-    color: #333;
+.profile-picture {
+    /* Placeholder for profile picture */
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    /* Center profile picture */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.profile-picture img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-li {
-    background: #e7e7e7;
-    margin: 5px 0;
+.player-stats {
+    background-color: #f9f9f9;
     padding: 10px;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-li div {
+/* Player Stats and Winrates Section */
+.player-stats-winrates {
+    flex: 1;
+    margin-left: 20px;
+}
+
+.winrates-with-players {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.winrate-item {
     margin-bottom: 5px;
+}
+
+/* Match History Section */
+.match-history-container {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.match-info-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #1c6c31;
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.match-column-header {
+    flex: 1;
+    text-align: center;
+}
+
+.match-container {
+    margin-top: 10px;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.match:hover {
+    background-color: #f0f0f0;
 }
 
 /* Header Styles */
@@ -128,4 +196,41 @@ li div {
 .player-name {
     display: block;
     /* Ensure space between player names */
+}
+
+/* Match Styles */
+.match {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.match-column {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.match:hover {
+    background-color: #f0f0f0;
+}
+
+/* Styles for won matches */
+.match.won {
+    background-color: #b3ffb36b;
+    /* Light green */
+}
+
+/* Styles for lost matches */
+.match.lost {
+    background-color: #ffb3b37f;
+    /* Light red */
 }
