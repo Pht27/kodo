@@ -47,16 +47,24 @@
     margin-left: 20px;
 }
 
-.winrates-with-players {
+.teammates-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.best-teammates,
+.worst-teammates {
+    flex: 1;
+    margin-right: 10px;
     background-color: #f9f9f9;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 20px;
 }
 
-.winrate-item {
-    margin-bottom: 5px;
+.best-teammates h3,
+.worst-teammates h3 {
+    margin-top: 0;
 }
 
 /* Match History Section */
@@ -84,6 +92,7 @@
     text-align: center;
 }
 
+/* Match Container Styles */
 .match-container {
     margin-top: 10px;
 }
@@ -104,49 +113,9 @@
     background-color: #f0f0f0;
 }
 
-/* Header Styles */
-.match-info-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #1c6c31;
-    /* Darker green background */
-    color: #fff;
-    font-size: 1.2em;
-    /* Slightly bigger font size */
-    font-weight: bold;
-    /* Make the font bold */
-    margin-bottom: 10px;
-    /* Small margin at the bottom */
-}
-
-.match-column-header {
-    flex: 1;
-    text-align: center;
-}
-
-/* Match Container Styles */
-.match {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.match:hover {
-    background-color: #f0f0f0;
-    /* Highlight on hover */
-}
-
 .match-column {
     flex: 1;
     text-align: center;
-    /* Center other columns vertically */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,9 +128,7 @@
     border-radius: 3px;
     background-color: #f9f9f9;
     width: 100%;
-    /* Ensure alignment with other side */
     box-sizing: border-box;
-    /* Include padding and border in width */
 }
 
 .re-teams,
@@ -182,7 +149,6 @@
     text-align: center;
 }
 
-/* Ensure alignment of team containers */
 .teams-column {
     display: flex;
     flex-direction: column;
@@ -195,42 +161,34 @@
 
 .player-name {
     display: block;
-    /* Ensure space between player names */
-}
-
-/* Match Styles */
-.match {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.match-column {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.match:hover {
-    background-color: #f0f0f0;
 }
 
 /* Styles for won matches */
 .match.won {
     background-color: #b3ffb36b;
-    /* Light green */
 }
 
 /* Styles for lost matches */
 .match.lost {
     background-color: #ffb3b37f;
-    /* Light red */
+}
+
+/* Load More Button */
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#loadMoreBtn {
+    background-color: #1c6c31;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+#loadMoreBtn:hover {
+    background-color: #145021;
 }

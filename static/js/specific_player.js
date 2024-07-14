@@ -1,5 +1,6 @@
 function showMatchHistory(playerID) {
     let roundData = [];
+    let teamData = [];
 
     // Runden laden
     function loadRounds() {
@@ -11,7 +12,21 @@ function showMatchHistory(playerID) {
             });
     }
 
+    // Runden laden
+    function loadTeamWinRates() {
+        fetch(`/api/stats/wr_teams/${playerID}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.data)
+                teamData = data; // Accessing the data array from the fetched data
+                displayTeammates(teamData) // Load initial matches after fetching the data
+            });
+    }
+
     loadRounds();
+    loadTeamWinRates();
+
+    console.log(teamData)
 
     const matchContainer = document.getElementById('matchContainer');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -95,6 +110,36 @@ function showMatchHistory(playerID) {
         }
     }
 
+    function displayTeammates() {
+        // Filter teammates and sort by winrate
+        console.log(teamData)
+        const teammates = teamData.filter(d => d.winrate !== 'None');
+        teammates.sort((a, b) => b.winrate - a.winrate);
+        console.log(teammates)
+
+        // Get top 3 and bottom 3 teammates
+        const bestTeammates = teammates.slice(0, 5);
+        const worstTeammates = teammates.slice(-5).reverse();
+
+        // Display best teammates
+        const bestList = document.getElementById('bestTeammates');
+        bestList.innerHTML = '';
+        bestTeammates.forEach(teammate => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${teammate.name_y}: ${teammate.winrate}%`;
+            bestList.appendChild(listItem);
+        });
+
+        // Display worst teammates
+        const worstList = document.getElementById('worstTeammates');
+        worstList.innerHTML = '';
+        worstTeammates.forEach(teammate => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${teammate.name_y}: ${teammate.winrate}%`;
+            worstList.appendChild(listItem);
+        });
+    }
+
     // Function to handle clicking on match containers
     function openMatchPage(matchId) {
         console.log('Clicked on match with ID:', matchId);
@@ -104,6 +149,8 @@ function showMatchHistory(playerID) {
     // Event listener for load more button
     loadMoreBtn.addEventListener('click', displayMatches);
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const playerContainer = document.querySelector('.match-history-container');

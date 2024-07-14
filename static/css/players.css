@@ -26,7 +26,7 @@ ul {
     padding: 0;
 }
 
-li {
+.player-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,7 +38,7 @@ li {
     transition: background-color 0.3s ease;
 }
 
-li:hover {
+.player-container:hover {
     background-color: #f0f0f0;
     /* Highlight on hover */
 }

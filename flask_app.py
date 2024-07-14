@@ -106,10 +106,12 @@ def add_game():
 def get_overview_stats():
     return jsonify(total_points_per_player().to_dict(orient='records'))
 
+# get time series of points per player
 @app.route('/api/stats/ts', methods=['GET'])
 def time_series_stats():
     return jsonify(total_points_per_player_time_series().to_dict(orient='records'))
 
+# get winrates of teams
 @app.route('/api/stats/wr_teams', methods=['GET'])
 def winrate_team_stats():
     data = winrates_of_teams().to_dict(orient='split')
@@ -120,15 +122,26 @@ def winrate_team_stats():
                 entry[i] = None
     return jsonify(data)
 
+# get match history stats
 @app.route('/api/stats/match_history', methods=['GET'])
 def get_match_history_stats():
     data = get_match_history_infos().to_dict(orient='split')
     return jsonify(data)
 
+# get match history for specific player
 @app.route('/api/stats/match_history/<int:player_id>', methods=['GET'])
 def get_match_history_stats_for_player(player_id):
     data = get_match_history_infos(specific_player_id=player_id).to_dict(orient='split')
     return jsonify(data)
+
+# get stats for specific player
+@app.route('/api/stats/wr_teams/<int:player_id>', methods=['GET'])
+def get_wr_teams_stats_for_player(player_id):
+    data = calc_team_wr_for_player(specific_player_id=player_id)
+    data = data[data['player_id_x'] != data['player_id_y']]
+    data = data.fillna('None').to_dict(orient='records')
+    return jsonify(data)
+
 
 
 if __name__ == '__main__':

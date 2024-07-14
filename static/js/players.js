@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 playerList.innerHTML = '';
                 data.forEach(player => {
                     const li = document.createElement('li');
+                    li.classList.add('player-container')
                     li.innerHTML = `${player.name} <span class="delete-player" data-id="${player.player_id}">🗑️</span>`;
                     li.addEventListener('click', function () {
                         window.location.href = `/player/${player.player_id}`;

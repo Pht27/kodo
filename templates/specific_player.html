@@ -26,16 +26,16 @@
 
     <!-- Right Section: Player Stats and Winrates -->
     <div class="player-stats-winrates">
-        <!-- Dummy Data for Player Winrates with Other Players -->
-        <h2>Winrates mit anderen Spielern</h2>
-        <div class="winrates-with-players">
-            <div class="winrate-item">
-                <p>Mit Spieler A: 80%</p>
+        <h2>Teamspartner*innen</h2>
+        <div class="teammates-container">
+            <div class="best-teammates">
+                <h3>Beste Partner*innen</h3>
+                <ul id="bestTeammates"></ul>
             </div>
-            <div class="winrate-item">
-                <p>Mit Spieler B: 70%</p>
+            <div class="worst-teammates">
+                <h3>Schlechteste Partner*innen</h3>
+                <ul id="worstTeammates"></ul>
             </div>
-            <!-- Add more winrate items as needed -->
         </div>
     </div>
 </div>
@@ -51,7 +51,7 @@
         <div class="match-column-header">Re Teams</div>
         <div class="match-column-header">Kontra Teams</div>
         <div class="match-column-header">Siegerpartei</div>
-        <div class="match-column-header">Punkte</div>
+        <div class="match-column-header">Punkte für {{data.player_name}}</div>
     </div>
 
     <!-- Match Container -->
