@@ -175,6 +175,11 @@ def get_match_history_infos(specific_player_id=None):
         rounds_tmp = rounds_tmp[rounds_tmp['player_id'] == specific_player_id]
         rounds_tmp = rounds_tmp.merge(teams, on='team_id')
         rounds_tmp['won'] = rounds_tmp['party'] == rounds_tmp['winning_party']
+
+        # calc no of team members in round to calculate points
+        team_members = teams.merge(players_teams, on="team_id").groupby(['team_id']).size().reset_index(name='no_team_members')
+        rounds_tmp = rounds_tmp.merge(team_members, on='team_id')
+
         rounds = rounds_tmp[np.concatenate([rounds.columns, ['won']])]
         rounds.loc[rounds['won']==False, 'points'] *= -1
 
@@ -257,11 +262,14 @@ def get_match_history_infos(specific_player_id=None):
         points = match['points']
         won = 'None'
         if specific_player_id is not None:
+            # add won var
             won = match['won']
-            if not won:
-                points = -points
-            if match['game_type'] in solos:
+            # triple points if solo was played
+            if match['game_type'] in solos and rounds_tmp.loc[index, 'party'] == 'Re':
                 points = 3*points
+            # divide points by team members
+            points = points / rounds_tmp.loc[index, 'no_team_members']
+            
 
         this_round = {'round_id' : match['round_id'],
             'date' : pd.to_datetime(match['date']).strftime("%d %b, %Y, %H:%M:%S"),
