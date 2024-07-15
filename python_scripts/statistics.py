@@ -317,7 +317,7 @@ def calc_team_wr_for_player(specific_player_id):
     data = pd.concat([tmp, data], axis=0)
     return data
 
-def calc_player_stats_for_specific_player(specific_player_id=1, up_to=20):
+def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
@@ -457,5 +457,6 @@ def calc_player_stats_for_specific_player(specific_player_id=1, up_to=20):
     # add winrate of last n to total data
 
     data_total['winrate_lately'] = data['winrate']
-
+    data_total['mean_points'] = round(data_total['mean_points'], 3)
+    data_total['solo_winrate'] = round(data_total['solo_winrate'], 4)
     return data_total
