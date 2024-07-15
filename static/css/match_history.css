@@ -6,12 +6,13 @@
     background-color: #1c6c31;
     /* Darker green background */
     color: #fff;
-    font-size: 1.2em;
+    font-size: x-large;
     /* Slightly bigger font size */
     font-weight: bold;
     /* Make the font bold */
     margin-bottom: 10px;
     /* Small margin at the bottom */
+    border-radius: 8px;
 }
 
 .match-column-header {
@@ -25,15 +26,16 @@
     justify-content: space-between;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background-color: #f4fbff;
+    border: 1px solid #adadad;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: large;
 }
 
 .match:hover {
-    background-color: #f0f0f0;
+    background-color: #dce9f1;
     /* Highlight on hover */
 }
 
@@ -46,16 +48,25 @@
     justify-content: center;
 }
 
+
 .team-container {
     margin-bottom: 5px;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid #c3c3c3;
     border-radius: 3px;
     background-color: #f9f9f9;
     width: 100%;
     /* Ensure alignment with other side */
     box-sizing: border-box;
     /* Include padding and border in width */
+}
+
+.team-container.won {
+    background-color: #b3ffb36b;
+}
+
+.team-container.lost {
+    background-color: #ffb3b37f;
 }
 
 .re-teams,

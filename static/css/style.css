@@ -26,6 +26,7 @@ body {
 .navbar li {
     margin: 0;
     background-color: #333;
+    font-size: larger;
 }
 
 .navbar a {

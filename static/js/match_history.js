@@ -40,14 +40,16 @@ function displayMatches() {
             }
         });
 
+        let winning_party = match[15];
+
         const reTeamsHTML = reTeams.map(team => `
-            <div class="team-container">
+            <div class="team-container ${winning_party === 'Re' ? 'won' : 'lost'}">
                 ${team.players.filter(player => player !== 'None').map(player => `<span class="player-name">${player}</span>`).join('')}
             </div>
         `).join('');
 
         const kontraTeamsHTML = kontraTeams.map(team => `
-            <div class="team-container">
+            <div class="team-container ${winning_party === 'Kontra' ? 'won' : 'lost'}">
                 ${team.players.filter(player => player !== 'None').map(player => `<span class="player-name">${player}</span>`).join('')}
             </div>
         `).join('');

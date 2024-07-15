@@ -372,3 +372,149 @@ def calc_team_wr_for_player(specific_player_id):
 
     data = pd.concat([tmp, data], axis=0)
     return data
+
+def calc_player_stats():
+    calc_player_stats_for_specific_player()
+
+def calc_player_stats_for_specific_player(specific_player_id=1, up_to=20):
+    # import data
+    players = pd.read_csv(csv_file_players, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+    specials = pd.read_csv(csv_file_specials, index_col=False)
+
+    # calc no of team members in round to calculate points
+    team_members = teams.merge(players_teams, on="team_id").groupby(['team_id']).size().reset_index(name='no_team_members')
+
+    # joins teams with players
+    data = players.merge(players_teams, on="player_id").merge(team_members, on='team_id')
+    data = data.merge(teams, on='team_id')
+    data = data.merge(teams_rounds, on='team_id')
+
+    data = data[data['player_id']==specific_player_id]
+    
+    # merge with rounds
+    data = data.merge(rounds, on='round_id') 
+
+    # check if game was won
+    data.loc[data['party']!=data['winning_party'], 'points'] *= -1
+
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
+
+    data.loc[(data['game_type'].isin(solos)) & (data['party'] == 'Re'), 'points'] *= 3
+
+    # check if game was won
+    data['won'] = np.where(data['party']==data['winning_party'], True, False)
+
+
+    # check solo data
+    data['played_solo'] = np.where((data['game_type'].isin(solos)) & (data['party'] == 'Re'), True, False)
+    data['won_solo'] = np.where((data['played_solo']) & (data['won']), True, False)
+    
+
+    # add to count games
+    data['played'] = 1
+
+    # divide points by team members
+    data = data.astype({'points':float})
+    data.loc[:, 'points'] /= data['no_team_members']
+
+    # drop unimportant cols
+    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo']]
+    
+    # sum over all rows to get wr and points
+    data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4)
+    data['mean_points'] = data['points'] / data['played']
+    data['solo_winrate'] = data['won_solo'] / data['played_solo']
+    data['points'] += data['start_points']
+
+    # drop unimportant cols
+    data_total = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played']]
+    
+    ######################################
+    # do the same for the last n rounds: #
+    ######################################
+
+    # calc no of team members in round to calculate points
+    team_members = teams.merge(players_teams, on="team_id").groupby(['team_id']).size().reset_index(name='no_team_members')
+
+    # joins teams with players
+    data = players.merge(players_teams, on="player_id").merge(team_members, on='team_id')
+    data = data.merge(teams, on='team_id')
+    data = data.merge(teams_rounds, on='team_id')
+
+    data = data[data['player_id']==specific_player_id]
+    
+    # merge with rounds
+    data = data.merge(rounds, on='round_id') 
+    data.loc[:, 'date'] = pd.to_datetime(data['date'])
+    
+    data = data.sort_values(by='date', ascending=False)
+    data = data.head(up_to)
+
+    # check if game was won
+    data.loc[data['party']!=data['winning_party'], 'points'] *= -1
+
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
+
+    data.loc[(data['game_type'].isin(solos)) & (data['party'] == 'Re'), 'points'] *= 3
+
+    # check if game was won
+    data['won'] = np.where(data['party']==data['winning_party'], True, False)
+
+
+    # check solo data
+    data['played_solo'] = np.where((data['game_type'].isin(solos)) & (data['party'] == 'Re'), True, False)
+    data['won_solo'] = np.where((data['played_solo']) & (data['won']), True, False)
+    
+
+    # add to count games
+    data['played'] = 1
+
+    # divide points by team members
+    data = data.astype({'points':float})
+    data.loc[:, 'points'] /= data['no_team_members']
+
+    # drop unimportant cols
+    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo']]
+    
+    # sum over all rows to get wr and points
+    data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4)
+    data['mean_points'] = data['points'] / data['played']
+    data['solo_winrate'] = data['won_solo'] / data['played_solo']
+    data['points'] += data['start_points']
+
+    # drop unimportant cols
+    data = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played']]
+    
+
+    ## NOW ##
+    # add winrate of last n to total data
+
+    data_total['winrate_lately'] = data['winrate']
+
+    return data_total

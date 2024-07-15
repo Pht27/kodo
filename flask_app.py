@@ -11,7 +11,11 @@ app = Flask(__name__)
 @app.route('/players')
 def players():
     return render_template('players.html')
-    
+
+@app.route('/players/inactive_players')
+def inactive_players():
+    return render_template('inactive_players.html')
+
 @app.route('/player/<int:player_id>')
 def specific_player(player_id):
     players = load_players()
@@ -40,9 +44,6 @@ def statistics():
 def match_history():
     return render_template('match_history.html')
 
-@app.route('/players/inactive_players')
-def inactive_players():
-    return render_template('inactive_players.html')
 
 ############ APIs #############
 
@@ -134,7 +135,7 @@ def get_match_history_stats_for_player(player_id):
     data = get_match_history_infos(specific_player_id=player_id).to_dict(orient='split')
     return jsonify(data)
 
-# get stats for specific player
+# get team stats for specific player
 @app.route('/api/stats/wr_teams/<int:player_id>', methods=['GET'])
 def get_wr_teams_stats_for_player(player_id):
     data = calc_team_wr_for_player(specific_player_id=player_id)
@@ -142,7 +143,12 @@ def get_wr_teams_stats_for_player(player_id):
     data = data.fillna('None').to_dict(orient='records')
     return jsonify(data)
 
-
+# get stats for specific player
+@app.route('/api/stats/<int:player_id>', methods=['GET'])
+def get_stats_for_specific_player(player_id):
+    data = calc_player_stats_for_specific_player(specific_player_id=player_id, up_to=20)
+    data = data.fillna('None').to_dict(orient='records')
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

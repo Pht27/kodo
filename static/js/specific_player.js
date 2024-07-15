@@ -1,3 +1,29 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const playerContainer = document.querySelector('.match-history-container');
+    const playerID = playerContainer.getAttribute('data-player-id');
+
+    showMatchHistory(playerID);
+    loadPlayerStats(playerID);
+});
+
+function loadPlayerStats(playerID) {
+    fetch(`/api/stats/${playerID}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById('points').textContent = `Punkte: ${data[0].points}`;
+            document.getElementById('winrate').textContent = `Winrate: ${(data[0].winrate * 100).toFixed(2)}%`;
+            document.getElementById('mean_points').textContent = `Durchschnittliche Punkte: ${data[0].mean_points}`;
+            document.getElementById('solo_winrate').textContent = `Solo-Winrate: ${(data[0].solo_winrate * 100).toFixed(2)}%`;
+            document.getElementById('played_solo').textContent = `Gespielte Solos: ${data[0].played_solo}`;
+            document.getElementById('played').textContent = `Gespielte Spiele: ${data[0].played}`;
+            document.getElementById('winrate_lately').textContent = `Winrate in den letzten 20 Spielen: ${(data[0].winrate_lately * 100).toFixed(2)}%`;
+        })
+        .catch(error => {
+            console.error('Error fetching player stats:', error);
+        });
+}
+
 function showMatchHistory(playerID) {
     let roundData = [];
     let teamData = [];
@@ -12,21 +38,18 @@ function showMatchHistory(playerID) {
             });
     }
 
-    // Runden laden
+    // Team WR laden
     function loadTeamWinRates() {
         fetch(`/api/stats/wr_teams/${playerID}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data.data)
                 teamData = data; // Accessing the data array from the fetched data
-                displayTeammates(teamData) // Load initial matches after fetching the data
+                displayTeammates(teamData); // Load initial matches after fetching the data
             });
     }
 
     loadRounds();
     loadTeamWinRates();
-
-    console.log(teamData)
 
     const matchContainer = document.getElementById('matchContainer');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -112,10 +135,8 @@ function showMatchHistory(playerID) {
 
     function displayTeammates() {
         // Filter teammates and sort by winrate
-        console.log(teamData)
         const teammates = teamData.filter(d => d.winrate !== 'None');
         teammates.sort((a, b) => b.winrate - a.winrate);
-        console.log(teammates)
 
         // Get top 3 and bottom 3 teammates
         const bestTeammates = teammates.slice(0, 5);
@@ -149,11 +170,3 @@ function showMatchHistory(playerID) {
     // Event listener for load more button
     loadMoreBtn.addEventListener('click', displayMatches);
 }
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const playerContainer = document.querySelector('.match-history-container');
-    const playerID = playerContainer.getAttribute('data-player-id');
-    showMatchHistory(playerID);
-});
