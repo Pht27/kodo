@@ -445,8 +445,8 @@ def calc_player_stats_for_specific_player(specific_player_id=1, up_to=20):
     # sum over all rows to get wr and points
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = round(data['won'] / data['played'], 4)
-    data['mean_points'] = data['points'] / data['played']
-    data['solo_winrate'] = data['won_solo'] / data['played_solo']
+    data['mean_points'] = round(data['points'] / data['played'], 3)
+    data['solo_winrate'] = round(data['won_solo'] / data['played_solo'], 4)
     data['points'] += data['start_points']
 
     # drop unimportant cols
