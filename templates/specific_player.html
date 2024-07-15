@@ -16,15 +16,38 @@
             <!-- Insert profile picture here if needed -->
             <!-- <img src="profile.jpg" alt="Profile Picture"> -->
         </div>
-        <!-- Dummy Data for Player Info -->
+        <!-- Player Stats Table -->
         <div class="player-stats">
-            <p id="points">Punkte: 0</p>
-            <p id="winrate">Winrate: 0%</p>
-            <p id="played">Gespielte Spiele: 0</p>
-            <p id="winrate_lately">Winrate in den letzten 20 Spielen: 0%</p>
-            <p id="mean_points">Durchschnittliche Punkte: 0</p>
-            <p id="solo_winrate">Solo-Winrate: 0%</p>
-            <p id="played_solo">Gespielte Solos: 0</p>
+            <table id="statsTable">
+                <tr>
+                    <td>Punkte:</td>
+                    <td id="points">0</td>
+                </tr>
+                <tr>
+                    <td>Winrate:</td>
+                    <td id="winrate" class="winrate">0%</td>
+                </tr>
+                <tr>
+                    <td>Durchschnittliche Punkte:</td>
+                    <td id="mean_points" class="mean_points">0</td>
+                </tr>
+                <tr>
+                    <td>Solo-Winrate:</td>
+                    <td id="solo_winrate" class="winrate">0%</td>
+                </tr>
+                <tr>
+                    <td>Gespielte Solos:</td>
+                    <td id="played_solo">0</td>
+                </tr>
+                <tr>
+                    <td>Gespielte Spiele:</td>
+                    <td id="played">0</td>
+                </tr>
+                <tr>
+                    <td>Winrate in den letzten 20 Spielen:</td>
+                    <td id="winrate_lately" class="winrate">0%</td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -34,11 +57,11 @@
         <div class="teammates-container">
             <div class="best-teammates">
                 <h3>Beste Partner*innen</h3>
-                <ul id="bestTeammates"></ul>
+                <ul id="bestTeammates" class="teammate-list"></ul>
             </div>
             <div class="worst-teammates">
                 <h3>Schlechteste Partner*innen</h3>
-                <ul id="worstTeammates"></ul>
+                <ul id="worstTeammates" class="teammate-list"></ul>
             </div>
         </div>
     </div>
@@ -50,6 +73,7 @@
 
     <!-- Container for Match Info Headers -->
     <div class="match-info-header">
+        <div class="match-column-header-placeholder"></div>
         <div class="match-column-header">Datum</div>
         <div class="match-column-header">Spieltyp</div>
         <div class="match-column-header">Re Teams</div>
@@ -57,19 +81,17 @@
         <div class="match-column-header">Siegerpartei</div>
         <div class="match-column-header">Punkte für {{data.player_name}}</div>
     </div>
-
-    <!-- Match Container -->
-    <div id="matchContainer" class="match-container">
-        <!-- Matches will be dynamically inserted here -->
-    </div>
-
-    <!-- Pagination -->
+    <div class="match-container" id="matchContainer"></div>
     <div id="pagination">
-        <button id="loadMoreBtn">Weitere Spiele</button>
+        <button id="loadMoreBtn">Load More</button>
     </div>
 </div>
-{% endblock %}
 
-{% block extra_js %}
 <script src="{{ url_for('static', filename='js/specific_player.js') }}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const playerID = document.querySelector('.match-history-container').dataset.playerId;
+        loadPlayerStats(playerID);
+    });
+</script>
 {% endblock %}

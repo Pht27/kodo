@@ -261,12 +261,15 @@ def get_match_history_infos(specific_player_id=None):
         # handle won column
         points = match['points']
         won = 'None'
+        solo = match['game_type'] in solos
         if specific_player_id is not None:
             # add won var
             won = match['won']
             # triple points if solo was played
             if match['game_type'] in solos and rounds_tmp.loc[index, 'party'] == 'Re':
                 points = 3*points
+            if solo and rounds_tmp.loc[index, 'party'] == 'Kontra':
+                solo = False
             # divide points by team members
             points = points / rounds_tmp.loc[index, 'no_team_members']
             
@@ -288,7 +291,8 @@ def get_match_history_infos(specific_player_id=None):
             'team4_party' : team4_party,
             'winning_party' : match['winning_party'],
             'points' : points,
-            'won': won
+            'won': won,
+            'solo' : solo
             }
             
         this_round = pd.DataFrame([this_round])

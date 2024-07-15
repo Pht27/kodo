@@ -1,8 +1,10 @@
 Profilbilder -> Karten
 Profilseite
-Match History -> auf matche klicken können
+Match History -> auf matches klicken können
 Grafiken / Statistiken
 Regelseite (Konzept erstmal?)
 Design
 Match History und Statistiken für Handy anpassen?
 Match History filtern können
+Personal Match History hover farbe ändern
+Personal Match History Design an Match History anpassen

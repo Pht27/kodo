@@ -10,18 +10,61 @@ function loadPlayerStats(playerID) {
     fetch(`/api/stats/${playerID}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            document.getElementById('points').textContent = `Punkte: ${data[0].points}`;
-            document.getElementById('winrate').textContent = `Winrate: ${(data[0].winrate * 100).toFixed(2)}%`;
-            document.getElementById('mean_points').textContent = `Durchschnittliche Punkte: ${data[0].mean_points}`;
-            document.getElementById('solo_winrate').textContent = `Solo-Winrate: ${(data[0].solo_winrate * 100).toFixed(2)}%`;
-            document.getElementById('played_solo').textContent = `Gespielte Solos: ${data[0].played_solo}`;
-            document.getElementById('played').textContent = `Gespielte Spiele: ${data[0].played}`;
-            document.getElementById('winrate_lately').textContent = `Winrate in den letzten 20 Spielen: ${(data[0].winrate_lately * 100).toFixed(2)}%`;
+            document.getElementById('points').textContent = data[0].points;
+            setWinrateColor(document.getElementById('winrate'), data[0].winrate);
+            document.getElementById('mean_points').textContent = data[0].mean_points;
+            setMeanPointsColor(document.getElementById('mean_points'), data[0].mean_points);
+            setWinrateColor(document.getElementById('solo_winrate'), data[0].solo_winrate);
+            document.getElementById('played_solo').textContent = data[0].played_solo;
+            document.getElementById('played').textContent = data[0].played;
+            setWinrateColor(document.getElementById('winrate_lately'), data[0].winrate_lately);
         })
         .catch(error => {
             console.error('Error fetching player stats:', error);
         });
+}
+
+function getColorForPercentage(pct) {
+    const startColor = { r: 153, g: 0, b: 0 }; // Dark red
+    const midColor = { r: 153, g: 153, b: 0 }; // Dark yellow
+    const endColor = { r: 0, g: 153, b: 0 }; // Dark green
+
+    let color;
+    if (pct < 0.5) {
+        const factor = pct * 2;
+        color = {
+            r: Math.round(startColor.r + factor * (midColor.r - startColor.r)),
+            g: Math.round(startColor.g + factor * (midColor.g - startColor.g)),
+            b: Math.round(startColor.b + factor * (midColor.b - startColor.b))
+        };
+    } else {
+        const factor = (pct - 0.5) * 2;
+        color = {
+            r: Math.round(midColor.r + factor * (endColor.r - midColor.r)),
+            g: Math.round(midColor.g + factor * (endColor.g - midColor.g)),
+            b: Math.round(midColor.b + factor * (endColor.b - midColor.b))
+        };
+    }
+
+    return `rgb(${color.r}, ${color.g}, ${color.b})`;
+}
+
+function getColorForMeanPoints(meanPoints) {
+    // Clamping meanPoints to the range -2 to 2
+    const clampedPoints = Math.max(-2, Math.min(2, meanPoints));
+    const pct = (clampedPoints + 2) / 4; // Normalize to 0 to 1
+    return getColorForPercentage(pct);
+}
+
+function setWinrateColor(element, winrate) {
+    winrate = (winrate * 100).toFixed(2);
+    element.textContent = `${winrate}%`;
+    element.style.color = getColorForPercentage(winrate / 100);
+}
+
+function setMeanPointsColor(element, meanPoints) {
+    element.textContent = meanPoints;
+    element.style.color = getColorForMeanPoints(meanPoints);
 }
 
 function showMatchHistory(playerID) {
@@ -44,7 +87,7 @@ function showMatchHistory(playerID) {
             .then(response => response.json())
             .then(data => {
                 teamData = data; // Accessing the data array from the fetched data
-                displayTeammates(teamData); // Load initial matches after fetching the data
+                displayTeammates(); // Load initial teammates after fetching the data
             });
     }
 
@@ -98,9 +141,6 @@ function showMatchHistory(playerID) {
             const datetimeTime = datetimeParts.slice(2).join(', '); // Join remaining parts with a comma
 
             const matchElement = document.createElement('div');
-            matchElement.classList.add('match');
-            matchElement.classList.add(match[17] ? 'won' : 'lost');
-            matchElement.onclick = () => openMatchPage(match[0]);
 
             matchElement.innerHTML = `
                 <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
@@ -120,8 +160,29 @@ function showMatchHistory(playerID) {
                     </div>
                 </div>
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
-                <div class="match-column">${match[16]}</div> <!-- Points -->
             `;
+
+            // handle border depending on if it was a solo
+            if (match[18]) {
+                matchElement.classList.add('solo')
+                matchElement.innerHTML = `  <span class="match-icon">⭐</span>` + matchElement.innerHTML
+            }
+            else {
+                matchElement.innerHTML = `  <span class="match-icon"></span>` + matchElement.innerHTML
+            }
+
+            // handle color of points depending on won / lost
+            if (match[17]) {
+                matchElement.innerHTML = matchElement.innerHTML + `<div class="match-column points won">${match[16]}</div> <!-- Points -->`
+            }
+            else {
+                matchElement.innerHTML = matchElement.innerHTML + `<div class="match-column points lost">${match[16]}</div> <!-- Points -->`
+            }
+
+            // handle color of match depending on won / lost
+            matchElement.classList.add('match');
+            matchElement.classList.add(match[17] ? 'won' : 'lost');
+            matchElement.onclick = () => openMatchPage(match[0]);
 
             matchContainer.appendChild(matchElement);
         }
@@ -138,7 +199,7 @@ function showMatchHistory(playerID) {
         const teammates = teamData.filter(d => d.winrate !== 'None');
         teammates.sort((a, b) => b.winrate - a.winrate);
 
-        // Get top 3 and bottom 3 teammates
+        // Get top 5 and bottom 5 teammates
         const bestTeammates = teammates.slice(0, 5);
         const worstTeammates = teammates.slice(-5).reverse();
 
@@ -147,7 +208,18 @@ function showMatchHistory(playerID) {
         bestList.innerHTML = '';
         bestTeammates.forEach(teammate => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${teammate.name_y}: ${teammate.winrate}%`;
+            listItem.classList.add('teammate-item');
+
+            // Create separate elements for name and winrate
+            const nameElement = document.createElement('span');
+            nameElement.textContent = teammate.name_y;
+            listItem.appendChild(nameElement);
+
+            const winrateElement = document.createElement('span');
+            winrateElement.textContent = `${teammate.winrate}%`;
+            winrateElement.style.color = getColorForPercentage(teammate.winrate / 100);
+            listItem.appendChild(winrateElement);
+
             bestList.appendChild(listItem);
         });
 
@@ -156,7 +228,18 @@ function showMatchHistory(playerID) {
         worstList.innerHTML = '';
         worstTeammates.forEach(teammate => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${teammate.name_y}: ${teammate.winrate}%`;
+            listItem.classList.add('teammate-item');
+
+            // Create separate elements for name and winrate
+            const nameElement = document.createElement('span');
+            nameElement.textContent = teammate.name_y;
+            listItem.appendChild(nameElement);
+
+            const winrateElement = document.createElement('span');
+            winrateElement.textContent = `${teammate.winrate}%`;
+            winrateElement.style.color = getColorForPercentage(teammate.winrate / 100);
+            listItem.appendChild(winrateElement);
+
             worstList.appendChild(listItem);
         });
     }

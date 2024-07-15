@@ -59,8 +59,9 @@ function displayMatches() {
         const datetimeDate = datetimeParts.slice(0, 2).join(', '); // Join first two parts with a comma
         const datetimeTime = datetimeParts.slice(2).join(', '); // Join remaining parts with a comma
 
-        const matchHTML = `
+        let matchHTML = `
             <div class="match" onclick="openMatchPage('${match[0]}')">
+                <span class="match-icon"></span>
                 <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
                 <div class="match-column">${match[2]}</div> <!-- Game Type -->
                 <div class="match-column teams-wrapper">
@@ -78,9 +79,37 @@ function displayMatches() {
                     </div>
                 </div>
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
-                <div class="match-column">${match[16]}</div> <!-- Points -->
+                <div class="match-column points">${match[16]}</div> <!-- Points -->
             </div>
         `;
+
+        // handle border depending on if it was a solo
+        if (match[18]) {
+            matchHTML = `
+            <div class="match solo" onclick="openMatchPage('${match[0]}')">
+                <span class="match-icon">⭐</span>
+                <div class="match-column">${datetimeTime}<br>${datetimeDate}</div> <!-- Date and Time -->
+                <div class="match-column">${match[2]}</div> <!-- Game Type -->
+                <div class="match-column teams-wrapper">
+                    <div class="re-kontra-container">
+                        <div class="teams-column">
+                            ${reTeamsHTML}
+                        </div>
+                    </div>
+                </div>
+                <div class="match-column teams-wrapper">
+                    <div class="re-kontra-container">
+                        <div class="teams-column">
+                            ${kontraTeamsHTML}
+                        </div>
+                    </div>
+                </div>
+                <div class="match-column">${match[15]}</div> <!-- Winning Party -->
+                <div class="match-column points">${match[16]}</div> <!-- Points -->
+            </div>
+        `;
+        }
+
         matchContainer.innerHTML += matchHTML;
     }
     matchesShown += matchesPerPage;

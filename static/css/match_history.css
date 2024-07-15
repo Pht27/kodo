@@ -20,6 +20,10 @@
     text-align: center;
 }
 
+.match-column-header-placeholder {
+    width: 3px;
+}
+
 /* Match Container Styles */
 .match {
     display: flex;
@@ -47,6 +51,23 @@
     align-items: center;
     justify-content: center;
 }
+
+.match-column.points {
+    font-weight: bold;
+    font-size: larger;
+}
+
+
+.match-icon {
+    color: gold;
+    /* Example color for the star badge */
+    margin-right: 5px;
+    /* Adjust spacing */
+    font-size: 1.2em;
+    /* Size of the icon */
+    width: 3px;
+}
+
 
 
 .team-container {

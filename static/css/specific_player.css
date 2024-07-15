@@ -1,26 +1,49 @@
-/* Styles for Player Profile Page */
+/* Player Stats Table */
+.player-stats {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 
-/* Player Profile Container */
+.player-stats table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.player-stats td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.player-stats td:first-child {
+    font-weight: bold;
+}
+
+.winrate,
+.mean_points {
+    transition: color 0.3s ease;
+}
+
+/* Other styles from your initial CSS file */
 .player-profile-container {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-/* Player Info Section */
 .player-info {
     flex: 1;
     margin-right: 20px;
 }
 
 .profile-picture {
-    /* Placeholder for profile picture */
     width: 150px;
     height: 150px;
     background-color: #ccc;
     border-radius: 50%;
     margin-bottom: 20px;
-    /* Center profile picture */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,15 +56,6 @@
     object-fit: cover;
 }
 
-.player-stats {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-/* Player Stats and Winrates Section */
 .player-stats-winrates {
     flex: 1;
     margin-left: 20px;
@@ -67,7 +81,6 @@
     margin-top: 0;
 }
 
-/* Match History Section */
 .match-history-container {
     background-color: #fff;
     padding: 20px;
@@ -82,9 +95,10 @@
     padding: 10px;
     background-color: #1c6c31;
     color: #fff;
-    font-size: 1.2em;
+    font-size: x-large;
     font-weight: bold;
     margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 .match-column-header {
@@ -92,7 +106,6 @@
     text-align: center;
 }
 
-/* Match Container Styles */
 .match-container {
     margin-top: 10px;
 }
@@ -102,11 +115,12 @@
     justify-content: space-between;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    background-color: #f4fbff;
+    border: 1px solid #adadad;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: large;
 }
 
 .match:hover {
@@ -119,6 +133,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.match-column.solo {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.match-column.points {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.match-column.points.won {
+    color: #00861d;
+}
+
+.match-column.points.lost {
+    color: #da0f00;
 }
 
 .team-container {
@@ -163,17 +195,26 @@
     display: block;
 }
 
-/* Styles for won matches */
 .match.won {
     background-color: #b3ffb36b;
 }
 
-/* Styles for lost matches */
 .match.lost {
     background-color: #ffb3b37f;
 }
 
-/* Load More Button */
+
+.match-icon {
+    color: gold;
+    /* Example color for the star badge */
+    margin-right: 5px;
+    /* Adjust spacing */
+    font-size: 1.2em;
+    /* Size of the icon */
+    width: 3px;
+}
+
+
 #pagination {
     text-align: center;
     margin-top: 20px;
@@ -191,4 +232,88 @@
 
 #loadMoreBtn:hover {
     background-color: #145021;
+}
+
+/* Teammates list styles */
+.teammates-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.best-teammates,
+.worst-teammates {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.best-teammates h3,
+.worst-teammates h3 {
+    margin-top: 0;
+}
+
+.teammate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.teammate-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.teammate-item span {
+    display: inline-block;
+    min-width: 100px;
+    text-align: left;
+}
+
+/* Existing styles for player profile and match history */
+
+/* Teammates list styles */
+.teammates-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.best-teammates,
+.worst-teammates {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.best-teammates h3,
+.worst-teammates h3 {
+    margin-top: 0;
+}
+
+.teammate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.teammate-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.teammate-item span {
+    display: inline-block;
+    min-width: 100px;
+    text-align: left;
+}
+
+.match-column-header-placeholder {
+    width: 3px;
 }
