@@ -25,8 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
             row.innerHTML = `
                 <td>${player.name}</td>
                 <td>${player.points}</td>
-                <td>${player.winrate < 0 ? 'NaN' : player.winrate * 100 + '%'}</td>
+                <td>${player.winrate < 0 ? 'NaN' : Math.round(player.winrate * 10000) / 100 + '%'}</td>
             `;
+            console.log(player.winrate);
             summaryTable.appendChild(row);
         });
     }
