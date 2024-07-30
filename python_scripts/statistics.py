@@ -157,7 +157,7 @@ def winrates_of_teams(specific_player_id=None):
 
     data = player_data.merge(data, on=['player_id_x', 'player_id_y', 'name_x', 'name_y'], how='outer')
 
-    data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y']]
+    data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y', 'total_games_played']]
     return data
 
 def get_match_history_infos(specific_player_id=None):
@@ -315,6 +315,7 @@ def calc_team_wr_for_player(specific_player_id):
     tmp = tmp[data.columns]
 
     data = pd.concat([tmp, data], axis=0)
+    print(data)
     return data
 
 def calc_player_stats_for_specific_player(specific_player_id, up_to=20):

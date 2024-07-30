@@ -203,7 +203,6 @@
     background-color: #ffb3b37f;
 }
 
-
 .match-icon {
     color: gold;
     /* Example color for the star badge */
@@ -213,7 +212,6 @@
     /* Size of the icon */
     width: 3px;
 }
-
 
 #pagination {
     text-align: center;
@@ -267,53 +265,29 @@
     margin-bottom: 5px;
 }
 
-.teammate-item span {
-    display: inline-block;
-    min-width: 100px;
-    text-align: left;
-}
-
-/* Existing styles for player profile and match history */
-
-/* Teammates list styles */
-.teammates-container {
+.teammate-item .info-container {
     display: flex;
-    justify-content: space-between;
-}
-
-.best-teammates,
-.worst-teammates {
     flex: 1;
-    margin-right: 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.best-teammates h3,
-.worst-teammates h3 {
-    margin-top: 0;
-}
-
-.teammate-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.teammate-item {
-    display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
 }
 
 .teammate-item span {
-    display: inline-block;
-    min-width: 100px;
+    min-width: 0;
+}
+
+.teammate-item .name {
+    flex: 1;
     text-align: left;
 }
 
-.match-column-header-placeholder {
-    width: 3px;
+.teammate-item .winrate {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.teammate-item .total-games {
+    white-space: nowrap;
+    text-align: right;
+    font-weight: bold;
 }

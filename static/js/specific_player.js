@@ -210,15 +210,32 @@ function showMatchHistory(playerID) {
             const listItem = document.createElement('li');
             listItem.classList.add('teammate-item');
 
+            // Create a container for name and winrate
+            const infoContainer = document.createElement('div');
+            infoContainer.classList.add('info-container');
+
             // Create separate elements for name and winrate
             const nameElement = document.createElement('span');
+            nameElement.classList.add('name');
             nameElement.textContent = teammate.name_y;
-            listItem.appendChild(nameElement);
+            infoContainer.appendChild(nameElement);
 
             const winrateElement = document.createElement('span');
+            winrateElement.classList.add('winrate');
             winrateElement.textContent = `${teammate.winrate}%`;
             winrateElement.style.color = getColorForPercentage(teammate.winrate / 100);
-            listItem.appendChild(winrateElement);
+            infoContainer.appendChild(winrateElement);
+
+            // Append the infoContainer to listItem
+            listItem.appendChild(infoContainer);
+
+            // Create element for total games played
+            const totalGamesElement = document.createElement('span');
+            totalGamesElement.classList.add('total-games');
+            totalGamesElement.textContent = ` (${teammate.total_games_played})`;
+
+            // Append the totalGamesElement to listItem
+            listItem.appendChild(totalGamesElement);
 
             bestList.appendChild(listItem);
         });
@@ -230,18 +247,37 @@ function showMatchHistory(playerID) {
             const listItem = document.createElement('li');
             listItem.classList.add('teammate-item');
 
+            // Create a container for name and winrate
+            const infoContainer = document.createElement('div');
+            infoContainer.classList.add('info-container');
+
             // Create separate elements for name and winrate
             const nameElement = document.createElement('span');
+            nameElement.classList.add('name');
             nameElement.textContent = teammate.name_y;
-            listItem.appendChild(nameElement);
+            infoContainer.appendChild(nameElement);
 
             const winrateElement = document.createElement('span');
+            winrateElement.classList.add('winrate');
             winrateElement.textContent = `${teammate.winrate}%`;
             winrateElement.style.color = getColorForPercentage(teammate.winrate / 100);
-            listItem.appendChild(winrateElement);
+            infoContainer.appendChild(winrateElement);
+
+            // Append the infoContainer to listItem
+            listItem.appendChild(infoContainer);
+
+            // Create element for total games played
+            const totalGamesElement = document.createElement('span');
+            totalGamesElement.classList.add('total-games');
+            totalGamesElement.textContent = ` (${teammate.total_games_played})`;
+
+            // Append the totalGamesElement to listItem
+            listItem.appendChild(totalGamesElement);
 
             worstList.appendChild(listItem);
         });
+
+
     }
 
     // Function to handle clicking on match containers

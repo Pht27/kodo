@@ -2,18 +2,138 @@
     background-color: #fff;
     border-radius: 25px;
     margin: 50px 5% 5% 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.faq__holder {
+    padding: 20px;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.intro {
+    font-size: large;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-left: 20px;
+    position: relative;
+    border-style: double;
+    border: #000;
+    border-width: 10px;
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.toc {
+    list-style: none;
+    padding: 0;
+    border: #000;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.toc li {
+    margin-bottom: 5px;
+}
+
+.toc li a {
+    color: var(--blue-dark);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.toc li a:hover {
+    text-decoration: underline;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .faq__heading {
     color: var(--blue-dark);
     font-size: 3.2rem;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .category {
     border-bottom: 1px solid hsl(240, 5%, 91%);
-    margin: 20px 0 0 0;
+    margin: 20px 0;
     padding: 5px 0 20px 0;
+}
+
+.category_title {
+    color: var(--blue-dark);
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category_title a {
+    color: var(--blue-dark);
+    text-decoration: none;
+    display: inline-block;
+    flex: 1;
+}
+
+.category_title a:hover {
+    text-decoration: underline;
+}
+
+.category_title:after {
+    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+details[open] .category_title:after {
+    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    transform: scaleY(-1);
+}
+
+.faq__question {
+    display: inline-block;
+    margin: 5px 0;
+    text-align: left;
+    width: 90%;
+}
+
+.card-symbol {
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.hidden-lg {
+    display: block;
+}
+
+.visible-lg {
+    display: none;
 }
 
 .category_title:hover,
@@ -39,20 +159,13 @@
     display: none;
 }
 
-.category_title {
-    display: block;
-    padding: 0;
-    position: relative;
-    text-align: right;
-}
-
 .category_title:after {
     display: inline-block;
     content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
     background-repeat: no-repeat;
     background-position: right center;
     text-align: right;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 details[open] .category_title:after {
@@ -62,21 +175,6 @@ details[open] .category_title:after {
     background-position: right center;
     text-align: right;
     transform: scaleY(-1);
-}
-
-.faq__question {
-    left: 0;
-    position: absolute;
-    text-align: left;
-    top: 0;
-    width: 90%;
-}
-
-.faq__question {
-    display: inline-block;
-    margin: 5px 0;
-    text-align: left;
-    width: 90%;
 }
 
 .category_title {
@@ -98,17 +196,21 @@ details[open] .category_title:after {
     margin-top: 20px;
 }
 
-.hidden-lg {
-    display: block;
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-left: 20px;
+    position: relative;
+    border: 2px solid #000;
 }
 
-.visible-lg {
-    display: none;
+.intro-container {
+    display: flex;
 }
-
-
-
 
 .intro {
-    font-size: large;
+    flex: 1;
+    padding-right: 20px;
 }

@@ -12,35 +12,118 @@
     <div class="faq__holder">
         <h1 class="faq__heading">Spielregeln</h1>
 
-        <p class="intro">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
-            accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus. Morbi
-            facilisis vulputate arcu, porta accumsan quam accumsan vel. Ut feugiat fringilla pharetra. Maecenas
-            molestie,
-            leo id tincidunt sagittis, risus lorem sodales magna, quis vestibulum nunc nibh sed ipsum. Maecenas
-            ullamcorper
-            tincidunt aliquam. Vivamus sagittis justo arcu, sed semper mi vulputate vel. Praesent non arcu tincidunt,
-            pretium nulla a, suscipit magna. Nam interdum, velit eget volutpat ornare, dui ipsum efficitur purus, sit
-            amet
-            tincidunt enim dui aliquet quam. Vestibulum metus nisl, euismod eu magna sed, elementum congue urna.
-            Phasellus
-            nisi arcu, molestie at varius ac, gravida vel diam. Nulla molestie non lectus sit amet auctor. Nam ultricies
-            auctor justo, non auctor eros hendrerit quis.
-        </p>
+        <div class="intro-container">
+            <p class="intro">
+                Hier findest du eine umfassende Erklärung der Doppelkopf-Regeln, inklusive unserer Sonderregeln und
+                Extrapunkte.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
+                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
+                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
+                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
+            </p>
+            <aside class="sidebar">
+                <h2>Inhaltsverzeichnis</h2>
+                <ul class="toc">
+                    <li><a href="#grundlagen">Grundlagen</a></li>
+                    <li>
+                        <details>
+                            <summary>
+                                <a href="#sonderkarten" class="summary-link">Sonderkarten</a>
+                            </summary>
+                            <ul>
+                                <li><a href="#fuchs">Fuchs</a></li>
+                                <li><a href="#karlchen-mueller">Karlchen Müller</a></li>
+                            </ul>
+                        </details>
+                    </li>
 
-        <details class="category">
-            <summary class="category_title"><span class="faq__question">How many team members can I invite?</span>
-            </summary>
-            <p class="faq__text">You can invite up to 2 additional users on the Free plan. There is no limit on team
-                members for the Premium plan.</p>
-        </details>
+                    <li>
+                        <details>
+                            <summary><a href="#extrapunkte" class="summary-link">Extrapunkte</a></summary>
+                            <ul>
+                                <li><a href="#doppelkopf">Doppelkopf</a></li>
+                                <li><a href="#re-schweinchen">Re-Schweinchen</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details>
+                            <summary><a href="#spielarten" class="summary-link">Spielarten</a></summary>
+                            <ul>
+                                <li><a href="#hochzeit">Hochzeit</a></li>
+                                <li><a href="#armut">Armut</a></li>
+                                <li><a href="#solo">Solo</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="#strategien">Strategien</a></li>
+                    <li>
+                        <details>
+                            <summary><a href="#redewendungen" class="summary-link">Wichtige Redewendungen</a></summary>
+                            <ul>
+                                <li><a href="#re">Re</a></li>
+                                <li><a href="#kontra">Kontra</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </aside>
+        </div>
 
-        <details class="category">
-            <summary class="category_title"><span class="faq__question">What is the maximum file upload size?</span>
-            </summary>
-            <p class="faq__text">No more than 2GB. All files in your account must fit your allotted storage space.</p>
-        </details>
+        <div class="content-wrapper">
+            <p class="long-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
+                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
+            </p>
 
+            <details class="category" id="grundlagen">
+                <summary class="category_title">Grundlagen</summary>
+                <h3>Grundlagen des Spiels</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+            </details>
+
+            <details class="category" id="sonderkarten">
+                <summary class="category_title">Sonderkarten</summary>
+                <h3 id="fuchs">Fuchs <span class="card-symbol" style="color: red;">♦</span>A</h3>
+                <p>Wenn ein Spieler einen Fuchs sticht, erhält er Extrapunkte.</p>
+                <h3 id="karlchen-mueller">Karlchen Müller <span class="card-symbol">♣</span>B</h3>
+                <p>Der Spieler, der den letzten Stich mit dem Kreuz Buben macht, bekommt Sonderpunkte.</p>
+            </details>
+
+            <details class="category" id="extrapunkte">
+                <summary class="category_title">Extrapunkte</summary>
+                <h3 id="doppelkopf">Doppelkopf</h3>
+                <p>Ein Stich, der 40 Augen oder mehr zählt.</p>
+                <h3 id="re-schweinchen">Re-Schweinchen</h3>
+                <p>Wenn ein Spieler mit einem Schweinchen gewinnt, bekommt er zusätzliche Punkte.</p>
+            </details>
+
+            <details class="category" id="spielarten">
+                <summary class="category_title">Spielarten</summary>
+                <h3 id="hochzeit">Hochzeit</h3>
+                <p>Regeln und Besonderheiten der Hochzeit...</p>
+                <h3 id="armut">Armut</h3>
+                <p>Regeln und Besonderheiten der Armut...</p>
+                <h3 id="solo">Solo</h3>
+                <p>Regeln und Besonderheiten der Solo-Spiele...</p>
+            </details>
+
+            <details class="category" id="strategien">
+                <summary class="category_title">Strategien</summary>
+                <h3>Strategien</h3>
+                <p>Ein Leitfaden zu verschiedenen Strategien, die Spielern helfen können, ihr Spiel zu verbessern...</p>
+            </details>
+
+            <details class="category" id="redewendungen">
+                <summary class="category_title">Wichtige Redewendungen</summary>
+                <h3 id="re">Re</h3>
+                <p>Bedeutung und Verwendung von "Re"...</p>
+                <h3 id="kontra">Kontra</h3>
+                <p>Bedeutung und Verwendung von "Kontra"...</p>
+            </details>
+        </div>
     </div>
 </main>
 

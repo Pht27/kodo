@@ -1,6 +1,6 @@
 Profilbilder -> Karten
 Profilseite
-Match History -> auf matches klicken können
+Match History -> auf matches klicken können -> ZUM EDITEN
 Grafiken / Statistiken
 Regelseite (Konzept erstmal?)
 Design
