@@ -86,6 +86,14 @@ def delete_player(player_id):
     save_players(players)
     return jsonify({'status': 'success'})
 
+# API-Route zum Reaktivieren eines Spielers
+@app.route('/api/players/<int:player_id>', methods=['REACTIVATE'])
+def reactivate_player(player_id):
+    players = load_players()
+    players.loc[players['player_id'] == player_id, 'active'] = True
+    save_players(players)
+    return jsonify({'status': 'success'})
+
 # API-Route zum Suchen eines Spielers
 @app.route('/api/search_players')
 def search_players():
@@ -148,7 +156,16 @@ def get_wr_teams_stats_for_player(player_id):
 def get_stats_for_specific_player(player_id):
     data = calc_player_stats_for_specific_player(specific_player_id=player_id, up_to=20)
     data = data.fillna('None').to_dict(orient='records')
+    calc_winstreaks_with_other_players(specific_player_id=player_id)
     return jsonify(data)
+
+# get winstreak stats for specific player
+@app.route('/api/stats/winstreaks/<int:player_id>', methods=['GET'])
+def get_winstreak_stats_for_specific_player(player_id):
+    data = calc_winstreaks_with_other_players(specific_player_id=player_id)
+    data = data.fillna('None').to_dict(orient='records')
+    # return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
