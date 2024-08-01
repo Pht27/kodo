@@ -64,9 +64,12 @@
 .teammates-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .best-teammates,
+.fav-teammates,
+.winstreak-teammates,
 .worst-teammates {
     flex: 1;
     margin-right: 10px;
@@ -77,6 +80,8 @@
 }
 
 .best-teammates h3,
+.fav-teammates h3,
+.winstreak-teammates h3,
 .worst-teammates h3 {
     margin-top: 0;
 }
