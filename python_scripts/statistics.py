@@ -299,6 +299,7 @@ def get_match_history_infos(specific_player_id=None):
 
         data = pd.concat([data, this_round], ignore_index=True)
     
+    data['date'] = pd.to_datetime(data['date'])
     data = data.sort_values(by='date', ascending=False)
     return data
 
