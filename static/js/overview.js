@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 console.error('Error loading stats:', error);
-                summaryTable.innerHTML = '<tr><td colspan="3">Error loading stats</td></tr>';
+                summaryTable.innerHTML = '<tr><td colspan="4">Error loading stats</td></tr>';
             });
     }
 
@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${player.name}</td>
                 <td>${player.points}</td>
                 <td>${player.winrate < 0 ? 'NaN' : Math.round(player.winrate * 10000) / 100 + '%'}</td>
+                <td>${player.mean_points}</td>
             `;
-            console.log(player.winrate);
             summaryTable.appendChild(row);
         });
     }
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function sortTable(columnIndex, ascending) {
         data.sort((a, b) => {
             let valA, valB;
-
             switch (columnIndex) {
                 case 0:
                     valA = a.name.toLowerCase();
@@ -49,6 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 case 2:
                     valA = a.winrate;
                     valB = b.winrate;
+                    break;
+                case 3:
+                    valA = a.mean_points;
+                    valB = b.mean_points;
                     break;
             }
 

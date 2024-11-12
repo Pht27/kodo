@@ -16,6 +16,9 @@ function loadPlayerStats(playerID) {
             setMeanPointsColor(document.getElementById('mean_points'), data[0].mean_points);
             setWinrateColor(document.getElementById('solo_winrate'), data[0].solo_winrate);
             document.getElementById('played_solo').textContent = data[0].played_solo;
+            document.getElementById('played_alone').textContent = data[0].played_alone;
+            setWinrateColor(document.getElementById('alone_winrate'), data[0].alone_winrate);
+            document.getElementById('alone_mean_points').textContent = data[0].alone_mean_points;
             document.getElementById('played').textContent = data[0].played;
             setWinrateColor(document.getElementById('winrate_lately'), data[0].winrate_lately);
         })
@@ -203,6 +206,15 @@ function showMatchHistory(playerID) {
         const bestTeammates = teammates.slice(0, 5);
         const worstTeammates = teammates.slice(-5).reverse();
 
+        console.log(bestTeammates)
+        console.log(worstTeammates)
+
+        // Do the same for the stonks teammates
+        teammates.sort((a, b) => b.mean_points - a.mean_points);
+        const stonksTeammates = teammates.slice(0, 5);
+
+        console.log(stonksTeammates)
+
         // Display best teammates
         const bestList = document.getElementById('bestTeammates');
         bestList.innerHTML = '';
@@ -277,7 +289,42 @@ function showMatchHistory(playerID) {
             worstList.appendChild(listItem);
         });
 
+        // Display stonks teammates
+        const stonksList = document.getElementById('stonksTeammates');
+        stonksList.innerHTML = '';
+        stonksTeammates.forEach(teammate => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('teammate-item');
 
+            // Create a container for name and mean points
+            const infoContainer = document.createElement('div');
+            infoContainer.classList.add('info-container');
+
+            // Create separate elements for name and mean points
+            const nameElement = document.createElement('span');
+            nameElement.classList.add('name');
+            nameElement.textContent = teammate.name_y;
+            infoContainer.appendChild(nameElement);
+
+            const winrateElement = document.createElement('span');
+            winrateElement.classList.add('mean_points');
+            winrateElement.textContent = `${teammate.mean_points}`;
+            winrateElement.style.color = getColorForMeanPoints(teammate.mean_points);
+            infoContainer.appendChild(winrateElement);
+
+            // Append the infoContainer to listItem
+            listItem.appendChild(infoContainer);
+
+            // Create element for total games played
+            const totalGamesElement = document.createElement('span');
+            totalGamesElement.classList.add('total-games');
+            totalGamesElement.textContent = ` (${teammate.total_games_played})`;
+
+            // Append the totalGamesElement to listItem
+            listItem.appendChild(totalGamesElement);
+
+            stonksList.appendChild(listItem);
+        });
     }
 
     // Function to handle clicking on match containers

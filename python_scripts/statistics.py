@@ -69,10 +69,11 @@ def total_points_per_player(filter_active=True, date=None):
     # sum over all rows to get wr and points
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = round(data['won'] / data['played'], 4)
+    data['mean_points'] = round(data['points'] / data['played'], 3)
     data['points'] += data['start_points']
 
     # drop unimportant cols
-    data = data[['player_id', 'name', 'points', 'winrate']]
+    data = data[['player_id', 'name', 'points', 'winrate', 'mean_points']]
 
     # # if a player has not played a round yet, they will not be shown in the table
     # # to fix this, we add them with their initial points
@@ -86,9 +87,9 @@ def total_points_per_player(filter_active=True, date=None):
 
     # drop unimportant cols
     if date is None:
-        data = data[['name', 'points', 'winrate']]
+        data = data[['name', 'points', 'winrate', 'mean_points']]
     else:
-        data = data[['name', 'points', 'winrate', 'player_id']]
+        data = data[['name', 'points', 'winrate', 'player_id', 'mean_points']]
 
     data = data.sort_values(by=['points'],  ascending=False)
     
@@ -156,8 +157,8 @@ def winrates_of_teams(specific_player_id=None):
     player_data = player_data[player_data['player_id_x'] <= player_data['player_id_y']]
 
     data = player_data.merge(data, on=['player_id_x', 'player_id_y', 'name_x', 'name_y'], how='outer')
-
-    data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y', 'total_games_played']]
+    data['mean_points'] = np.round(data['mean_points'], 3)
+    data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y', 'total_games_played', 'mean_points']]
     return data
 
 def get_match_history_infos(specific_player_id=None):
@@ -364,8 +365,12 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     # check solo data
     data['played_solo'] = np.where((data['game_type'].isin(solos)) & (data['party'] == 'Re'), True, False)
     data['won_solo'] = np.where((data['played_solo']) & (data['won']), True, False)
-    
 
+    # check if played alone
+    data['played_alone'] = np.where(data['no_team_members'] == 1, True, False)
+    data['won_alone'] = np.where((data['played_alone']) & (data['won']), True, False)
+    data['points_alone'] = np.where(data['played_alone'], data['points'], 0)
+    
     # add to count games
     data['played'] = 1
 
@@ -374,17 +379,19 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     data.loc[:, 'points'] /= data['no_team_members']
 
     # drop unimportant cols
-    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo']]
+    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo', 'played_alone', 'won_alone', 'points_alone']]
     
     # sum over all rows to get wr and points
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = round(data['won'] / data['played'], 4)
-    data['mean_points'] = data['points'] / data['played']
-    data['solo_winrate'] = data['won_solo'] / data['played_solo']
+    data['mean_points'] = round(data['points'] / data['played'], 3)
+    data['solo_winrate'] = round(data['won_solo'] / data['played_solo'], 4)
+    data['alone_winrate'] = round(data['won_alone'] / data['played_alone'], 4)
+    data['alone_mean_points'] = round(data['points_alone'] / data['played_alone'], 3)
     data['points'] += data['start_points']
 
     # drop unimportant cols
-    data_total = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played']]
+    data_total = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played', 'played_alone', 'alone_winrate', 'alone_mean_points']]
     
     ######################################
     # do the same for the last n rounds: #

@@ -156,7 +156,7 @@ def get_wr_teams_stats_for_player(player_id):
 def get_stats_for_specific_player(player_id):
     data = calc_player_stats_for_specific_player(specific_player_id=player_id, up_to=20)
     data = data.fillna('None').to_dict(orient='records')
-    calc_winstreaks_with_other_players(specific_player_id=player_id)
+    # calc_winstreaks_with_other_players(specific_player_id=player_id)
     return jsonify(data)
 
 # get winstreak stats for specific player
