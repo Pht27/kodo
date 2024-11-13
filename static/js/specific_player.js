@@ -19,6 +19,7 @@ function loadPlayerStats(playerID) {
             document.getElementById('played_alone').textContent = data[0].played_alone;
             setWinrateColor(document.getElementById('alone_winrate'), data[0].alone_winrate);
             document.getElementById('alone_mean_points').textContent = data[0].alone_mean_points;
+            setMeanPointsColor(document.getElementById('alone_mean_points'), data[0].alone_mean_points);
             document.getElementById('played').textContent = data[0].played;
             setWinrateColor(document.getElementById('winrate_lately'), data[0].winrate_lately);
         })
@@ -389,17 +390,24 @@ function showMatchHistory(playerID) {
             nameCell.textContent = card.special;
 
             const winrateCell = document.createElement("td");
-            winrateCell.textContent = `${card.winrate}%`;
+            winrateCell.textContent = `${card.winrate.toFixed(2)}%`;
             winrateCell.style.color = getColorForPercentage(card.winrate / 100);
 
+            // Create element for total games played
+            const totalGamesCell = document.createElement('td');
+            totalGamesCell.innerHTML = ` <span style="font-weight: bold; color: black;">${card.played}</span>`;
+
             const meanPointsCell = document.createElement("td");
-            meanPointsCell.textContent = card.mean_points;
+            meanPointsCell.textContent = `${card.mean_points.toFixed(2)}`;
             meanPointsCell.style.color = getColorForMeanPoints(card.mean_points);
+
 
             // Füge die Zellen zur Zeile hinzu
             row.appendChild(nameCell);
             row.appendChild(winrateCell);
+            row.appendChild(totalGamesCell);
             row.appendChild(meanPointsCell);
+
 
             // Füge die Zeile zum Tabellen-Body hinzu
             tableBody.appendChild(row);
@@ -416,7 +424,7 @@ function showMatchHistory(playerID) {
     loadMoreBtn.addEventListener('click', displayMatches);
 }
 
-let sortDirections = [true, false, false]; // true: ascending for column 0, descending for 1 and 2
+let sortDirections = [true, false, false, false]; // true: ascending for column 0, descending for 1 and 2
 
 function sortTable(columnIndex) {
     const table = document.getElementById("specialCardsTable");
@@ -441,3 +449,19 @@ function sortTable(columnIndex) {
     // Append sorted rows back to the table
     sortedRows.forEach(row => table.appendChild(row));
 }
+
+function showTab(tabId) {
+    // Alle Tab-Inhalte verstecken
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    // Alle Tab-Buttons deaktivieren
+    document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+
+    // Den gewünschten Tab anzeigen und den zugehörigen Button aktivieren
+    document.getElementById(tabId).classList.add('active');
+    document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+}
+
+// Initialen Tab anzeigen
+document.addEventListener("DOMContentLoaded", function () {
+    showTab('teampartner'); // Zeigt standardmäßig die Teampartner*innen an
+});

@@ -14,7 +14,6 @@
         <!-- Placeholder for Profile Picture -->
         <div class="profile-picture">
             <!-- Insert profile picture here if needed -->
-            <!-- <img src="profile.jpg" alt="Profile Picture"> -->
         </div>
         <!-- Player Stats Table -->
         <div class="player-stats">
@@ -63,57 +62,62 @@
         </div>
     </div>
 
-    <!-- Right Section: Player Stats and Winrates -->
+    <!-- Tabs for switching between Teampartner*innen and Karten -->
     <div class="player-stats-winrates">
-        <h2>Teampartner*innen</h2>
-        <div class="teammates-container">
-            <div class="best-teammates">
-                <h3>Stomp Partner*innen</h3>
-                <ul id="bestTeammates" class="teammate-list"></ul>
+        <div class="stats-tabs">
+            <button class="tab-button active" onclick="showTab('teampartner')">Teampartner*innen</button>
+            <button class="tab-button" onclick="showTab('karten')">Karten</button>
+        </div>
+
+        <!-- Teampartner*innen Tab Content -->
+        <div class="tab-content active" id="teampartner">
+            <div class="teammates-container">
+                <div class="best-teammates">
+                    <h3>Stomp Partner*innen</h3>
+                    <ul id="bestTeammates" class="teammate-list"></ul>
+                </div>
+                <div class="worst-teammates">
+                    <h3>Int Partner*innen</h3>
+                    <ul id="worstTeammates" class="teammate-list"></ul>
+                </div>
             </div>
-            <div class="worst-teammates">
-                <h3>Int Partner*innen</h3>
-                <ul id="worstTeammates" class="teammate-list"></ul>
+            <div class="teammates-container">
+                <div class="stonks-teammates">
+                    <h3>Stonks Partner*innen</h3>
+                    <ul id="stonksTeammates" class="teammate-list"></ul>
+                </div>
+                <div class="broke-teammates">
+                    <h3>Broke Partner*innen</h3>
+                    <ul id="brokeTeammates" class="teammate-list"></ul>
+                </div>
             </div>
         </div>
-        <div class="teammates-container">
-            <div class="stonks-teammates">
-                <h3>Stonks Partner*innen</h3>
-                <ul id="stonksTeammates" class="teammate-list"></ul>
+
+        <!-- Karten Tab Content -->
+        <div class="tab-content" id="karten">
+            <div class="cards-table-container">
+                <table id="specialCardsTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Sonderkarte</th>
+                            <th onclick="sortTable(1)">Winrate</th>
+                            <th onclick="sortTable(2)">Anzahl Spiele</th>
+                            <th onclick="sortTable(3)">Durchschnittl. Punkte</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamisch generierte Inhalte von displayCards() -->
+                    </tbody>
+                </table>
             </div>
-            <div class="broke-teammates">
-                <h3>Broke Partner*innen</h3>
-                <ul id="brokeTeammates" class="teammate-list"></ul>
-            </div>
+
         </div>
     </div>
-
 </div>
-
-<!-- Special Cards Table -->
-<div class="special-cards-container">
-    <h2>Perlen vor die Säue oder Klaubautermänner vor die Kontradamen?</h2>
-    <table id="specialCardsTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(0)">Sonderkarte</th>
-                <th onclick="sortTable(1)">Winrate</th>
-                <th onclick="sortTable(2)">Durchschnittliche Punkte</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Dynamisch generierte Inhalte von displayCards() -->
-        </tbody>
-    </table>
-</div>
-
-
 
 <!-- Match History Section -->
 <div class="match-history-container" data-player-id="{{ data.player_id }}">
     <h2>Gespielte Runden</h2>
-
-    <!-- Container for Match Info Headers -->
     <div class="match-info-header">
         <div class="match-column-header-placeholder"></div>
         <div class="match-column-header">Datum</div>
@@ -134,6 +138,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         const playerID = document.querySelector('.match-history-container').dataset.playerId;
         loadPlayerStats(playerID);
+        showTab('teampartner'); // Default to Teampartner*innen Tab
     });
 </script>
 {% endblock %}
