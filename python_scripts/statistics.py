@@ -137,6 +137,9 @@ def winrates_of_teams(specific_player_id=None):
     # add players to the mix
     data = data.merge(players, on="player_id")
 
+    # only take players that are active
+    data = data[data['active']]
+
     # self join to get combinations
     data = data.merge(data, on="team_id")
     data = data[['player_id_x', 'player_id_y', 'won_x', 'points_x', 'game_type_x', 'name_x', 'name_y', 'party_x', 'played_x']]
