@@ -6,6 +6,7 @@ import pytz
 from python_scripts.saved_paths import *
 
 tz = pytz.timezone('Europe/Berlin')
+localFormat = "%Y-%m-%d %H:%M:%S"
 
 # Funktion zum Laden der Spieler aus der CSV-Datei
 def load_players():
@@ -63,12 +64,14 @@ def save_game(data):
         team_id += 1
         team_round_relations_index += 1
 
+
+
     rounds = pd.concat([rounds, pd.DataFrame({
         'round_id':round_id,
         'winning_party': data['winner'],
         'points': data['points'],
         'game_type':data['gameType'],
-        'date':dt.utcnow().astimezone(tz).replace(microsecond=0)
+        'date':dt.utcnow().astimezone(tz).replace(microsecond=0).strftime(localFormat)
         }, index=[round_id])], ignore_index=True)
 
     
