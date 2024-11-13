@@ -411,3 +411,34 @@
 #statsTable td#played_alone {
     font-weight: bold;
 }
+
+/* Special Cards Table */
+#gameTypesTable {
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+
+#gameTypesTable th,
+#gameTypesTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+#gameTypesTable th {
+    background-color: #1c6c31;
+    color: #fff;
+    cursor: pointer;
+}
+
+#gameTypesTable th:hover {
+    background-color: #145021;
+}
+
+#gameTypesTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#gameTypesTable tr:hover {
+    background-color: #f1f1f1;
+}

@@ -619,5 +619,57 @@ def calc_winrates_game_types():
     data['mean_points'] = round(data['points'] / data['played'], 3)
 
     data = data[['points', 'winrate', 'mean_points', 'played', 'game_type']]
+    return data
+
+def calc_winrates_game_types_for_specific_player(specific_player_id):
+    # import data
+    players = pd.read_csv(csv_file_players, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+    specials = pd.read_csv(csv_file_specials, index_col=False)
+
+    # merge data and filter for player
+    players = players[players['player_id']==specific_player_id]
+    data = players.merge(players_teams, on='player_id')
+    data = data.merge(teams, on="team_id")
+    data = data.merge(teams_rounds, on='team_id')
+    data = data.merge(rounds, on='round_id')
+
     print(data)
+    # check if game was won
+    data.loc[data['winning_party']!=data['party'], 'points'] *= -1
+
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
+
+    data.loc[(data['game_type'].isin(solos)) & (data['party']=='Re'), 'points'] *= 3
+
+    # only count solos that the player initiated
+    data['played_solo'] = True
+    data.loc[(data['game_type'].isin(solos)) & (data['party']=='Kontra'), 'played_solo'] = False
+    data = data[data['played_solo']]
+
+    # check if game was won
+    data['won'] = np.where(data['winning_party']==data['party'], True, False)
+
+    # add to count games
+    data['played'] = 1
+
+    # sum over all rows to get wr and points
+    data = data.groupby(['game_type']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4) * 100
+    data['mean_points'] = round(data['points'] / data['played'], 3)
+
+    data = data[['points', 'winrate', 'mean_points', 'played', 'game_type']]
     return data

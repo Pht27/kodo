@@ -105,9 +105,19 @@ function showMatchHistory(playerID) {
             });
     }
 
+    function loadGameTypeWinRates() {
+        fetch(`/api/stats/game_types/${playerID}`)
+            .then(response => response.json())
+            .then(data => {
+                cardData = data; // Accessing the data array from the fetched data
+                displayGameTypes(cardData); // Load initial teammates after fetching the data
+            });
+    }
+
     loadRounds();
     loadTeamWinRates();
     loadCardWinRates();
+    loadGameTypeWinRates();
 
     const matchContainer = document.getElementById('matchContainer');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -414,6 +424,47 @@ function showMatchHistory(playerID) {
         });
     }
 
+    function displayGameTypes(cardData) {
+        // Referenz auf das Tabellen-Body-Element der Sonderkarten-Tabelle
+        const tableBody = document.querySelector("#gameTypesTable tbody");
+
+        // Leere das Tabellen-Body-Element, um alte Einträge zu entfernen
+        tableBody.innerHTML = "";
+
+        // Iteriere durch cardData und füge jede Karte zur Tabelle hinzu
+        cardData.forEach(card => {
+            // Erstelle eine neue Zeile für die aktuelle Karte
+            const row = document.createElement("tr");
+
+            // Erstelle die Zellen für die Spalten "Sonderkarte", "Winrate" und "Durchschnittliche Punkte"
+            const nameCell = document.createElement("td");
+            nameCell.textContent = card.game_type;
+
+            const winrateCell = document.createElement("td");
+            winrateCell.textContent = `${card.winrate.toFixed(2)}%`;
+            winrateCell.style.color = getColorForPercentage(card.winrate / 100);
+
+            // Create element for total games played
+            const totalGamesCell = document.createElement('td');
+            totalGamesCell.innerHTML = ` <span style="font-weight: bold; color: black;">${card.played}</span>`;
+
+            const meanPointsCell = document.createElement("td");
+            meanPointsCell.textContent = `${card.mean_points.toFixed(2)}`;
+            meanPointsCell.style.color = getColorForMeanPoints(card.mean_points);
+
+
+            // Füge die Zellen zur Zeile hinzu
+            row.appendChild(nameCell);
+            row.appendChild(winrateCell);
+            row.appendChild(totalGamesCell);
+            row.appendChild(meanPointsCell);
+
+
+            // Füge die Zeile zum Tabellen-Body hinzu
+            tableBody.appendChild(row);
+        });
+    }
+
     // Function to handle clicking on match containers
     function openMatchPage(matchId) {
         console.log('Clicked on match with ID:', matchId);
@@ -428,6 +479,30 @@ let sortDirections = [true, false, false, false]; // true: ascending for column 
 
 function sortTable(columnIndex) {
     const table = document.getElementById("specialCardsTable");
+    const rows = Array.from(table.rows).slice(1); // exclude header
+    const isNumeric = columnIndex > 0;
+
+    // Toggle sort direction
+    sortDirections[columnIndex] = !sortDirections[columnIndex];
+    const sortAscending = sortDirections[columnIndex];
+
+    // Sort rows
+    const sortedRows = rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].textContent;
+        const bText = b.cells[columnIndex].textContent;
+        const comparison = isNumeric
+            ? parseFloat(aText) - parseFloat(bText)
+            : aText.localeCompare(bText);
+
+        return sortAscending ? comparison : -comparison;
+    });
+
+    // Append sorted rows back to the table
+    sortedRows.forEach(row => table.appendChild(row));
+}
+
+function sortTable2(columnIndex) {
+    const table = document.getElementById("gameTypesTable");
     const rows = Array.from(table.rows).slice(1); // exclude header
     const isNumeric = columnIndex > 0;
 

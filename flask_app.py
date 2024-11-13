@@ -185,6 +185,12 @@ def get_game_type_wr():
     data = data.fillna('None').to_dict(orient='records')
     return jsonify(data)
 
+@app.route('/api/stats/game_types/<int:player_id>', methods=['GET'])
+def get_game_type_wr_for_specific_player(player_id):
+    data = calc_winrates_game_types_for_specific_player(player_id)
+    data = data.fillna('None').to_dict(orient='records')
+    return jsonify(data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
