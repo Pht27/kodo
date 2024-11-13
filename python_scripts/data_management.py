@@ -1,8 +1,11 @@
 import os
 import pandas as pd
 from datetime import datetime as dt, timedelta
+import pytz
 
 from python_scripts.saved_paths import *
+
+tz = pytz.timezone('Europe/Berlin')
 
 # Funktion zum Laden der Spieler aus der CSV-Datei
 def load_players():
@@ -65,7 +68,7 @@ def save_game(data):
         'winning_party': data['winner'],
         'points': data['points'],
         'game_type':data['gameType'],
-        'date':dt.now().replace(microsecond=0) + timedelta(hours=2)
+        'date':dt.utcnow().astimezone(tz).replace(microsecond=0)
         }, index=[round_id])], ignore_index=True)
 
     
