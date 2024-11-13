@@ -94,8 +94,19 @@ function showMatchHistory(playerID) {
             });
     }
 
+    // Karten WR laden
+    function loadCardWinRates() {
+        fetch(`/api/stats/cards/${playerID}`)
+            .then(response => response.json())
+            .then(data => {
+                cardData = data; // Accessing the data array from the fetched data
+                displayCards(); // Load initial teammates after fetching the data
+            });
+    }
+
     loadRounds();
     loadTeamWinRates();
+    loadCardWinRates();
 
     const matchContainer = document.getElementById('matchContainer');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -206,14 +217,11 @@ function showMatchHistory(playerID) {
         const bestTeammates = teammates.slice(0, 5);
         const worstTeammates = teammates.slice(-5).reverse();
 
-        console.log(bestTeammates)
-        console.log(worstTeammates)
-
         // Do the same for the stonks teammates
         teammates.sort((a, b) => b.mean_points - a.mean_points);
         const stonksTeammates = teammates.slice(0, 5);
+        const brokeTeammates = teammates.slice(-5).reverse();
 
-        console.log(stonksTeammates)
 
         // Display best teammates
         const bestList = document.getElementById('bestTeammates');
@@ -325,6 +333,77 @@ function showMatchHistory(playerID) {
 
             stonksList.appendChild(listItem);
         });
+
+        // Display stonks teammates
+        const brokeList = document.getElementById('brokeTeammates');
+        brokeList.innerHTML = '';
+        brokeTeammates.forEach(teammate => {
+            const listItem = document.createElement('li');
+            listItem.classList.add('teammate-item');
+
+            // Create a container for name and mean points
+            const infoContainer = document.createElement('div');
+            infoContainer.classList.add('info-container');
+
+            // Create separate elements for name and mean points
+            const nameElement = document.createElement('span');
+            nameElement.classList.add('name');
+            nameElement.textContent = teammate.name_y;
+            infoContainer.appendChild(nameElement);
+
+            const winrateElement = document.createElement('span');
+            winrateElement.classList.add('mean_points');
+            winrateElement.textContent = `${teammate.mean_points}`;
+            winrateElement.style.color = getColorForMeanPoints(teammate.mean_points);
+            infoContainer.appendChild(winrateElement);
+
+            // Append the infoContainer to listItem
+            listItem.appendChild(infoContainer);
+
+            // Create element for total games played
+            const totalGamesElement = document.createElement('span');
+            totalGamesElement.classList.add('total-games');
+            totalGamesElement.textContent = ` (${teammate.total_games_played})`;
+
+            // Append the totalGamesElement to listItem
+            listItem.appendChild(totalGamesElement);
+
+            brokeList.appendChild(listItem);
+        });
+    }
+
+    function displayCards() {
+        // Referenz auf das Tabellen-Body-Element der Sonderkarten-Tabelle
+        const tableBody = document.querySelector("#specialCardsTable tbody");
+
+        // Leere das Tabellen-Body-Element, um alte Einträge zu entfernen
+        tableBody.innerHTML = "";
+
+        // Iteriere durch cardData und füge jede Karte zur Tabelle hinzu
+        cardData.forEach(card => {
+            // Erstelle eine neue Zeile für die aktuelle Karte
+            const row = document.createElement("tr");
+
+            // Erstelle die Zellen für die Spalten "Sonderkarte", "Winrate" und "Durchschnittliche Punkte"
+            const nameCell = document.createElement("td");
+            nameCell.textContent = card.special;
+
+            const winrateCell = document.createElement("td");
+            winrateCell.textContent = `${card.winrate}%`;
+            winrateCell.style.color = getColorForPercentage(card.winrate / 100);
+
+            const meanPointsCell = document.createElement("td");
+            meanPointsCell.textContent = card.mean_points;
+            meanPointsCell.style.color = getColorForMeanPoints(card.mean_points);
+
+            // Füge die Zellen zur Zeile hinzu
+            row.appendChild(nameCell);
+            row.appendChild(winrateCell);
+            row.appendChild(meanPointsCell);
+
+            // Füge die Zeile zum Tabellen-Body hinzu
+            tableBody.appendChild(row);
+        });
     }
 
     // Function to handle clicking on match containers
@@ -335,4 +414,30 @@ function showMatchHistory(playerID) {
 
     // Event listener for load more button
     loadMoreBtn.addEventListener('click', displayMatches);
+}
+
+let sortDirections = [true, false, false]; // true: ascending for column 0, descending for 1 and 2
+
+function sortTable(columnIndex) {
+    const table = document.getElementById("specialCardsTable");
+    const rows = Array.from(table.rows).slice(1); // exclude header
+    const isNumeric = columnIndex > 0;
+
+    // Toggle sort direction
+    sortDirections[columnIndex] = !sortDirections[columnIndex];
+    const sortAscending = sortDirections[columnIndex];
+
+    // Sort rows
+    const sortedRows = rows.sort((a, b) => {
+        const aText = a.cells[columnIndex].textContent;
+        const bText = b.cells[columnIndex].textContent;
+        const comparison = isNumeric
+            ? parseFloat(aText) - parseFloat(bText)
+            : aText.localeCompare(bText);
+
+        return sortAscending ? comparison : -comparison;
+    });
+
+    // Append sorted rows back to the table
+    sortedRows.forEach(row => table.appendChild(row));
 }

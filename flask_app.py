@@ -160,11 +160,11 @@ def get_stats_for_specific_player(player_id):
     return jsonify(data)
 
 # get winstreak stats for specific player
-@app.route('/api/stats/winstreaks/<int:player_id>', methods=['GET'])
-def get_winstreak_stats_for_specific_player(player_id):
-    data = calc_winstreaks_with_other_players(specific_player_id=player_id)
+@app.route('/api/stats/cards/<int:player_id>', methods=['GET'])
+def get_card_stats_for_specific_player(player_id):
+    data = calc_winrates_with_cards(specific_player_id=player_id)
     data = data.fillna('None').to_dict(orient='records')
-    # return jsonify(data)
+    return jsonify(data)
 
 
 if __name__ == '__main__':

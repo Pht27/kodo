@@ -460,6 +460,7 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     # drop unimportant cols
     data = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played']]
     
+    calc_winrates_with_cards(specific_player_id)
 
     ## NOW ##
     # add winrate of last n to total data
@@ -470,51 +471,107 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     return data_total
 
 
-def calc_winstreaks_with_other_players(specific_player_id):
+# def calc_winstreaks_with_other_players(specific_player_id):
+#     # import data
+#     players = pd.read_csv(csv_file_players, index_col=False)
+#     players_in_teams = pd.read_csv(csv_file_player_team, index_col=False)
+#     teams = pd.read_csv(csv_file_teams, index_col=False)
+#     rounds = pd.read_csv(csv_file_rounds, index_col=False)
+#     teams_in_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+
+
+#     # Function to calculate max win streak for a team
+#     def calculate_team_streaks(team_rounds, team_id):
+#         streaks = []
+#         current_streak = 0
+#         for i, row in team_rounds.iterrows():
+#             if row['winning_party'] == teams[teams['team_id'] == team_id]['party'].values[0]:
+#                 current_streak += 1
+#                 streaks.append(current_streak)
+#             else:
+#                 current_streak = 0
+#         return max(streaks, default=0)
+    
+#     # Get the team IDs that the specific player is part of
+#     player_teams = players_in_teams[players_in_teams['player_id'] == specific_player_id]['team_id'].unique()
+
+#     # Merge rounds and teams_in_rounds to get team results for each round
+#     team_rounds = pd.merge(teams_in_rounds, rounds, on='round_id')
+
+#     # Filter for rounds involving the specific player's teams
+#     player_team_rounds = team_rounds[team_rounds['team_id'].isin(player_teams)]
+
+#     # Calculate max win streaks for each team involving the specific player
+#     team_max_streaks = player_team_rounds.groupby('team_id').apply(lambda x: calculate_team_streaks(x, x['team_id'].values[0])).reset_index()
+#     team_max_streaks.columns = ['team_id', 'max_streak']
+
+#     # Get players in the same teams as the specific player
+#     team_players = pd.merge(players_in_teams, team_max_streaks, on='team_id')
+
+#     # Filter out the specific player from the results
+#     team_players = team_players[team_players['player_id'] != specific_player_id]
+
+#     # Merge to get player names
+#     team_players = pd.merge(team_players, players, on='player_id')
+
+#     # Group by player name to get the longest win streak with each player
+#     result_df = team_players.groupby('name')['max_streak'].max().reset_index()
+#     result_df.columns = ['name_of_other_player', 'longest_winstreak_with_that_player']
+
+#     print(result_df)
+
+
+def calc_winrates_with_cards(specific_player_id):
+    
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
-    players_in_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
     teams = pd.read_csv(csv_file_teams, index_col=False)
     rounds = pd.read_csv(csv_file_rounds, index_col=False)
-    teams_in_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+    specials = pd.read_csv(csv_file_specials, index_col=False)
 
+    # calc no of team members in round to calculate points
+    team_members = teams.merge(players_teams, on="team_id").groupby(['team_id']).size().reset_index(name='no_team_members')
 
-    # Function to calculate max win streak for a team
-    def calculate_team_streaks(team_rounds, team_id):
-        streaks = []
-        current_streak = 0
-        for i, row in team_rounds.iterrows():
-            if row['winning_party'] == teams[teams['team_id'] == team_id]['party'].values[0]:
-                current_streak += 1
-                streaks.append(current_streak)
-            else:
-                current_streak = 0
-        return max(streaks, default=0)
+    # joins teams with players and specials
+    data = players.merge(players_teams, on="player_id").merge(team_members, on='team_id')
+    data = data.merge(teams, on='team_id')
+    data = data.merge(teams_rounds, on='team_id')
+    data = data.merge(specials, on='team_id')
+
+    data = data[data['player_id']==specific_player_id]
     
-    # Get the team IDs that the specific player is part of
-    player_teams = players_in_teams[players_in_teams['player_id'] == specific_player_id]['team_id'].unique()
+    # merge with rounds
+    data = data.merge(rounds, on='round_id') 
 
-    # Merge rounds and teams_in_rounds to get team results for each round
-    team_rounds = pd.merge(teams_in_rounds, rounds, on='round_id')
+    # check if game was won
+    data.loc[data['party']!=data['winning_party'], 'points'] *= -1
 
-    # Filter for rounds involving the specific player's teams
-    player_team_rounds = team_rounds[team_rounds['team_id'].isin(player_teams)]
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
 
-    # Calculate max win streaks for each team involving the specific player
-    team_max_streaks = player_team_rounds.groupby('team_id').apply(lambda x: calculate_team_streaks(x, x['team_id'].values[0])).reset_index()
-    team_max_streaks.columns = ['team_id', 'max_streak']
+    data.loc[(data['game_type'].isin(solos)) & (data['party'] == 'Re'), 'points'] *= 3
 
-    # Get players in the same teams as the specific player
-    team_players = pd.merge(players_in_teams, team_max_streaks, on='team_id')
+    # check if game was won
+    data['won'] = np.where(data['party']==data['winning_party'], True, False)
 
-    # Filter out the specific player from the results
-    team_players = team_players[team_players['player_id'] != specific_player_id]
+    # add to count games
+    data['played'] = 1
 
-    # Merge to get player names
-    team_players = pd.merge(team_players, players, on='player_id')
+    # sum over all rows to get wr and points
+    data = data.groupby(['player_id', 'name', 'special']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4) * 100
+    data['mean_points'] = round(data['points'] / data['played'], 3)
 
-    # Group by player name to get the longest win streak with each player
-    result_df = team_players.groupby('name')['max_streak'].max().reset_index()
-    result_df.columns = ['name_of_other_player', 'longest_winstreak_with_that_player']
-
-    print(result_df)
+    data = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'played', 'special']]
+    return data
