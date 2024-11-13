@@ -20,3 +20,56 @@ h2 {
         height: 300px;
     }
 }
+
+/* Special Cards Table */
+#specialCardsTable {
+    width: 100%;
+    /* border-collapse: collapse; */
+}
+
+#specialCardsTable th,
+#specialCardsTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+#specialCardsTable th {
+    background-color: #1c6c31;
+    color: #fff;
+    cursor: pointer;
+}
+
+#specialCardsTable th:hover {
+    background-color: #145021;
+}
+
+#specialCardsTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#specialCardsTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Game Counter */
+#games-played-counter {
+    text-align: center;
+    color: #1c6c31;
+    align-items: center;
+}
+
+#game-counter h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.counter {
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

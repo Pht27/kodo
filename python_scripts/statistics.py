@@ -575,3 +575,61 @@ def calc_winrates_with_cards(specific_player_id):
 
     data = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'played', 'special']]
     return data
+
+def calc_winrates_with_cards_total():
+    
+    # import data
+    players = pd.read_csv(csv_file_players, index_col=False)
+    players_teams = pd.read_csv(csv_file_player_team, index_col=False)
+    teams = pd.read_csv(csv_file_teams, index_col=False)
+    rounds = pd.read_csv(csv_file_rounds, index_col=False)
+    teams_rounds = pd.read_csv(csv_file_team_round, index_col=False)
+    specials = pd.read_csv(csv_file_specials, index_col=False)
+
+    # calc no of team members in round to calculate points
+    team_members = teams.merge(players_teams, on="team_id").groupby(['team_id']).size().reset_index(name='no_team_members')
+
+    # joins teams with specials
+    data = team_members.merge(teams, on='team_id')
+    data = data.merge(teams_rounds, on='team_id')
+    data = data.merge(specials, on='team_id')
+
+    
+    # merge with rounds
+    data = data.merge(rounds, on='round_id') 
+
+    # check if game was won
+    data.loc[data['party']!=data['winning_party'], 'points'] *= -1
+
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
+
+    data.loc[(data['game_type'].isin(solos)) & (data['party'] == 'Re'), 'points'] *= 3
+
+    # check if game was won
+    data['won'] = np.where(data['party']==data['winning_party'], True, False)
+
+    # add to count games
+    data['played'] = 1
+
+    # sum over all rows to get wr and points
+    data = data.groupby(['special']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4) * 100
+    data['mean_points'] = round(data['points'] / data['played'], 3)
+
+    data = data[['points', 'winrate', 'mean_points', 'played', 'special']]
+    return data
+
+def calc_total_games_played():
+    data = pd.read_csv(csv_file_rounds, index_col=False)
+    data['played'] = 1
+    return len(data)

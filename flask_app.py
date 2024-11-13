@@ -167,5 +167,20 @@ def get_card_stats_for_specific_player(player_id):
     return jsonify(data)
 
 
+# get winstreak stats for specific player
+@app.route('/api/stats/cards', methods=['GET'])
+def get_card_stats():
+    data = calc_winrates_with_cards_total()
+    data = data.fillna('None').to_dict(orient='records')
+    return jsonify(data)
+
+@app.route('/api/stats/games_played', methods=['GET'])
+def get_total_games_played():
+    data = calc_total_games_played()
+    print("HIER")
+    print(data)
+    return jsonify(data)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
