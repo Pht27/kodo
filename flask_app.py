@@ -177,8 +177,12 @@ def get_card_stats():
 @app.route('/api/stats/games_played', methods=['GET'])
 def get_total_games_played():
     data = calc_total_games_played()
-    print("HIER")
-    print(data)
+    return jsonify(data)
+
+@app.route('/api/stats/game_types', methods=['GET'])
+def get_game_type_wr():
+    data = calc_winrates_game_types()
+    data = data.fillna('None').to_dict(orient='records')
     return jsonify(data)
 
 

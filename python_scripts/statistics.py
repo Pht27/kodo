@@ -375,20 +375,22 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     data['played'] = 1
 
     # divide points by team members
+    data['points_whole_team'] = data['points']
     data = data.astype({'points':float})
     data.loc[:, 'points'] /= data['no_team_members']
 
     # drop unimportant cols
-    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo', 'played_alone', 'won_alone', 'points_alone']]
+    data = data[['points_whole_team', 'player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo', 'played_alone', 'won_alone', 'points_alone']]
     
     # sum over all rows to get wr and points
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = round(data['won'] / data['played'], 4)
-    data['mean_points'] = round(data['points'] / data['played'], 3)
+    data['mean_points'] = round(data['points_whole_team'] / data['played'], 3)
     data['solo_winrate'] = round(data['won_solo'] / data['played_solo'], 4)
     data['alone_winrate'] = round(data['won_alone'] / data['played_alone'], 4)
     data['alone_mean_points'] = round(data['points_alone'] / data['played_alone'], 3)
     data['points'] += data['start_points']
+
 
     # drop unimportant cols
     data_total = data[['player_id', 'name', 'points', 'winrate', 'mean_points', 'solo_winrate', 'played_solo', 'played', 'played_alone', 'alone_winrate', 'alone_mean_points']]
@@ -443,17 +445,18 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     # add to count games
     data['played'] = 1
 
-    # divide points by team members
+    # divide points by team members but backup so we can calc mean
+    data['points_whole_team'] = data['points']
     data = data.astype({'points':float})
     data.loc[:, 'points'] /= data['no_team_members']
 
     # drop unimportant cols
-    data = data[['player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo']]
+    data = data[['points_whole_team', 'player_id', 'name', 'points', 'won', 'played', 'start_points', 'played_solo', 'won_solo']]
     
     # sum over all rows to get wr and points
     data = data.groupby(['player_id', 'name', 'start_points']).sum().reset_index()
     data['winrate'] = round(data['won'] / data['played'], 4)
-    data['mean_points'] = round(data['points'] / data['played'], 3)
+    data['mean_points'] = round(data['points_whole_team'] / data['played'], 3)
     data['solo_winrate'] = round(data['won_solo'] / data['played_solo'], 4)
     data['points'] += data['start_points']
 
@@ -469,57 +472,6 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
     data_total['mean_points'] = round(data_total['mean_points'], 3)
     data_total['solo_winrate'] = round(data_total['solo_winrate'], 4)
     return data_total
-
-
-# def calc_winstreaks_with_other_players(specific_player_id):
-#     # import data
-#     players = pd.read_csv(csv_file_players, index_col=False)
-#     players_in_teams = pd.read_csv(csv_file_player_team, index_col=False)
-#     teams = pd.read_csv(csv_file_teams, index_col=False)
-#     rounds = pd.read_csv(csv_file_rounds, index_col=False)
-#     teams_in_rounds = pd.read_csv(csv_file_team_round, index_col=False)
-
-
-#     # Function to calculate max win streak for a team
-#     def calculate_team_streaks(team_rounds, team_id):
-#         streaks = []
-#         current_streak = 0
-#         for i, row in team_rounds.iterrows():
-#             if row['winning_party'] == teams[teams['team_id'] == team_id]['party'].values[0]:
-#                 current_streak += 1
-#                 streaks.append(current_streak)
-#             else:
-#                 current_streak = 0
-#         return max(streaks, default=0)
-    
-#     # Get the team IDs that the specific player is part of
-#     player_teams = players_in_teams[players_in_teams['player_id'] == specific_player_id]['team_id'].unique()
-
-#     # Merge rounds and teams_in_rounds to get team results for each round
-#     team_rounds = pd.merge(teams_in_rounds, rounds, on='round_id')
-
-#     # Filter for rounds involving the specific player's teams
-#     player_team_rounds = team_rounds[team_rounds['team_id'].isin(player_teams)]
-
-#     # Calculate max win streaks for each team involving the specific player
-#     team_max_streaks = player_team_rounds.groupby('team_id').apply(lambda x: calculate_team_streaks(x, x['team_id'].values[0])).reset_index()
-#     team_max_streaks.columns = ['team_id', 'max_streak']
-
-#     # Get players in the same teams as the specific player
-#     team_players = pd.merge(players_in_teams, team_max_streaks, on='team_id')
-
-#     # Filter out the specific player from the results
-#     team_players = team_players[team_players['player_id'] != specific_player_id]
-
-#     # Merge to get player names
-#     team_players = pd.merge(team_players, players, on='player_id')
-
-#     # Group by player name to get the longest win streak with each player
-#     result_df = team_players.groupby('name')['max_streak'].max().reset_index()
-#     result_df.columns = ['name_of_other_player', 'longest_winstreak_with_that_player']
-
-#     print(result_df)
-
 
 def calc_winrates_with_cards(specific_player_id):
     
@@ -633,3 +585,39 @@ def calc_total_games_played():
     data = pd.read_csv(csv_file_rounds, index_col=False)
     data['played'] = 1
     return len(data)
+
+def calc_winrates_game_types():
+    # import data
+    data = pd.read_csv(csv_file_rounds, index_col=False)
+
+    # check if game was won
+    data.loc[data['winning_party']!='Re', 'points'] *= -1
+
+    # check if game was solo, if so triple points for Re party
+    solos = [   
+        "Trumpfsolo",
+        "Damensolo",
+        "Bubensolo",
+        "Fleischloses",
+        "Knochenloses",
+        "Schlanker Martin",
+        "Kontrasolo",
+        "Stille Hochzeit"
+    ]
+
+    data.loc[data['game_type'].isin(solos), 'points'] *= 3
+
+    # check if game was won
+    data['won'] = np.where(data['winning_party']=='Re', True, False)
+
+    # add to count games
+    data['played'] = 1
+
+    # sum over all rows to get wr and points
+    data = data.groupby(['game_type']).sum().reset_index()
+    data['winrate'] = round(data['won'] / data['played'], 4) * 100
+    data['mean_points'] = round(data['points'] / data['played'], 3)
+
+    data = data[['points', 'winrate', 'mean_points', 'played', 'game_type']]
+    print(data)
+    return data
