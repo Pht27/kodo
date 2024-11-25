@@ -7,131 +7,354 @@
 {% endblock %}
 
 {% block content %}
+<!-- Table of Contents -->
+<nav class="toc">
+    <ul>
+        <li><a href="#grundlagen">Grundlagen</a>
+            <ul>
+                <li><a href="#parteien">Parteien</a></li>
+                <li><a href="#dullen">Dullen</a></li>
+                <li><a href="#neuner">Neuner</a></li>
+                <li><a href="#spielrichtung">Spielrichtung</a></li>
+            </ul>
+        </li>
+        <li><a href="#vorbehalte">Vorbehalte</a>
+            <ul>
+                <li><a href="#solivorbehalte">Soli</a></li>
+                <li><a href="#armut">Armut</a></li>
+                <li><a href="#hochzeit">Hochzeit</a></li>
+                <li><a href="#schmeißen">Schmeißen</a> </li>
+                <li><a href="#schlankermartinschmeißen">Schlanker Martin</a></li>
+            </ul>
+        </li>
+        <li><a href="#spielarten">Stille Soli</a>
+            <ul>
+                <li><a href="#stillehochzeit">Stille Hochzeit</a></li>
+                <li><a href="#kontrasolo">Kontrasolo</a></li>
+            </ul>
+        </li>
+        <li><a href="#soli">Soli </a>
+            <ul>
+                <li><a href="#trumpfolo">Trumpfsolo</a></li>
+                <li><a href="#damensolo">Damensolo</a></li>
+                <li><a href="#bubensolo">Bubensolo</a></li>
+                <li><a href="#fleischlos">Fleischloses</a> </li>
+                <li><a href="#knochenlos">Knochenloses</a></li>
+                <li><a href="#schlankermartin">Schlanker Martin</a></li>
+            </ul>
+        </li>
+        <li><a href="#spielbeginn">Spielbeginn</a>
+            <ul>
+                <li><a href="#ansagen">Ansagen</a></li>
+                <li><a href="#feigheit">Feigheit</a></li>
+                <li><a href="#rauskommen">Wer kommt raus?</a></li>
+            </ul>
+        </li>
+        <li><a href="#sonderkarten">Sonderkarten</a>
+            <ul>
+                <li><a href="#schweinchen">Schweinchen</a></li>
+                <li><a href="#superschweinchen">Superschweinchen</a></li>
+                <li><a href="#hyperschweinchen">Hyperschweinchen</a></li>
+                <li><a href="#linksdrehendergehängter">Linksdrehender Gehängter</a></li>
+                <li><a href="#genscherdamen">Genscherdamen</a></li>
+                <li><a href="#gegengenscherdamen">Gegengenscherdamen</a></li>
+                <li><a href="#heidmann">Heidmann</a></li>
+                <li><a href="#heidfrau">Heidfrau</a></li>
+                <li><a href="#kämmerich">Kämmerich</a></li>
+            </ul>
+        </li>
+        <li><a href="#extrapunkte">Extrapunkte</a>
+            <ul>
+                <li><a href="#doppelkopf">Doppelkopf</a></li>
+                <li><a href="#fuchsgefangen">Fuchs gefangen</a></li>
+                <li><a href="#karlchen">Karlchen</a></li>
+                <li><a href="#agathe">Agathe</a></li>
+                <li><a href="#fischauge">Fischauge</a></li>
+                <li><a href="#gansgefangen">Gans gefangen</a></li>
+                <li><a href="#festmahl">Festmahl</a></li>
+                <li><a href="#blutbad">Blutbad</a></li>
+                <li><a href="#klabautermann">Klabautermann</a></li>
+                <li><a href="#kaffekränzchen">Kaffekränzchen</a></li>
+            </ul>
+        </li>
+        <li><a href="#spielwert">Spielwert</a></li>
+        <li><a href="#redewendungen">Redewendungen</a>
+            <ul>
+                <li><a href="#stichvernichtung">Stichvernichtung</a></li>
+                <li><a href="#glaube">Glaube verloren</a></li>
+                <li><a href="#verheizen">Alte verheizen</a></li>
+                <li><a href="#ksg">KSG Moment</a></li>
+                <li><a href="#exoderstill">Ex oder still</a></li>
+            </ul>
+        </li>
+    </ul>
+    <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <path stroke="#155726" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000"
+            stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.5, -0.5)" />
+    </svg>
+</nav>
 
-<main class="faq">
-    <div class="faq__holder">
-        <h1 class="faq__heading">Spielregeln</h1>
 
-        <div class="intro-container">
-            <p class="intro">
-                Hier findest du eine umfassende Erklärung der Doppelkopf-Regeln, inklusive unserer Sonderregeln und
-                Extrapunkte.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
-                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
-                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
-                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
-            </p>
-            <aside class="sidebar">
-                <h2>Inhaltsverzeichnis</h2>
-                <ul class="toc">
-                    <li><a href="#grundlagen">Grundlagen</a></li>
-                    <li>
-                        <details>
-                            <summary>
-                                <a href="#sonderkarten" class="summary-link">Sonderkarten</a>
-                            </summary>
-                            <ul>
-                                <li><a href="#fuchs">Fuchs</a></li>
-                                <li><a href="#karlchen-mueller">Karlchen Müller</a></li>
-                            </ul>
-                        </details>
-                    </li>
-
-                    <li>
-                        <details>
-                            <summary><a href="#extrapunkte" class="summary-link">Extrapunkte</a></summary>
-                            <ul>
-                                <li><a href="#doppelkopf">Doppelkopf</a></li>
-                                <li><a href="#re-schweinchen">Re-Schweinchen</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li>
-                        <details>
-                            <summary><a href="#spielarten" class="summary-link">Spielarten</a></summary>
-                            <ul>
-                                <li><a href="#hochzeit">Hochzeit</a></li>
-                                <li><a href="#armut">Armut</a></li>
-                                <li><a href="#solo">Solo</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><a href="#strategien">Strategien</a></li>
-                    <li>
-                        <details>
-                            <summary><a href="#redewendungen" class="summary-link">Wichtige Redewendungen</a></summary>
-                            <ul>
-                                <li><a href="#re">Re</a></li>
-                                <li><a href="#kontra">Kontra</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                </ul>
-            </aside>
+<!-- Content -->
+<article class="contents">
+    <section id="grundlagen">
+        <h2>Grundlagen</h2>
+        <div id="parteien">
+            <h3>Parteien</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
         </div>
-
-        <div class="content-wrapper">
-            <p class="long-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse massa dui, aliquam non vehicula in,
-                accumsan in augue. Proin suscipit nulla nulla, eu ultricies justo iaculis eu. Donec ac lobortis lacus.
-            </p>
-
-            <details class="category" id="grundlagen">
-                <summary class="category_title">Grundlagen</summary>
-                <h3>Grundlagen des Spiels</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-            </details>
-
-            <details class="category" id="sonderkarten">
-                <summary class="category_title">Sonderkarten</summary>
-                <h3 id="fuchs">Fuchs <span class="card-symbol" style="color: red;">♦</span>A</h3>
-                <p>Wenn ein Spieler einen Fuchs sticht, erhält er Extrapunkte.</p>
-                <h3 id="karlchen-mueller">Karlchen Müller <span class="card-symbol">♣</span>B</h3>
-                <p>Der Spieler, der den letzten Stich mit dem Kreuz Buben macht, bekommt Sonderpunkte.</p>
-            </details>
-
-            <details class="category" id="extrapunkte">
-                <summary class="category_title">Extrapunkte</summary>
-                <h3 id="doppelkopf">Doppelkopf</h3>
-                <p>Ein Stich, der 40 Augen oder mehr zählt.</p>
-                <h3 id="re-schweinchen">Re-Schweinchen</h3>
-                <p>Wenn ein Spieler mit einem Schweinchen gewinnt, bekommt er zusätzliche Punkte.</p>
-            </details>
-
-            <details class="category" id="spielarten">
-                <summary class="category_title">Spielarten</summary>
-                <h3 id="hochzeit">Hochzeit</h3>
-                <p>Regeln und Besonderheiten der Hochzeit...</p>
-                <h3 id="armut">Armut</h3>
-                <p>Regeln und Besonderheiten der Armut...</p>
-                <h3 id="solo">Solo</h3>
-                <p>Regeln und Besonderheiten der Solo-Spiele...</p>
-            </details>
-
-            <details class="category" id="strategien">
-                <summary class="category_title">Strategien</summary>
-                <h3>Strategien</h3>
-                <p>Ein Leitfaden zu verschiedenen Strategien, die Spielern helfen können, ihr Spiel zu verbessern...</p>
-            </details>
-
-            <details class="category" id="redewendungen">
-                <summary class="category_title">Wichtige Redewendungen</summary>
-                <h3 id="re">Re</h3>
-                <p>Bedeutung und Verwendung von "Re"...</p>
-                <h3 id="kontra">Kontra</h3>
-                <p>Bedeutung und Verwendung von "Kontra"...</p>
-                <h3 id="verheizen">Verheizen</h3>
-                <p>Bedeutung und Verwendung von "Verheizen"...</p>
-                <h3 id="stichvernichtung">Stichvernichtung</h3>
-                <p>Bedeutung und Verwendung von "Stichvernichtung"...</p>
-                <h3 id="glaube">Glaube verloren</h3>
-                <p>Bedeutung und Verwendung von "Glaube verloren"...</p>
-            </details>
+        <div id="dullen">
+            <h3>Dullen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
         </div>
-    </div>
-</main>
+        <div id="neuner">
+            <h3>Neuner</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="spielrichtung">
+            <h3>Spielrichtung</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="vorbehalte">
+        <h2>Vorbehalte</h2>
+        <div id="solivorbehalte">
+            <h3>Soli</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="armut">
+            <h3>Armut</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="hochzeit">
+            <h3>Hochzeit</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="schmeißen">
+            <h3>Schmeißen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="schlankermartinschmeißen">
+            <h3>Schlanker Martin</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="spielarten">
+        <h2>Stille Soli</h2>
+        <div id="stillehochzeit">
+            <h3>Stille Hochzeit</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="kontrasolo">
+            <h3>Kontrasolo</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="soli">
+        <h2>Soli</h2>
+        <div id="trumpfolo">
+            <h3>Trumpfsolo</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="damensolo">
+            <h3>Damensolo</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="bubensolo">
+            <h3>Bubensolo</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="fleischlos">
+            <h3>Fleischloses</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="knochenlos">
+            <h3>Knochenloses</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="schlankermartin">
+            <h3>Schlanker Martin</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+    <section id="spielbeginn">
+        <h2>Spielbeginn</h2>
+        <div id="ansagen">
+            <h3>Ansagen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="feigheit">
+            <h3>Feigheit</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="rauskommen">
+            <h3>Wer kommt raus?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="sonderkarten">
+        <h2>Sonderkarten</h2>
+        <div id="schweinchen">
+            <h3>Schweinchen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="superschweinchen">
+            <h3>Superschweinchen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="hyperschweinchen">
+            <h3>Hyperschweinchen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="linksdrehendergehängter">
+            <h3>Linksdrehender Gehängter</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="genscherdamen">
+            <h3>Genscherdamen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="gegengenscherdamen">
+            <h3>Gegengenscherdamen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="heidmann">
+            <h3>Heidmann</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="heidfrau">
+            <h3>Heidfrau</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="kämmerich">
+            <h3>Kämmerich</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="extrapunkte">
+        <h2>Extrapunkte</h2>
+        <div id="doppelkopf">
+            <h3>Doppelkopf</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="fuchsgefangen">
+            <h3>Fuchs gefangen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="karlchen">
+            <h3>Karlchen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="agathe">
+            <h3>Agathe</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="fischauge">
+            <h3>Fischauge</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="gansgefangen">
+            <h3>Gans gefangen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="festmahl">
+            <h3>Festmahl</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="blutbad">
+            <h3>Blutbad</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="klabautermann">
+            <h3>Klabautermann</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="kaffekränzchen">
+            <h3>Kaffekränzchen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+    <section id="spielwert">
+        <h2>Spielwert</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget orci
+            nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+    </section>
+
+    <section id="redewendungen">
+        <h2>Redewendungen</h2>
+        <div id="stichvernichtung">
+            <h3>Stichvernichtung</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="glaube">
+            <h3>Glaube verloren</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="verheizen">
+            <h3>Alte verheizen</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="ksg">
+            <h3>KSG Moment</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+        <div id="exoderstill">
+            <h3>Ex oder still?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet accumsan arcu. Curabitur eget
+                orci nisi. Vivamus sit amet lacus at felis venenatis varius non ac leo.</p>
+        </div>
+    </section>
+
+</article>
 
 {% endblock %}
 

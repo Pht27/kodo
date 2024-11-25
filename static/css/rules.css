@@ -1,216 +1,97 @@
-.faq {
-    background-color: #fff;
-    border-radius: 25px;
-    margin: 50px 5% 5% 5%;
-    display: flex;
-    flex-direction: column;
-}
-
-.faq__holder {
-    padding: 20px;
-}
-
-.intro-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.intro {
-    font-size: large;
-    flex: 1;
-}
-
-.sidebar {
-    width: 250px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin-left: 20px;
-    position: relative;
-    border-style: double;
-    border: #000;
-    border-width: 10px;
-}
-
-.sidebar h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
 .toc {
-    list-style: none;
-    padding: 0;
-    border: #000;
+    position: fixed;
+    left: 3em;
+    top: 5em;
+    padding: 1em;
+    width: 14em;
+    line-height: 2;
+    height: 80vh;
+    /* Set the height of the TOC container */
+    overflow-y: auto;
+    /* Make the TOC scrollable */
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul ul {
+        padding-left: 2em;
+    }
+
+
+    li a {
+        display: inline-block;
+        color: #aaa;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    }
+
+    li.visible>a {
+        color: #083b16;
+        transform: translate(10px);
+    }
+
 }
 
-.toc ul {
-    list-style: none;
-    padding-left: 20px;
-}
-
-.toc li {
-    margin-bottom: 5px;
-}
-
-.toc li a {
-    color: var(--blue-dark);
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.toc li a:hover {
-    text-decoration: underline;
-}
-
-.content-wrapper {
-    display: flex;
-    flex-direction: column;
-}
-
-.faq__heading {
-    color: var(--blue-dark);
-    font-size: 3.2rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.category {
-    border-bottom: 1px solid hsl(240, 5%, 91%);
-    margin: 20px 0;
-    padding: 5px 0 20px 0;
-}
-
-.category_title {
-    color: var(--blue-dark);
-    font-size: 1.4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.category_title a {
-    color: var(--blue-dark);
-    text-decoration: none;
-    display: inline-block;
-    flex: 1;
-}
-
-.category_title a:hover {
-    text-decoration: underline;
-}
-
-.category_title:after {
-    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-details[open] .category_title:after {
-    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    transform: scaleY(-1);
-}
-
-.faq__question {
-    display: inline-block;
-    margin: 5px 0;
-    text-align: left;
-    width: 90%;
-}
-
-.card-symbol {
-    font-size: 1.5rem;
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-.hidden-lg {
-    display: block;
-}
-
-.visible-lg {
-    display: none;
-}
-
-.category_title:hover,
-.category_title:active {
-    color: var(--orange);
-    cursor: pointer;
-}
-
-.category[open]>.category_title {
-    font-weight: 700;
-}
-
-.category:not([open])>.category_title {
-    font-weight: 400;
-    /* Ensures normal weight when details is closed */
-}
-
-.category_title {
-    list-style: none;
-}
-
-.category_title::-webkit-details-marker {
-    display: none;
-}
-
-.category_title:after {
-    display: inline-block;
-    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    text-align: right;
-    padding-bottom: 5px;
-}
-
-details[open] .category_title:after {
-    display: inline-block;
-    content: url("https://bobmatyas.github.io/fm-faq-accordion/images/icon-arrow-down.svg");
-    background-repeat: no-repeat;
-    background-position: right center;
-    text-align: right;
-    transform: scaleY(-1);
-}
-
-.category_title {
-    color: var(--blue-dark);
-    font-size: 1.4rem;
-}
-
-.category_title:focus {
-    color: var(--orange);
+/* Style for outer list items */
+.toc>ul>li>a {
     font-weight: bold;
-    outline: none;
+    /* Makes the main categories bold */
+    font-size: 1.4em;
+    /* Slightly increases the font size */
+    color: #979797;
+    /* Darker color to stand out */
 }
 
-.faq__text {
-    color: var(--blue-mid);
-    font-size: var(--base-font-size);
-    line-height: 1.6;
-    margin: 10px 0 0 0;
-    margin-top: 20px;
+
+
+h2 {
+    font-size: 2.5em;
 }
 
-.sidebar {
-    width: 250px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    margin-left: 20px;
-    position: relative;
-    border: 2px solid #000;
+h3 {
+    font-size: 1.4em;
 }
 
-.intro-container {
-    display: flex;
+div {
+    padding-left: 40px;
 }
 
-.intro {
-    flex: 1;
-    padding-right: 20px;
+.toc-marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: visible;
+    /* Prevents clipping */
+    color: aquamarine;
+
+    path {
+        transition: all 0.3s ease;
+    }
+}
+
+.contents {
+    padding: 1em;
+    max-width: 800px;
+    font-size: 1.2em;
+    font-family: 'Frank Ruhl Libre', sans-serif;
+
+    h2,
+    h3 {
+        padding-top: 1em;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    body {
+        font-size: 14px;
+    }
+
 }
