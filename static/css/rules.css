@@ -46,6 +46,61 @@
 }
 
 
+/* TOC toggle button styles */
+.toc-toggle {
+    display: none;
+    position: fixed;
+    /* Fix it to the viewport */
+    right: 0.5em;
+    /* Distance from the left edge */
+    top: 25%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    /* Adjusts for centering */
+    background-color: #333;
+    /* Background color */
+    color: white;
+    /* Text color */
+    padding: 10px 15px;
+    /* Padding for better visibility */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Optional shadow */
+    z-index: 1100;
+    /* Ensure it stays on top of other elements */
+}
+
+/* Hide TOC on small screens */
+@media screen and (max-width: 768px) {
+    .toc {
+        display: none;
+        position: fixed;
+        top: 6em;
+        /* Adjust based on your navbar height */
+        left: 1em;
+        background-color: #fff;
+        width: 80%;
+        max-width: 300px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        padding: 1em;
+        border-radius: 8px;
+    }
+
+    /* Show the TOC when 'show' class is added */
+    .toc.show {
+        display: block;
+    }
+
+    .toc-toggle {
+        display: block;
+        /* Show toggle button on small screens */
+    }
+}
+
 
 h2 {
     font-size: 2.5em;

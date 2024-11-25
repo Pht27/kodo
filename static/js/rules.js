@@ -46,6 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll(); // Run once on page load to highlight the active section
 });
 
+function toggleTOC() {
+    const toc = document.querySelector('.toc');
+    toc.classList.toggle('show');
+}
+
+// Close TOC if clicked outside
+document.addEventListener('click', function (event) {
+    const toc = document.querySelector('.toc');
+    const tocToggle = document.querySelector('.toc-toggle');
+
+    // Check if the click is outside the TOC and toggle button
+    if (!toc.contains(event.target) && !tocToggle.contains(event.target)) {
+        toc.classList.remove('show'); // Hide the TOC
+    }
+});
+
 var toc = document.querySelector('.toc');
 var tocPath = document.querySelector('.toc-marker path');
 var tocItems;
