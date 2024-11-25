@@ -193,10 +193,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        console.log(currentSection);
-        console.log(lastSection);
-        console.log("------------")
-
         firstSection = currentSection;
         lastSection = currentSection;
 
