@@ -1,9 +1,9 @@
 .toc {
     position: fixed;
-    left: 3em;
+    left: 1em;
     top: 5em;
     padding: 1em;
-    width: 14em;
+    width: 17em;
     line-height: 2;
     height: 80vh;
     /* Set the height of the TOC container */
@@ -149,4 +149,109 @@ div {
         font-size: 14px;
     }
 
+}
+
+.red-card {
+    font-size: 1.2em;
+    /* Adjust size as needed */
+    color: red;
+    /* Red for hearts and diamonds */
+    margin-left: 8px;
+    /* Add some spacing */
+}
+
+.black-card {
+    font-size: 1.2em;
+    /* Adjust size as needed */
+    color: black;
+    /* Red for hearts and diamonds */
+    margin-left: 8px;
+    /* Add some spacing */
+}
+
+.green-card {
+    font-size: 1.2em;
+    /* Adjust size as needed */
+    color: #56af6e;
+    /* Red for hearts and diamonds */
+    margin-left: 8px;
+    /* Add some spacing */
+}
+
+.card-container {
+    width: 150%;
+    /* Set container width to 150% */
+    /* border-radius: 0px; */
+    /* box-sizing: border-box; */
+    /* Ensures padding is included in width */
+}
+
+.card-title {
+    text-align: left;
+    /* Align title to the left */
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    /* Add slight padding for alignment consistency */
+}
+
+.content-section {
+    display: flex;
+    /* Side-by-side layout */
+    align-items: flex-start;
+    /* Align items to the top */
+}
+
+.text-section {
+    flex: 2;
+    /* Wider text section */
+    padding: 0 10px 0 0;
+    /* Reduce left padding */
+    margin: 0;
+    /* Remove default margin */
+}
+
+.svg-section {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    /* Space between items */
+    justify-content: left;
+}
+
+/* Large layout: 2 rows when more than 3 SVGs */
+.svg-section[data-size="large"] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns */
+    column-gap: 15px;
+    /* Set column gap to 15px */
+    row-gap: 10px;
+    /* Keep row gap at 10px */
+    justify-items: left;
+    /* Align items to the start (left) horizontally */
+    align-items: left;
+    /* Align items to the top vertically */
+    max-width: 100%;
+    /* Ensure it doesn't overflow */
+    grid-template-columns: auto auto;
+    /* Two columns sized to fit content */
+}
+
+/* Small layout: Keep SVGs in one row */
+.svg-section[data-size="small"] {
+    flex-wrap: nowrap;
+    /* No wrapping */
+    justify-content: left;
+    /* Distribute SVGs evenly */
+}
+
+
+
+
+.svg-section img {
+    width: 80px;
+    /* Adjust as needed */
+    height: auto;
 }
