@@ -169,6 +169,8 @@ div {
     /* Add some spacing */
 }
 
+
+
 .green-card {
     font-size: 1.2em;
     /* Adjust size as needed */
@@ -177,6 +179,8 @@ div {
     margin-left: 8px;
     /* Add some spacing */
 }
+
+
 
 .card-container {
     width: 150%;
@@ -254,4 +258,72 @@ div {
     width: 80px;
     /* Adjust as needed */
     height: auto;
+}
+
+.general-explanation {
+    margin-left: 50px;
+
+}
+
+br {
+    display: block;
+    margin: 10px 0;
+}
+
+.custom-link {
+    text-decoration: none;
+    /* Remove default underline */
+    color: #56af6e;
+    /* Link color */
+    font-weight: bold;
+    /* Bold text */
+    transition: color 0.3s;
+    /* Smooth color transition */
+}
+
+
+.custom-link:hover {
+    color: #eb7c63;
+    /* Change color on hover */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card {
+    font-weight: bold;
+    /* Make text bold */
+    display: inline-flex;
+    /* Keep suit and text together */
+    align-items: center;
+}
+
+
+.club::before {
+    content: "\2663";
+    color: black;
+}
+
+.spade::before {
+    content: "\2660";
+    color: black;
+}
+
+.heart::before {
+    content: "\2665";
+    color: red;
+}
+
+.diamond::before {
+    content: "\2666";
+    color: red;
+}
+
+div {
+    scroll-margin: 60px;
+}
+
+section {
+    scroll-margin: 60px;
 }
