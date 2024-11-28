@@ -640,7 +640,6 @@ def calc_winrates_game_types_for_specific_player(specific_player_id):
     data = data.merge(teams_rounds, on='team_id')
     data = data.merge(rounds, on='round_id')
 
-    print(data)
     # check if game was won
     data.loc[data['winning_party']!=data['party'], 'points'] *= -1
 

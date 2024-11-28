@@ -4,24 +4,20 @@
     justify-content: space-between;
     padding: 10px;
     background-color: #1c6c31;
-    /* Darker green background */
     color: #fff;
     font-size: x-large;
-    /* Slightly bigger font size */
     font-weight: bold;
-    /* Make the font bold */
     margin-bottom: 10px;
-    /* Small margin at the bottom */
     border-radius: 8px;
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
 }
 
 .match-column-header {
     flex: 1;
     text-align: center;
-}
-
-.match-column-header-placeholder {
-    width: 3px;
+    min-width: 100px;
+    /* Ensure minimum width */
 }
 
 /* Match Container Styles */
@@ -36,40 +32,32 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: large;
+    flex-wrap: wrap;
+    /* Ensure wrapping on smaller screens */
 }
 
 .match:hover {
     background-color: #dce9f1;
-    /* Highlight on hover */
 }
 
+/* Make sure columns wrap and stack properly on mobile */
 .match-column {
     flex: 1;
     text-align: center;
-    /* Center other columns vertically */
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 80px;
+    /* Ensure columns don't get too narrow */
 }
 
+/* Specific adjustments for "points" column */
 .match-column.points {
     font-weight: bold;
     font-size: larger;
 }
 
-
-.match-icon {
-    color: gold;
-    /* Example color for the star badge */
-    margin-right: 5px;
-    /* Adjust spacing */
-    font-size: 1.2em;
-    /* Size of the icon */
-    width: 3px;
-}
-
-
-
+/* Team container styles */
 .team-container {
     margin-bottom: 5px;
     padding: 5px;
@@ -77,9 +65,7 @@
     border-radius: 3px;
     background-color: #f9f9f9;
     width: 100%;
-    /* Ensure alignment with other side */
     box-sizing: border-box;
-    /* Include padding and border in width */
 }
 
 .team-container.won {
@@ -101,11 +87,15 @@
 .re-kontra-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    /* Allow wrapping of columns on smaller screens */
 }
 
 .re-kontra-container .teams-column {
     flex: 1;
     text-align: center;
+    min-width: 120px;
+    /* Prevent columns from being too narrow */
 }
 
 /* Ensure alignment of team containers */
@@ -121,7 +111,6 @@
 
 .player-name {
     display: block;
-    /* Ensure space between player names */
 }
 
 ul {
@@ -138,4 +127,118 @@ li {
     margin: 5px 0;
     padding: 10px;
     border-radius: 4px;
+}
+
+/* Pagination Button */
+#loadMoreBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1c6c31;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#loadMoreBtn:hover {
+    background-color: #145a23;
+}
+
+/* Mobile Responsiveness via Media Query */
+@media (max-width: 768px) {
+    .match-info-header {
+        font-size: 1em;
+        /* Smaller font size */
+        padding: 8px;
+        /* Less padding */
+        flex-wrap: nowrap;
+        /* Prevent columns from wrapping */
+        justify-content: space-between;
+    }
+
+    .match-column-header {
+        min-width: auto;
+        margin-bottom: 5px;
+        /* Reduce space between header items */
+        font-size: 0.9em;
+        /* Smaller font size */
+    }
+
+    .match {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 8px;
+        font-size: 0.9em;
+        /* Shrink font size */
+    }
+
+    .match-column {
+        width: 14%;
+        /* Make columns smaller to fit within the viewport */
+        text-align: center;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+
+    .re-kontra-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .team-container {
+        width: 48%;
+        padding: 4px;
+        font-size: 0.9em;
+        /* Shrink font size */
+        margin-bottom: 5px;
+    }
+
+    /* Adjust list items */
+    li {
+        flex-direction: row;
+        text-align: left;
+        font-size: 0.9em;
+    }
+
+    /* Adjust the Load More button for mobile */
+    #loadMoreBtn {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 12px 0;
+        /* Increase button padding */
+    }
+}
+
+/* Mobile-First Adjustments for Extra Small Screens */
+@media (max-width: 480px) {
+    .match-info-header {
+        font-size: 0.9em;
+        /* Smaller font size on very small screens */
+        padding: 5px;
+        /* Less padding */
+    }
+
+    .match-column-header {
+        font-size: 0.8em;
+        /* Smaller header text */
+    }
+
+    .match-column {
+        font-size: 0.8em;
+        /* Adjust match column text size */
+    }
+
+    /* Adjust team containers */
+    .team-container {
+        font-size: 0.8em;
+        /* Smaller font */
+    }
+
+    /* Button size on very small screens */
+    #loadMoreBtn {
+        font-size: 0.9em;
+        padding: 10px 0;
+        /* Adjust button size */
+    }
 }

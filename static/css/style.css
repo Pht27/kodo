@@ -1,10 +1,11 @@
-/* Globale Styles */
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
-    padding-top: 60px;
+    padding-top: 90px;
+    /* Keep this for larger screens, adjust on mobile */
 }
 
 /* Navbar Styles */
@@ -13,13 +14,9 @@ body {
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    /* Ensures navbar is above other elements */
     position: fixed;
-    /* Keeps the navbar at the top while scrolling */
     top: 0;
-    /* Aligns the navbar to the top of the screen */
     width: 100%;
-    /* Makes sure the navbar spans the full width */
 }
 
 .navbar ul {
@@ -58,7 +55,6 @@ body {
     color: #56af6e;
 }
 
-/* Mobile Styles */
 .navbar-toggle {
     display: none;
     background-color: #333;
@@ -70,6 +66,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .body {
+        margin-top: 0px;
+    }
+
     .navbar ul {
         display: none;
         flex-direction: column;
@@ -77,6 +77,7 @@ body {
         background-color: #333;
         position: absolute;
         top: 50px;
+        /* Adjust depending on navbar height */
         left: 0;
     }
 
@@ -88,67 +89,46 @@ body {
     .navbar-toggle {
         display: block;
     }
+
+    .navbar-menu.show {
+        display: flex;
+    }
+
+    .container {
+        width: 100%;
+        /* Full width on mobile */
+        margin: 10px 0;
+        /* Adjust for mobile spacing */
+        padding: 10px;
+        /* Reduce padding */
+        box-shadow: none;
+        /* Remove shadow for a cleaner look */
+        border-radius: 0;
+        /* Optional: Make the container edges square for mobile */
+    }
 }
 
-.navbar-menu.show {
-    display: flex;
-}
+/* Mobile-first Adjustments for Very Small Screens */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 8px 0;
+        /* Reduce navbar padding for extra small screens */
+    }
 
-/* Container für Inhalte */
-.container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
+    .navbar a {
+        padding: 8px 12px;
+        /* Adjust the link padding */
+    }
 
-/* H1 und H2 Styles */
-h1,
-h2 {
-    color: #333;
-}
+    .navbar-toggle {
+        font-size: 16px;
+        /* Make the toggle button smaller */
+    }
 
-/* Styles für die Spieler-Liste */
-.delete-player {
-    cursor: pointer;
-    color: #ff0000;
-    font-size: 1.2em;
-}
-
-.delete-player:hover {
-    color: #cc0000;
-}
-
-/* Form-Styles */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-}
-
-input {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
+    .container {
+        width: 100%;
+        /* Ensure it takes up full width */
+        padding: 5px;
+        /* Reduce padding further */
+    }
 }

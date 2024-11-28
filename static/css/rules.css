@@ -131,15 +131,11 @@ div {
 }
 
 .contents {
-    padding: 1em;
+    /* padding: 1em; */
     max-width: 800px;
     font-size: 1.2em;
     font-family: 'Frank Ruhl Libre', sans-serif;
 
-    h2,
-    h3 {
-        padding-top: 1em;
-    }
 }
 
 
@@ -183,7 +179,8 @@ div {
 
 
 .card-container {
-    width: 150%;
+    width: 200%;
+    padding-top: 1em;
     /* Set container width to 150% */
     /* border-radius: 0px; */
     /* box-sizing: border-box; */
@@ -200,14 +197,16 @@ div {
 }
 
 .content-section {
-    display: flex;
+    display: inline-flex;
     /* Side-by-side layout */
     align-items: flex-start;
     /* Align items to the top */
+    margin-left: 3em;
+    padding-left: 3em;
 }
 
 .text-section {
-    flex: 2;
+    flex: 3;
     /* Wider text section */
     padding: 0 10px 0 0;
     /* Reduce left padding */
@@ -255,13 +254,14 @@ div {
 
 
 .svg-section img {
-    width: 80px;
+    width: 100px;
     /* Adjust as needed */
     height: auto;
 }
 
 .general-explanation {
-    margin-left: 50px;
+    margin-left: 2em;
+    max-width: 750px;
 
 }
 
@@ -326,4 +326,103 @@ div {
 
 section {
     scroll-margin: 60px;
+}
+
+/* Adjust card container width */
+.card-container {
+    width: 100%;
+    /* Adjust to container width */
+    max-width: 100%;
+    /* Prevent overflow */
+}
+
+/* Flex-column layout for smaller screens */
+@media screen and (max-width: 1024px) {
+    .content-section {
+        flex-direction: column;
+        /* Stack text and SVGs vertically */
+    }
+
+    .svg-section {
+        justify-content: center;
+        /* Center SVGs for better balance */
+    }
+}
+
+
+
+/* Adjust Table of Contents (TOC) for smaller screens */
+@media screen and (max-width: 1024px) {
+    .toc {
+        position: static;
+        /* Remove fixed positioning */
+        width: 100%;
+        /* Full width for readability */
+    }
+}
+
+/* Typography and padding adjustments */
+@media screen and (max-width: 1024px) {
+    h2 {
+        font-size: 2em;
+        /* Slightly smaller headings */
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    .general-explanation {
+        margin-left: 20px;
+        /* Reduce indentation */
+    }
+}
+
+/* Center content with maximum width for readability */
+.contents {
+    margin: 0 auto;
+    /* Center the content horizontally */
+    max-width: 1200px;
+    /* Adjust based on your screen size or preference */
+    padding-left: 10%;
+    /* Keep existing padding */
+}
+
+
+/* Adjust layout for wider screens */
+@media screen and (min-width: 1200px) {
+    .content-section {
+        max-width: 80%;
+        /* Limit width for text and images */
+        margin: 0 auto;
+        /* Center the section within the container */
+    }
+}
+
+/* Ensure the TOC doesn't take too much space */
+.toc {
+    max-width: 300px;
+    /* Limit the TOC width */
+    margin-right: 50px;
+}
+
+/* Adjust card container to fit within content width */
+.card-container {
+    width: 100%;
+    /* Match content width */
+    max-width: 100%;
+    /* Prevent horizontal overflow */
+}
+
+/* Hide scrollbar for TOC while keeping scroll functionality */
+.toc {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer and Edge */
+}
+
+.toc::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, and Opera */
 }
