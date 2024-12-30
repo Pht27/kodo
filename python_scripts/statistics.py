@@ -187,7 +187,7 @@ def get_match_history_infos(specific_player_id=None, start_index=0, end_index=16
         rounds = rounds_tmp[np.concatenate([rounds.columns, ['won']])]
         rounds.loc[rounds['won']==False, 'points'] *= -1
 
-    # rounds['date'] = pd.to_datetime(rounds['date'])
+    rounds.loc[:, 'date'] = pd.to_datetime(rounds['date'])
     rounds = rounds.sort_values(by='date', ascending=False)
     rounds = rounds.iloc[start_index:end_index]
 
@@ -283,7 +283,7 @@ def get_match_history_infos(specific_player_id=None, start_index=0, end_index=16
             
 
         this_round = {'round_id' : match['round_id'],
-            'date' : pd.to_datetime(match['date']).strftime("%d %b, %Y, %H:%M:%S"),
+            'date' : pd.to_datetime(match['date']).strftime("%a, %d %b %Y, %H:%M:%S"),
             'game_type' : match['game_type'],
             'team1_player1': team1_player1,
             'team1_player2': team1_player2,
@@ -305,8 +305,6 @@ def get_match_history_infos(specific_player_id=None, start_index=0, end_index=16
             
         this_round = pd.DataFrame([this_round])
         data = pd.concat([data, this_round], ignore_index=True)
-    
-    data = data.sort_values(by='date', ascending=False)
     return data
 
 def calc_team_wr_for_player(specific_player_id):
