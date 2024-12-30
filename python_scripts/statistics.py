@@ -164,7 +164,7 @@ def winrates_of_teams(specific_player_id=None):
     data = data[['name_x', 'name_y', 'winrate', 'player_id_x', 'player_id_y', 'total_games_played', 'mean_points']]
     return data
 
-def get_match_history_infos(specific_player_id=None):
+def get_match_history_infos(specific_player_id=None, start_index=0, end_index=16):
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
@@ -186,6 +186,10 @@ def get_match_history_infos(specific_player_id=None):
 
         rounds = rounds_tmp[np.concatenate([rounds.columns, ['won']])]
         rounds.loc[rounds['won']==False, 'points'] *= -1
+
+    # rounds['date'] = pd.to_datetime(rounds['date'])
+    rounds = rounds.sort_values(by='date', ascending=False)
+    rounds = rounds.iloc[start_index:end_index]
 
     data = pd.DataFrame(columns=['round_id',
             'date',
@@ -300,10 +304,8 @@ def get_match_history_infos(specific_player_id=None):
             }
             
         this_round = pd.DataFrame([this_round])
-
         data = pd.concat([data, this_round], ignore_index=True)
     
-    data['date'] = pd.to_datetime(data['date'])
     data = data.sort_values(by='date', ascending=False)
     return data
 

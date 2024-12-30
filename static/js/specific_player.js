@@ -75,13 +75,16 @@ function showMatchHistory(playerID) {
     let roundData = [];
     let teamData = [];
 
-    // Runden laden
-    function loadRounds() {
-        fetch(`/api/stats/match_history/${playerID}`)
+    let matchesShown = 0;
+    const matchesPerPage = 16;
+
+    // Funktion zum Laden von Runden
+    function loadRounds(offset = 0) {
+        fetch(`/api/stats/match_history/${playerID}?offset=${offset}&limit=${matchesPerPage}`)
             .then(response => response.json())
             .then(data => {
-                roundData = data.data; // Accessing the data array from the fetched data
-                displayMatches(); // Load initial matches after fetching the data
+                roundData = roundData.concat(data.data); // Neue Runden an das bestehende Array anhängen
+                displayMatches(); // Alle bisherigen Runden anzeigen
             });
     }
 
@@ -122,12 +125,8 @@ function showMatchHistory(playerID) {
     const matchContainer = document.getElementById('matchContainer');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-    let matchesShown = 0;
-    const matchesPerPage = 16;
-
-    // Function to display matches
     function displayMatches() {
-        for (let i = matchesShown; i < Math.min(matchesShown + matchesPerPage, roundData.length); i++) {
+        for (let i = matchesShown; i < roundData.length; i++) {
             const match = roundData[i];
 
             const reTeams = [];
@@ -211,10 +210,11 @@ function showMatchHistory(playerID) {
 
             matchContainer.appendChild(matchElement);
         }
-        matchesShown += matchesPerPage;
 
-        // Check if all matches have been loaded
-        if (matchesShown >= roundData.length) {
+        matchesShown = roundData.length; // Update the count of shown matches
+
+        // Check if alle Runden geladen wurden
+        if (roundData.length % matchesPerPage !== 0) {
             loadMoreBtn.style.display = 'none';
         }
     }
@@ -471,8 +471,9 @@ function showMatchHistory(playerID) {
         // Example: window.location.href = '/match/' + matchId;
     }
 
-    // Event listener for load more button
-    loadMoreBtn.addEventListener('click', displayMatches);
+    // Event listener für den "Mehr laden"-Button
+    loadMoreBtn.addEventListener('click', () => loadRounds(roundData.length));
+
 }
 
 let sortDirections = [true, false, false, false]; // true: ascending for column 0, descending for 1 and 2

@@ -134,13 +134,19 @@ def winrate_team_stats():
 # get match history stats
 @app.route('/api/stats/match_history', methods=['GET'])
 def get_match_history_stats():
-    data = get_match_history_infos().to_dict(orient='split')
+    offset = int(request.args.get('offset', 0))
+    limit = int(request.args.get('limit', 16))
+
+    data = get_match_history_infos(start_index=offset, end_index=offset+limit).to_dict(orient='split')
     return jsonify(data)
 
 # get match history for specific player
 @app.route('/api/stats/match_history/<int:player_id>', methods=['GET'])
 def get_match_history_stats_for_player(player_id):
-    data = get_match_history_infos(specific_player_id=player_id).to_dict(orient='split')
+    offset = int(request.args.get('offset', 0))
+    limit = int(request.args.get('limit', 16))
+
+    data = get_match_history_infos(specific_player_id=player_id, start_index=offset, end_index=offset+limit).to_dict(orient='split')
     return jsonify(data)
 
 # get team stats for specific player

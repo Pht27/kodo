@@ -1,25 +1,26 @@
-let roundData = [];
-// Runden laden
-function loadRounds() {
-    fetch('/api/stats/match_history')
-        .then(response => response.json())
-        .then(data => {
-            roundData = data.data; // Accessing the data array from the fetched data
-            displayMatches(); // Load initial matches after fetching the data
-        });
-}
-
-loadRounds();
+let roundData = []; // Array zum Speichern aller geladenen Runden
+let matchesShown = 0;
+const matchesPerPage = 16;
 
 const matchContainer = document.getElementById('matchContainer');
 const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-let matchesShown = 0;
-const matchesPerPage = 16;
+// Funktion zum Laden von Runden
+function loadRounds(offset = 0) {
+    fetch(`/api/stats/match_history?offset=${offset}&limit=${matchesPerPage}`)
+        .then(response => response.json())
+        .then(data => {
+            roundData = roundData.concat(data.data); // Neue Runden an das bestehende Array anhängen
+            displayMatches(); // Alle bisherigen Runden anzeigen
+        });
+}
 
-// Function to display matches
+// Initialer Aufruf, um die ersten 16 Spiele zu laden
+loadRounds();
+
+// Funktion zum Anzeigen der Spiele
 function displayMatches() {
-    for (let i = matchesShown; i < Math.min(matchesShown + matchesPerPage, roundData.length); i++) {
+    for (let i = matchesShown; i < roundData.length; i++) {
         const match = roundData[i];
 
         const reTeams = [];
@@ -40,7 +41,7 @@ function displayMatches() {
             }
         });
 
-        let winning_party = match[15];
+        const winning_party = match[15];
 
         const reTeamsHTML = reTeams.map(team => `
             <div class="team-container ${winning_party === 'Re' ? 'won' : 'lost'}">
@@ -112,19 +113,14 @@ function displayMatches() {
 
         matchContainer.innerHTML += matchHTML;
     }
-    matchesShown += matchesPerPage;
 
-    // Check if all matches have been loaded
-    if (matchesShown >= roundData.length) {
+    matchesShown = roundData.length; // Update the count of shown matches
+
+    // Check if alle Runden geladen wurden
+    if (roundData.length % matchesPerPage !== 0) {
         loadMoreBtn.style.display = 'none';
     }
 }
 
-// Function to handle clicking on match containers
-function openMatchPage(matchId) {
-    console.log('Clicked on match with ID:', matchId);
-    // Example: window.location.href = '/match/' + matchId;
-}
-
-// Event listener for load more button
-loadMoreBtn.addEventListener('click', displayMatches);
+// Event listener für den "Mehr laden"-Button
+loadMoreBtn.addEventListener('click', () => loadRounds(roundData.length));
