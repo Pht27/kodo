@@ -94,6 +94,8 @@
                 <li><a href="#einmal">Was einmal geht...</a></li>
             </ul>
         </li>
+        <li><a href="#kartentabelle">Kartentabelle</a></li>
+        <li><a href="#augenwerte">Augenwerte</a></li>
     </ul>
     <svg class="toc-marker" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
         <path stroke="#155726" stroke-width="3" fill="transparent" stroke-dasharray="0, 0, 0, 1000"
@@ -108,6 +110,30 @@
     <section id="grundlagen">
         <h2>Grundlagen</h2>
 
+        <p> Koppeldopf wird zu viert mit einem doppelten Blatt beginnend ab den Neunen gespielt. Es gibt vier Kategorien
+            von Karten: Trumpf, Kreuz, Pik und Herz, die letzten drei werden zusammenfassend auch <b>"Fehl"</b> oder
+            <b>"die Fehlfarben"</b> genannt.
+            Die Reihenfolge der Karten ist unten in einer <a href="#kartentabelle" class="custom-link">Tabelle</a>
+            abgebildet.
+            Jede Karte hat einen gewissen <b> Augenwert </b> und das Ziel des Spiels ist es, möglichst viele Augen in
+            den Stichen der eigenen Partei zu sammeln.
+            Die <b> Augenwerte </b> der Karten sind <a href="#augenwerte" class="custom-link">unten</a> aufgelistet.
+            Vor Spielbeginn teilt eine Spieler*in alle Karten gleichmäßig aus, es werden hierbei immer 3 Karten
+            gleichzeitig gegeben.
+            Falls keine Vorbehalte angemeldet wurden (siehe unten), kommt die Spieler*in zur Rechten der Geber*in raus,
+            spielt also eine beliebige Karte auf. Reihum muss jede*r eine Karte legen, die, falls möglich, der gleichen
+            Kategorie entspricht, wie die erste Karte, die in diesem Stich gespielt wurde.
+            Dann erhält die Spieler*in, die die höchste im Stich befindliche Karte gelegt hat, die 4 Karten und legt sie
+            verdeckt neben sich (die Augen gehören jetzt ihrer Partei). Die höchste Karte wird folgendermaßern
+            ermittelt: jede Trumpf Karte ist stärker als jede Fehlkarte. Wenn eine Fehlkarte
+            aufgespielt wurde, sind die Karten der anderen Fehlfarben schwächer als die erste Karte. Wenn zwei gleiche
+            Karten im Stich liegen, ist die erste der beiden höher, außer bei den <span
+                class="card heart">-10ern</span>, da gilt die nur im letzten Stich, ansonsten ist hier die zweite die
+            Stärkere.
+            Die Spieler*in, die den Stich erhält, muss als nächstes eine Karte aufspielen, es sei denn, niemand hat noch
+            Karten auf der Hand, dann endet das Spiel und es wird gezählt wer wie viele Augen gesammelt hat.
+        </p>
+
         <div class="card-container" id="parteien">
             <h3 class="card-title">Parteien</h3>
             <div class="content-section">
@@ -115,7 +141,7 @@
                     <p>Im Koppeldopf gibt es <b>zwei Parteien, Re und Kontra</b>. In dem meisten Spielen sind
                         jeweils
                         zwei
-                        Spieler in einer Partei,
+                        Spieler*innen in einer Partei,
                         die Re Partei besteht aus den beiden Spielern mit den <b>&clubs;-Damen</b>, die Kontrapartei
                         bilden die
                         übrigen beiden. In manchen
@@ -165,7 +191,7 @@
                     <p>Es wird selbstverständlich <b>mit Neunern</b> gespielt. </p>
                     <p>Es wird selbstverständlich im <b>mathematisch positiven Sinne</b> gespielt, also gegen den
                         Uhrzeigersinn.</p>
-                    <p>Es werden jedem Spieler jeweils <b>vier mal drei Karten </b> gegeben.</p>
+                    <p>Es werden jeder Spieler*in jeweils <b>vier mal drei Karten </b> gegeben.</p>
                 </div>
                 <div class="svg-section" data-size="large">
                     <img src="static/cards/kr9.svg" />
@@ -190,14 +216,15 @@
             Reihenfolge
             aufgelistet.
             Haben
-            zwei Spieler den <b>gleichen Vorbehalt</b>, entscheidet die <b>Rauskommreihenfolge</b>, wer spielen
+            zwei Spieler*innen den <b>gleichen Vorbehalt</b>, entscheidet die <b>Rauskommreihenfolge</b>, wer spielen
             darf.
         </p>
         <div class="card-container" id="solivorbehalte">
             <h3 class="card-title">Soli</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Ein Spieler möchte ein Solo spielen. Die einzelnen <a href="#soli" class="custom-link">Soli</a>
+                    <p>Eine Spieler*in möchte ein Solo spielen. Die einzelnen <a href="#soli"
+                            class="custom-link">Soli</a>
                         sind unten in Prioritätsreihenfolge
                         aufgelistet.</p>
                 </div>
@@ -211,23 +238,28 @@
             <h3 class="card-title">Armut<span class="green-card"> &leq; 3 + Füchse</span></h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Eine Partei hat <b>drei oder weniger</b> Trümpfe, wobei <b>
+                    <p>Eine Spieler*in hat <b>drei oder weniger</b> Trümpfe, wobei <b>
                             <span class="card diamond">-Asse</span></b>
                         ("Füchse")<b> nicht mitgezählt
                         </b> werden.
                         Wird Armut
                         gespielt, wird der
-                        Reihe nach, beginnend bei der Partei nach der armen Partei, gefragt, ob die Armut angenommen
+                        Reihe nach, beginnend bei der Spieler*in nach der armen Spieler*in, gefragt, ob die Armut
+                        angenommen
                         wird.
-                        Nimmt jemand die Armut an, so muss die arme Partei <b>all ihre Trümpfe abgeben</b>, die
-                        reiche
-                        Partei
-                        schaut sich diese an und gibt genauso viele Karten ihrer Wahl zurück. Dabei muss <b>offen
+                        Nimmt jemand die Armut an, so muss die arme Spieler*in <b>all ihre Trümpfe abgeben</b>, die
+                        Spieler*in,
+                        die die Armut angenommen hat (auch "reiche*r Spieler*in" genannt)
+                        schaut sich diese an und gibt genauso viele Karten ihrer Wahl zurück, es dürfen auch gerade
+                        erhaltene Karten zurückgegeben werden. Dabei muss <b>offen
                             kommuniziert</b> werden,
                         wie viele Karten getauscht wurden und ob Trumpf zurückgegeben wurde. In der Armut sind
                         <b>alle
                             Sonderkarten deaktiviert.</b> <br>
-                        In der Armut kommt der erste gegnerische Spieler <b>links von der reichen Partei</b> raus.
+                        Die aus armer und reicher Spieler*in bestehende Partei ist die Re Partei.
+                        In der Armut kommt die erste gegnerische Spieler*in <b>links von der reichen Spieler*in</b>
+                        raus.
+
                         Nimmt niemand die Armut an, wird eine <b>schwarze Sau</b> gespielt.
                     </p>
                 </div>
@@ -244,7 +276,7 @@
             <h3 class="card-title">Schwarze Sau</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Bei der schwarzen Sau, wird ein Spieler in ein <b>Solo gezwungen</b>. Die Person, die den
+                    <p>Bei der schwarzen Sau, wird eine Spieler*in in ein <b>Solo gezwungen</b>. Die Person, die den
                         Stich
                         mit
                         der <b>zweiten &spades;-Dame</b> bekommt, muss nach diesem Stich ein Solo auswählen, was sie
@@ -254,7 +286,7 @@
                         Karten spielt. Bis zu diesem Zeitpunkt wird gespielt wie im Normalspiel, mit allen
                         Sonderkarten,
                         danach
-                        gelten die Regeln des Solos. Die Partei, die Armut angemeldet hat, kommt raus.
+                        gelten die Regeln des Solos. Die Person, die Armut angemeldet hat, kommt raus.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -268,22 +300,21 @@
             <h3 class="card-title">Hochzeit</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Hat ein Spieler <b>beide &clubs;-Damen</b> ("die Alten"), kann
+                    <p>Hat eine Spieler*in <b>beide &clubs;-Damen</b> ("die Alten"), kann
                         er
                         eine Hochzeit anmelden. Wird
                         die
                         Hochzeit
-                        gespielt, bestimmt eben jene Partei durch eine Bedingung, wen sie heiraten möchte. Man kann
+                        gespielt, bestimmt eben jene Person durch eine Bedingung, wen sie heiraten möchte. Man kann
                         dabei "den
                         ersten Stich", "den ersten Fehlstich" oder "den ersten Trumpfstich" ansagen. Die Person, die
                         den
-                        beschriebenen Stich bekommt, wird dann zum <b>zweiten Spieler in der Re Partei</b>.
-                        <br>Gehen <b>drei Stiche</b>
-                        durch,
-                        die die Hochzeitspartei selbst macht, spielt sie alleine ein <span
-                            class="card diamond">-Trumpfsolo</span>
-                        . Ansagen sind erst nach der Parteifindung erlaubt und dann auch nur auf der
-                        ersten Karte danach. Die Regeln für konsekutive Ansagen sind wie üblich.
+                        beschriebenen Stich bekommt, wird dann zur <b>zweiten Spieler*in in der Re Partei</b> (ein Stich
+                        ist ein "Trumpf-" bzw. "Fehlstich", wenn die aufgespielte Karte Trumpf bzw. Fehl ist).
+                        <br>Wurde in den ersten drei Stichen nicht erfolgreich geheiratet, spielt die Person mit den
+                        Kreuzdamen alleine eine <span Stille Hochzeit</span>
+                            . Ansagen sind erst nach der Parteifindung erlaubt und dann auch nur auf der
+                            ersten Karte danach. Die Regeln für konsekutive Ansagen sind wie üblich.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -345,7 +376,7 @@
             <h3 class="card-title">Stille Hochzeit</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Hat ein Spieler eine <b>Hochzeit</b> als Vorbehalt, kann er entscheiden, ob er sie anmeldet
+                    <p>Hat eine Spieler*in eine <b>Hochzeit</b> als Vorbehalt, kann er entscheiden, ob er sie anmeldet
                         oder
                         <b>still</b>
                         spielt.
@@ -354,7 +385,8 @@
                         was aber nach dem Legen der zweiten <span class="card club">-Dame</span> auffällt. Es darf
                         angesagt werden wie normal,
                         alle Regeln
-                        sind auch wie in im Normalspiel. Das Spiel wird am Ende als <b>Solo</b> gewertet.
+                        sind auch wie in im Normalspiel, mit der Außnahme, dass Genschern und Gegengenschern keinen
+                        Effekt haben. Das Spiel wird am Ende als <b>Solo</b> gewertet.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -370,16 +402,23 @@
                 <div class="text-section">
                     <p>Hat man <b>beide &spades;-Damen und &spades;-Könige</b> auf der Hand, kann man ein
                         <b>Kontrasolo</b>
-                        spielen. Es funktioniert wie die stille Hochzeit, man darf auch Kontra ansagen. Die
+                        spielen. Es funktioniert wie die stille Hochzeit, die Ansage, die man machen darf ist "Kontra",
+                        unabhänig von &clubs;-Damen. Die
                         Besonderheit
                         ist, dass die beiden <b>&spades;-Könige</b> nicht als &spades; zählen, sondern als
-                        <b>Klabautermänner </b>die <b>höchsten
-                            Karten</b> im
+                        <b>Klabautermänner, die </b>die <b>höchsten
+                            Tümpfe</b> im
                         Spiel sind (auch über Schweinchen und dergleichen). Beim Ausspielen dieser muss man
                         <b>"Klabautermann"</b>
                         rufen,
                         womit das Solo
                         bekannt gemacht wird.
+                        Ein Kontrasolo zu spielen ist nicht verpflichtend, erst ab dem entsprechenden Bedienen oder
+                        Nicht-bedienen der <b>&spades;-Könige</b> oder falls man mit
+                        &clubs;-Dame auf der Hand "Kontra" oder "Re" ansagt, ist eine Umentscheidung nicht mehr möglich.
+                        Falls man sowohl eine stille Hochzeit, als auch ein Kontrasolo auf der Hand hat,
+                        darf man frei zwischen Hochzeit (angemeldet), stiller Hochzeit und Kontrasolo entscheiden (wobei
+                        das Kontrasolo in diesem Fall strikt besser als die stille Hochzeit ist).
                     </p>
                 </div>
                 <div class="svg-section" data-size="large">
@@ -400,7 +439,7 @@
                         gespielt und das Ziel der Armutspartei ist vorerst, <b>keine Stiche zu bekommen</b>. Schafft
                         sie
                         das und hat
-                        der Spieler mit den meisten Augen <b>mehr als 90</b> Augen, so gewinnt die Armutspartei ein
+                        die Spieler*in mit den meisten Augen <b>mehr als 90</b> Augen, so gewinnt die Armutspartei ein
                         Solo
                         mit
                         Wert eins. Für jede 30 Augen über den 91 wird das Spiel einen Punkt mehr wert. <br>
@@ -437,9 +476,9 @@
             und <a href="#extrapunkte" class="custom-link">Extrapunkte</a> deaktiviert. Die
             kanonische
             Farbreihenfolge ist &clubs;, &spades;, <font color="red">&hearts;</font>,
-            <font color="red">&diamondsuit;</font>. Es kommt immer der Spieler raus, der das Solo spielt.
+            <font color="red">&diamondsuit;</font>. Es kommt immer die Spieler*in raus, der das Solo spielt.
             <br>
-            Der Puntkewert eines Spiels ist immer eins, und kann durch Ansagen erhöht werden (wo erlaubt). Beim
+            Der Punktewert eines Spiels ist immer eins, und kann durch Ansagen erhöht werden (wo erlaubt). Beim
             Eintragen werden
             der Solopartei die dreifache Menge an Punkten gegeben.
         </p>
@@ -449,7 +488,8 @@
             <div class="content-section">
                 <div class="text-section">
                     <p>Es gibt vier verschiedene Farbsoli, &clubs;, &spades;, <font color="red">&hearts;</font> und
-                        <font color="red">&diamondsuit;</font>. In einem Farbsolo in alle Karten wie immer, bloß
+                        <font color="red">&diamondsuit;</font>. In einem Farbsolo ist die Kartenreihenfolge wie immer,
+                        bloß
                         werden
                         die <b>
                             <span class="card diamond">-Trümpfe</span> durch die entsprechende Farbe ersetzt</b>.
@@ -541,8 +581,11 @@
             <div class="content-section">
                 <div class="text-section">
                     <p>Im Knochenlosen gibt es <b>keinen Trumpf</b>, alle Karten werden eingeordnet.
-                        Die <b>10er sind niedrig</b>, die Buben unter den Damen, die unter den Königen sind.<br>
-                        Das Ziel ist, <b>keine Stiche</b> zu bekommen. Es gibt keine Ansagen. </p>
+                        Die <b>10er sind niedrig</b> (direkt über den 9ern), die Buben unter den Damen, die unter den
+                        Königen sind.<br>
+                        Das Ziel der Solopartei ist, <b>keine Stiche</b> zu bekommen, sobald sie eine Stich bekommt
+                        endet das Spiel als Niederlage für die Solopartei.
+                        Falls die Solopartei bis zum Ende keinen Stich hat, gewinnt sie. Es gibt keine Ansagen. </p>
                 </div>
                 <div class="svg-section" data-size="large">
                     <!-- Add images here -->
@@ -563,11 +606,13 @@
                         Sonderkarten.
                         Außerdem gilt im schlanken Martin, dass bei Gleichheit <b>die zweite Karte die erste
                             sticht</b>
-                        (außer bei den <span class="card heart">-10ern</span>, da wird auch umgedreht).
+                        (außer bei den <span class="card heart">-10ern</span>, außer im letzten Stich, da wird auch
+                        umgedreht).
                         <br>Das Ziel
                         ist es <b>möglichst wenig Stiche</b> zu bekommen. Hat die Solopartei am Ende am wenigsten
                         Stiche, hat sie
-                        gewonnen. Es kann <b>Unentschieden bei Gleichstand der Stiche</b> geben, dann ist das Spiel
+                        gewonnen. Es ist unentschieden wenn die Solopartei und eine andere Spieler*in beide am
+                        wenigsten <b>Stiche</b> haben, dann ist das Spiel
                         null
                         Punkte wert.
                     </p>
@@ -601,7 +646,7 @@
             <h3 class="card-title">Ansagen</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Jeder Spieler darf <b>"Re"</b> oder <b>"Kontra"</b> ansagen, je nachdem welcher Partei er
+                    <p>Jede Spieler*in darf <b>"Re"</b> oder <b>"Kontra"</b> ansagen, je nachdem welcher Partei er
                         angehört.
                         Ansagt werden darf bis <b>vor der zweiten Karte des zweiten Stichs</b> und mit jeder
                         erfolgten
@@ -609,7 +654,7 @@
                         erhöht den Spielwert um einen Punkt. <br>
 
                         Angesagt werden kann <b>"Re"</b> bzw. <b>"Kontra"</b> und <b>"keine 90 / 60 / 30"</b> oder
-                        <b>"schwarz"</b>.
+                        <b>"schwarz"</b> ("schwarz" bedeutet keine Stiche, nicht etwa 0 Punkte).
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -624,7 +669,7 @@
                 <div class="text-section">
                     <p>Ist der erste Stich <b>mindestens 35 Augen</b> wert, so muss der Spieler, der diesen Stich
                         kriegt, "Re" oder "Kontra" (je nach Partei) ansagen. Ist der zweite Stich wieder über der
-                        Grenze, so muss der Spieler der diesen Stich kriegt ebenso ansagen, die sog. <b>"konsekutive
+                        Grenze, so muss die Spieler*in der diesen Stich kriegt ebenso ansagen, die sog. <b>"konsekutive
                             Pflichtansage"</b>. Wenn sie der gleichen Partei angehört wie die davorige, muss also
                         "keine 90" gesagt werden, sonst "Kontra" bzw. "Re".<br>
                         Die Pflichtansage wird wie eine normale Ansage gewertet, bei Soli existiert sie nicht.
@@ -667,7 +712,7 @@
                         Partei weniger als 30 Augen hat, so gewinnt diese Partei und das Spiel ist zwei Punkte wert.
                         <br>
 
-                        In einem <b>Solo</b> gibt es keine <b>Feigheit</b>.
+                        In <b>Soli</b> (auch nicht in den stillen Soli) gibt es keine <b>Feigheit</b>.
 
                     </p>
                 </div>
@@ -694,7 +739,7 @@
                         zu <b>Schweinchen</b>, die <b>über den
                             <span class="card heart">-10ern</span>
                         </b> stehen.<br>
-                        Man meldet sie wahlweise beim <b>Ausspielen</b> des ersten oder zweiten Schweinchens an.
+                        Man darf sie beim <b>Ausspielen</b> des ersten Schweinchens anmelden.
                         Schweinchen müssen nicht angemeldet werden, jedoch können sie so noch als Fuchs
                         gefangen werden.</p>
                 </div>
@@ -715,7 +760,11 @@
                         <b>Superschweinchen</b>, womit sie <b>über den
                             Schweinchen</b> stehen. <br>
                         Auch wenn eine <span class="card diamond">-10</span> schon vor dem Anmelden der Schweinchen
-                        gespielt wurde, ist die zweite noch ein Superschweinchen.
+                        gespielt wurde, ist die zweite noch ein Superschweinchen. Wenn Schweinchen nicht angemeldet
+                        wurden,
+                        jedoch eine Spieler*in den zweiten Fuchs spielt (also beide Füchse auf der Hand hatte), so
+                        dürfen
+                        auch ab diesem Zeitpunkt Superschweinchen angemeldet werden.
                     </p>
                 </div>
                 <div class="svg-section" data-size="large">
@@ -735,7 +784,12 @@
                             Superschweinchen</b> stehen. <br>
                         Auch wenn ein <span class="card diamond">-Könige</span> schon vor dem Anmelden der
                         Superschweinchen
-                        gespielt wurde, ist der zweite noch ein Hyperschweinchen.
+                        gespielt wurde, ist der zweite noch ein Hyperschweinchen. Wenn Superschweinchen nicht angemeldet
+                        wurden,
+                        jedoch eine Spieler*in die zweite <span class="card diamond">-10</span> spielt (also beide
+                        <span class="card diamond">-10er</span> auf der Hand hatte) und
+                        diese Superschweinchen gewesen wären, so dürfen
+                        auch ab diesem Zeitpunkt Hyperschweinchen angemeldet werden.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -785,15 +839,15 @@
                 <div class="text-section">
                     <p>Sind <b>beide</b> <span class="card heart">-Damen</span> auf einer Hand, sind das die
                         <b>Genscherdamen</b>.
-                        Diese erlauben beim Ausspielen der ersten, zu einem anderen Spieler zu <b>"genschern"</b>.
+                        Diese erlauben beim Ausspielen der ersten, zu einer anderen Spieler*in zu <b>"genschern"</b>.
                         Damit
                         sucht
                         man sich
                         einen <b>neuen Parteipartner</b> aus. Die zweite Genscherdame hat keinen weiteren Effekt.
                         <br>
                         Hierbei ist zu beachten, dass die dadurch neu entstandene Partei <b>automatisch zur
-                            Re-Partei</b> wird. Jegliche <b>Ansagen verfallen</b>. Außerdem werden <a
-                            href="#fuchsgefangen" class="custom-link">Füchse</a>
+                            Re-Partei</b> wird. Jegliche <b>Ansagen verfallen</b> und es gibt keine Feigheit. Außerdem
+                        werden <a href="#fuchsgefangen" class="custom-link">Füchse</a>
                         als gefangen
                         gezählt,
                         wenn sie jetzt bei der gegnerischen Partei liegen, genauso wie <a href="#klabautermann"
@@ -802,10 +856,8 @@
                         Die Genscherdamen müssen nicht angemeldet werden, dann verfallen auch keine Ansagen.
                         Allerdings
                         wird,
-                        wegen der Möglichkeit zu genschern, die Partei mit den Genscherdamen trotzdem zu Re. Man
-                        kann
-                        nicht in
-                        eine Feigheit genschern.
+                        wegen der Möglichkeit zu genschern, die Partei mit den Genscherdamen trotzdem zu Re.
+
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -823,7 +875,9 @@
                         <b>beide</b>
                         <span class="card diamond">-Damen</span> auf der Hand, so werden diese zu den
                         <b>Gegengenscherdamen</b>.
-                        Mit diesen darf einmalig beim Ausspielen der ersten oder zweiten zu einem <b>neuen Partner
+                        Mit diesen darf einmalig beim Ausspielen der ersten nach dem Genschern bzw. nach der zweiten
+                        <span class="card heart">-Dame</span> von der gleichen Hand gespielten
+                        <span class="card diamond">-Dame</span>, zu einem <b>neuen Partner
                             gegenschert</b> werden. <br>
                         Man beachte hierbei, dass wieder <a href="#fuchsgefangen" class="custom-link">Füchse</a>
                         etc.
@@ -880,8 +934,9 @@
                 <div class="text-section">
                     <p>Gibt es <a href="#heidmann" class="custom-link">Heidmänner</a> im Spiel und sind <b>beide</b>
                         <span class="card spade">-Damen</span> auf einer Hand, so werden diese
-                        zu den <b>Heidfrauen</b> und es besteht beim Ausspielen einer
-                        der beiden Karten die Möglichkeit, den<b> Effekt des Heidmanns umzukehren</b>, um die
+                        zu den <b>Heidfrauen</b> und nach Anmeldung des Heidmanns besteht beim Ausspielen der nächsten
+                        <span class="card spade">-Dame</span> die Möglichkeit, den<b> Effekt des Heidmanns
+                            umzukehren</b>, um die
                         <b>Damen
                             wieder
                             über
@@ -896,26 +951,27 @@
         </div>
 
         <div class="card-container" id="kämmerich">
-            <h3 class="card-title">Kämmerich<span class="red-card"> B &hearts;</span></h3>
+            <h3 class="card-title">Kemmerich<span class="red-card"> B &hearts;</span></h3>
             <div class="content-section">
                 <div class="text-section">
                     <p>Sind <b>beide</b> <span class="card heart">-Buben</span> auf einer Hand, so werden diese
-                        zum <b>Kämmerich</b> und es besteht die Möglichkeit
-                        beim Ausspielen von einem der beiden Karten, eine <b>Aussage zurückzuziehen</b> und sie
+                        zum <b>Kemmerich</b> und es besteht die Möglichkeit
+                        beim Ausspielen von einem der beiden Karten, eine <b>Ansage zurückzuziehen</b> und sie
                         damit ungültig zu machen. <br>
-                        Hierbei ist zu beachten, dass <b>Aussagen des Parteiparners nicht zurückgezogen werden
+                        Hierbei ist zu beachten, dass <b>Ansagen des Parteipartners nicht zurückgezogen werden
                             können</b>, es
-                        sei denn <b>beide Parteimitlgieder haben angesagt</b>. Es kann insgesamt nur eine Aussage
+                        sei denn <b>beide Parteimitlgieder haben angesagt</b>. Es kann insgesamt nur eine Ansage
                         zurückgezogen
                         werden.
                         <br>
-                        Als Beispiel: Ich sage "Re" an, dann kann ich durch den Kämmerich die Aussage zurückziehen.
+                        Als Beispiel: Ich sage "Re" an, dann kann ich durch den Kemmerich die Ansage zurückziehen.
                         Sagt
                         aber mein
-                        Partner "Re" an und ich nichts, so kann ich seine Aussage nicht zurückziehen. Sage ich aber
+                        Partner "Re" an und ich nichts, so kann ich seine Ansage nicht zurückziehen. Sage ich aber
                         "Re"
                         und mein
                         Partner "keine 90", so kann ich nur seine "keine 90" zurückziehen.
+                        Auch Pflichtansagen können zurückgezogen werden.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -1010,7 +1066,8 @@
                         <a href="#karlchen" class="custom-link">Karlchen</a> im letzten Stich von einer Agathe
                         überstochen und macht diese
                         dann
-                        auch den Stich, so kriegt die Partei mit der Agathe <b>einen Extrapunkt</b> <br>
+                        auch den Stich, so kriegt die Partei mit der Agathe <b>einen Extrapunkt</b> <br>, falls das
+                        Karlchen der gegnerischen Partei gehörte.
                         Diese Mechanik funktioniert komplett unabhängig von den <a href="#gegengenscherdamen"
                             class="custom-link">Gegengenscherdamen</a>.
                     </p>
@@ -1051,7 +1108,7 @@
                             <a href="#fuchsgefangen" class="custom-link">Fuchs</a>
                             überstochen</b>, so
                         <b>stiehlt der Fuchs die Gans</b>. Das gibt der Partei, die den Stich mit dem Fuchs macht
-                        <b>einen Extrapunkt</b>.
+                        <b>einen Extrapunkt</b>, falls das Fischauge der gegnerischen Partei gehörte.
                     </p>
                 </div>
                 <div class="svg-section" data-size="small">
@@ -1065,10 +1122,11 @@
             <h3 class="card-title">Festmahl</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p> Sind <b>drei Tiere</b> in einem Stich, wovon <b>zwei gleich</b> sind, so <b>festmahlen</b>
+                    <p> Sind <b>mindestens drei Tiere</b> in einem Stich, wovon <b>zwei gleich</b> sind, so
+                        <b>festmahlen</b>
                         diese und das
                         <b>zweite Tier der Überzahl</b> kriegt
-                        den Stich. <br>
+                        den Stich. Sind jeweils zwei der Tiere im Stich, so erhält die letzte Karte den Stich. <br>
                         Zu Tieren zählen <a href="#fischauge" class="custom-link">Fischaugen</a></b> und
                         alle Karten der <a href="#schweinchen" class="custom-link">Schweinchenfamilie</a>.
                     </p>
@@ -1085,10 +1143,11 @@
             <h3 class="card-title">Blutbad</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Sind <b>drei verschiedene Tiere</b> in einem Stich, so gibt es ein <b>Blutbad</b> und die
-                        letzte
+                    <p>Sind <b>mindestens drei verschiedene Tiere</b> in einem Stich, so gibt es ein <b>Blutbad</b> und
+                        die
                         Karte,
-                        die <b>kein Tier</b> ist, gewinnt den Stich. <br>
+                        die <b>kein Tier</b> ist, gewinnt den Stich. Falls alle Karten Tiere sind, erhält das Fischauge
+                        den Stich.<br>
                         Zu Tieren zählen <a href="#fischauge" class="custom-link">Fischaugen</a> und
                         alle Karten der <a href="#schweinchen" class="custom-link">Schweinchenfamilie</a>.
                     </p>
@@ -1108,7 +1167,9 @@
                 <div class="text-section">
                     <p>Wird der <span class="card spade">-König</span> von der <span class="card spade">-Dame</span>
                         <b>gefangen</b>,
-                        wenn sie also den Stich macht, so wurde der <b>Klabautermann</b> gefangen und die Partei mit
+                        wenn sie also den Stich macht und der <span class="card spade">-König</span> der anderen Partei
+                        gehörte,
+                        so wurde der <b>Klabautermann</b> gefangen und die Partei mit
                         der
                         <span class="card spade">-Dame</span> bekommt <b>einen Extrapunkt</b>.
                     </p>
@@ -1155,7 +1216,7 @@
                 <li>1 Punkt <b>"Gegen die Alten"</b>, falls die <b>Kontra-Partie</b> gewinnt</li>
                 <li>1 Punkt <b>"Keine X"</b> für alle nicht erreichten <b>Augen-Schwellenwerte (90/60/30)</b> der
                     Verliererpartei</li>
-                <li>1 Punkt <b>"Schwarz"</b>, falls die Verliererpartei <b>keine Punkte</b> hat</li>
+                <li>1 Punkt <b>"Schwarz"</b>, falls die Verliererpartei <b>keinen Stich</b> hat</li>
                 <li>1 Punkt für jede <b>erfüllte Ansage</b></li>
                 <li>Alle <a href="#extrapunkte" class="custom-link">Extrapunkte</a> beider Parteien werden
                     gegeneinander
@@ -1179,6 +1240,9 @@
                         <b>übelste Stichvernichtung</b>.
                     </p>
                 </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
+                </div>
             </div>
         </div>
 
@@ -1187,7 +1251,12 @@
             <div class="content-section">
                 <div class="text-section">
                     <p>Wird ein <a href="#fischauge" class="custom-link">Fischauge</a> abgeworfen, obwohl noch Fehlläufe
-                        übrig sind, wurde der <b>Glaube ans Fischauge verloren</b>.</p>
+                        übrig sind, wurde der <b>Glaube ans Fischauge verloren</b>.
+                        <\br> Analog kann auch der <b>Glaube ans Karlchen</b> verloren werden.
+                    </p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
                 </div>
             </div>
         </div>
@@ -1196,9 +1265,12 @@
             <h3 class="card-title">Alte verheizen</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Legt man seine <span class="card clubs">-Dame</span>, obwohl klar ist, dass sie von der <span
-                            class="card heart">-10</span> überstochen wird, so hat man seine <b>ALte an die Dulle
+                    <p>Legt man seine <span> class="card clubs">-Dame</span>, obwohl klar ist, dass sie von der <span
+                            class="card heart">-10</span> überstochen wird, so hat man seine <b>Alte an die Dulle
                             verheizt</b>.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
                 </div>
             </div>
         </div>
@@ -1211,6 +1283,9 @@
                         als <b>KSG-Moment</b> geläufig ist. Da quasi immer wenn möglich ein Kontrasolo gespielt wird,
                         ist ein KSG-Moment manchmal auch einfach wenn man sein <b>Kontrasolo genossen</b> hat.</p>
                 </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
+                </div>
             </div>
         </div>
 
@@ -1218,9 +1293,12 @@
             <h3 class="card-title">Ex oder still?</h3>
             <div class="content-section">
                 <div class="text-section">
-                    <p>Siehst du einen fellow Koppeldopfspieler irgendetwas trinken, so darfst du <b>"Ex oder
+                    <p>Siehst du eine fellow Koppeldopfspieler*in irgendetwas trinken, so darfst du <b>"Ex oder
                             still!"</b> rufen. Dann hat die Person die Wahl, das Getränk zu exen oder ihre nächste
                         Hochzeit still zu spielen.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
                 </div>
             </div>
         </div>
@@ -1232,9 +1310,156 @@
                     <p><b>Was einmal geht, geht zweimal</b> sagt man als Cope, wenn man die zweite Runde einer Fehlfarbe
                         aufspielt, die davor durchgegangen ist. Besonders beliebt ist die Ansage bei Herz.</p>
                 </div>
+                <div class="svg-section" data-size="small">
+                    <!-- Add images here -->
+                </div>
             </div>
         </div>
 
+    </section>
+
+    <section id="kartentabelle">
+        <h2>Spielkarten</h2>
+        <p>
+            Hier sind alle Karten in Reihenfolge im Normalspiel abgebildet. Die Karten sind hier nur einfach abgebildet,
+            im Spiel gibt es sie natürlich doppelt.
+        </p>
+        <div class="container-trumpf-fehl">
+            <div class="container-trumpf">
+                <h3>Trumpf</h3>
+                <div class="karten-reihe" id="herz-zehnen">
+                    <img src="static/cards/h10.svg" alt="Herz 10">
+
+                </div>
+                <div class="karten-reihe" id="damen">
+                    <img src="static/cards/krD.svg" alt="Kreuz Dame">
+                    <img src="static/cards/pD.svg" alt="Pik Dame">
+                    <img src="static/cards/hD.svg" alt="Herz Dame">
+                    <img src="static/cards/kD.svg" alt="Karo Dame">
+                </div>
+                <div class="karten-reihe" id="buben">
+                    <img src="static/cards/krB.svg" alt="Kreuz Bube">
+                    <img src="static/cards/pB.svg" alt="Pik Bube">
+                    <img src="static/cards/hB.svg" alt="Herz Bube">
+                    <img src="static/cards/kB.svg" alt="Karo Bube">
+                </div>
+                <div class="karten-reihe" id="karo-karten">
+                    <img src="static/cards/kA.svg" alt="Karo Ass">
+                    <img src="static/cards/kK.svg" alt="Karo König">
+                    <img src="static/cards/k10.svg" alt="Karo 10">
+                    <img src="static/cards/k9.svg" alt="Karo 9">
+                </div>
+            </div>
+
+            <div class="container-fehl">
+                <h3>Fehl</h3>
+                <div class="karten-reihe" id="kreuz-karten">
+                    <img src="static/cards/krA.svg" alt="Kreuz Ass">
+                    <img src="static/cards/kr10.svg" alt="Kreuz 10">
+                    <img src="static/cards/krK.svg" alt="Kreuz König">
+                    <img src="static/cards/kr9.svg" alt="Kreuz 9">
+                </div>
+                <div class="karten-reihe" id="pik-karten">
+                    <img src="static/cards/pA.svg" alt="Pik Ass">
+                    <img src="static/cards/p10.svg" alt="Pik 10">
+                    <img src="static/cards/pK.svg" alt="Pik König">
+                    <img src="static/cards/p9.svg" alt="Pik 9">
+                </div>
+                <div class="karten-reihe" id="herz-karten">
+                    <img src="static/cards/hA.svg" alt="Herz Ass">
+                    <img src="static/cards/hK.svg" alt="Herz König">
+                    <img src="static/cards/h9.svg" alt="Herz 9">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="augenwerte">
+        <h2>Augenwerte der Karten</h2>
+        <div class="card-container" id="asse-augen">
+            <h3 class="card-title">Asse</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Asse</b> sind <b>elf Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/krA.svg" />
+                    <img src="static/cards/pA.svg" />
+                    <img src="static/cards/hA.svg" />
+                    <img src="static/cards/kA.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="card-container" id="10er-augen">
+            <h3 class="card-title">Zehner</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Zehner</b> sind <b>zehn Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/kr10.svg" />
+                    <img src="static/cards/p10.svg" />
+                    <img src="static/cards/h10.svg" />
+                    <img src="static/cards/k10.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="card-container" id="könige-augen">
+            <h3 class="card-title">Könige</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Könige</b> sind <b>vier Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/krK.svg" />
+                    <img src="static/cards/pK.svg" />
+                    <img src="static/cards/hK.svg" />
+                    <img src="static/cards/kK.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="card-container" id="damen-augen">
+            <h3 class="card-title">Damen</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Damen</b> sind <b>drei Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/krD.svg" />
+                    <img src="static/cards/pD.svg" />
+                    <img src="static/cards/hD.svg" />
+                    <img src="static/cards/kD.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="card-container" id="buben-augen">
+            <h3 class="card-title">Buben</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Buben</b> sind <b>zwei Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/krB.svg" />
+                    <img src="static/cards/pB.svg" />
+                    <img src="static/cards/hB.svg" />
+                    <img src="static/cards/kB.svg" />
+                </div>
+            </div>
+        </div>
+        <div class="card-container" id="9er-augen">
+            <h3 class="card-title">Neuner</h3>
+            <div class="content-section">
+                <div class="text-section">
+                    <p><b>Neuner</b> sind <b>null Augen</b> wert.</p>
+                </div>
+                <div class="svg-section" data-size="small">
+                    <img src="static/cards/kr9.svg" />
+                    <img src="static/cards/p9.svg" />
+                    <img src="static/cards/h9.svg" />
+                    <img src="static/cards/k9.svg" />
+                </div>
+            </div>
+        </div>
     </section>
 
 </article>
