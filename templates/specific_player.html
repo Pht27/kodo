@@ -11,10 +11,6 @@
     <!-- Left Section: Player Info -->
     <div class="player-info">
         <h1>Profil: {{ data.player_name }}</h1>
-        <!-- Placeholder for Profile Picture -->
-        <div class="profile-picture">
-            <!-- Insert profile picture here if needed -->
-        </div>
         <!-- Player Stats Table -->
         <div class="player-stats">
             <table id="statsTable">
@@ -60,6 +56,12 @@
                 </tr>
             </table>
         </div>
+        <div class="player-timeseries">
+
+<div class="container" id="time-series-plot">
+    <div id="ts-plot"></div>
+</div>
+        </div>
     </div>
 
     <!-- Tabs for switching between Teampartner*innen and Karten -->
@@ -68,6 +70,7 @@
             <button class="tab-button active" onclick="showTab('teampartner')">Teampartner*innen</button>
             <button class="tab-button" onclick="showTab('karten')">Karten</button>
             <button class="tab-button" onclick="showTab('gameTypes')">Spielmodi</button>
+            <button class="tab-button" onclick="showTab('timePerformance')">Performance-Zeitmatrix</button>
         </div>
 
         <!-- Teampartner*innen Tab Content -->
@@ -132,6 +135,19 @@
             </div>
         </div>
 
+        <div class="tab-content" id="timePerformance">
+            <div class="wochentag-container">
+
+                <h3>Wochentage</h3>
+                <div class="plot1-container">
+                </div>
+
+                <h3>Uhrzeit</h3>
+                <div class="plot2-container">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -161,4 +177,5 @@
         showTab('teampartner'); // Default to Teampartner*innen Tab
     });
 </script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 {% endblock %}

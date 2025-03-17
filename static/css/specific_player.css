@@ -1,70 +1,52 @@
 /* Player Stats Table */
 .player-stats {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .player-stats table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .player-stats td {
-    padding: 8px;
-    border: 1px solid #ddd;
+  padding: 8px;
+  border: 1px solid #ddd;
 }
 
 .player-stats td:first-child {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .winrate,
 .mean_points {
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 /* Other styles from your initial CSS file */
 .player-profile-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .player-info {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.profile-picture img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+  flex: 1;
+  margin-right: 20px;
 }
 
 .player-stats-winrates {
-    flex: 1;
-    margin-left: 20px;
+  flex: 1;
+  margin-left: 20px;
 }
 
 .teammates-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .best-teammates,
@@ -72,12 +54,12 @@
 .broke-teammates,
 .winstreak-teammates,
 .worst-teammates {
-    flex: 1;
-    margin-right: 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  flex: 1;
+  margin-right: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .best-teammates h3,
@@ -85,376 +67,399 @@
 .broke-teammates h3,
 .winstreak-teammates h3,
 .worst-teammates h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .special-cards-container,
 .match-history-container {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .match-info-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #1c6c31;
-    color: #fff;
-    font-size: x-large;
-    font-weight: bold;
-    margin-bottom: 10px;
-    border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #1c6c31;
+  color: #fff;
+  font-size: x-large;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 8px;
 }
 
 .match-column-header {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .match-container {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .match {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f4fbff;
-    border: 1px solid #adadad;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: large;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f4fbff;
+  border: 1px solid #adadad;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: large;
 }
 
 .match:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .match-column {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .match-column.solo {
-    font-weight: bold;
-    font-size: larger;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .match-column.points {
-    font-weight: bold;
-    font-size: larger;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .match-column.points.won {
-    color: #00861d;
+  color: #00861d;
 }
 
 .match-column.points.lost {
-    color: #da0f00;
+  color: #da0f00;
 }
 
 .team-container {
-    margin-bottom: 5px;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #f9f9f9;
-    width: 100%;
-    box-sizing: border-box;
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .re-teams,
 .kontra-teams {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .re-kontra-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .re-kontra-container .teams-column {
-    flex: 1;
-    text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .teams-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .team-container:not(:last-child) {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .player-name {
-    display: block;
+  display: block;
 }
 
 .match.won {
-    background-color: #b3ffb36b;
+  background-color: #b3ffb36b;
 }
 
 .match.lost {
-    background-color: #ffb3b37f;
+  background-color: #ffb3b37f;
 }
 
 .match-icon {
-    color: gold;
-    /* Example color for the star badge */
-    margin-right: 5px;
-    /* Adjust spacing */
-    font-size: 1.2em;
-    /* Size of the icon */
-    width: 3px;
+  color: gold;
+  /* Example color for the star badge */
+  margin-right: 5px;
+  /* Adjust spacing */
+  font-size: 1.2em;
+  /* Size of the icon */
+  width: 3px;
 }
 
 #pagination {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 #loadMoreBtn {
-    background-color: #1c6c31;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+  background-color: #1c6c31;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
 }
 
 #loadMoreBtn:hover {
-    background-color: #145021;
+  background-color: #145021;
 }
 
 /* Teammates list styles */
 .teammates-container {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .best-teammates,
 .worst-teammates {
-    flex: 1;
-    margin-right: 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+  flex: 1;
+  margin-right: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
 .best-teammates h3,
 .worst-teammates h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .teammate-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .teammate-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .teammate-item .info-container {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .teammate-item span {
-    min-width: 0;
+  min-width: 0;
 }
 
 .teammate-item .name {
-    flex: 1;
-    text-align: left;
+  flex: 1;
+  text-align: left;
 }
 
 .teammate-item .winrate {
-    flex: 1;
-    text-align: right;
-    margin-right: 10px;
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
 }
 
 .teammate-item .mean_points {
-    flex: 1;
-    text-align: right;
-    margin-right: 10px;
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
 }
 
 .teammate-item .total-games {
-    white-space: nowrap;
-    text-align: right;
-    font-weight: bold;
+  white-space: nowrap;
+  text-align: right;
+  font-weight: bold;
 }
 
 /* Special Cards Table Container */
 .special-cards-container {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .special-cards-container h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 /* Special Cards Table */
 #specialCardsTable {
-    width: 100%;
-    /* border-collapse: collapse; */
+  width: 100%;
+  /* border-collapse: collapse; */
 }
 
 #specialCardsTable th,
 #specialCardsTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
 
 #specialCardsTable th {
-    background-color: #1c6c31;
-    color: #fff;
-    cursor: pointer;
+  background-color: #1c6c31;
+  color: #fff;
+  cursor: pointer;
 }
 
 #specialCardsTable th:hover {
-    background-color: #145021;
+  background-color: #145021;
 }
 
 #specialCardsTable tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 #specialCardsTable tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 /* Tab Button Styles */
 .stats-tabs {
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 
 .tab-button {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    flex: 1;
-    text-align: center;
-    font-size: 1.1em;
-    color: #1c6c31;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+  text-align: center;
+  font-size: 1.1em;
+  color: #1c6c31;
 }
 
 .tab-button:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 .tab-button.active {
-    background-color: #1c6c31;
-    color: white;
+  background-color: #1c6c31;
+  color: white;
 }
 
 /* Tab Content Styles */
 .tab-content {
-    display: none;
-    /* Hidden by default */
+  display: none;
+  /* Hidden by default */
 }
 
 .tab-content.active {
-    display: block;
-    /* Only the active tab is shown */
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: block;
+  /* Only the active tab is shown */
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* CSS für Sonderkarte-Spalte linksbündig */
 #specialCardsTable td:first-child,
 #specialCardsTable th:first-child {
-    text-align: left;
-    padding-left: 10px;
-    /* optional für etwas Abstand */
+  text-align: left;
+  padding-left: 10px;
+  /* optional für etwas Abstand */
 }
 
 #statsTable td#points,
 #statsTable td#played_solo,
 #statsTable td#played,
 #statsTable td#played_alone {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /* Special Cards Table */
 #gameTypesTable {
-    width: 100%;
-    /* border-collapse: collapse; */
+  width: 100%;
+  /* border-collapse: collapse; */
 }
 
 #gameTypesTable th,
 #gameTypesTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
 }
 
 #gameTypesTable th {
-    background-color: #1c6c31;
-    color: #fff;
-    cursor: pointer;
+  background-color: #1c6c31;
+  color: #fff;
+  cursor: pointer;
 }
 
 #gameTypesTable th:hover {
-    background-color: #145021;
+  background-color: #145021;
 }
 
 #gameTypesTable tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 #gameTypesTable tr:hover {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #e7e7e7;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e7e7e7;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.plot1-container,
+.plot2-container {
+  height: 340px;
+  /* Beispielhöhe */
+}
+
+#time-series-plot {
+  width: 100%; /* Make the container take up full width */
+  min-height: 300px; /* Minimum height for the container */
+  height: auto; /* Allow it to grow based on the content */
+  padding: 10px; /* Optional padding for spacing */
+  box-sizing: border-box; /* Ensure padding is included in total height/width */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional box shadow for aesthetics */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#time-series-plot h2 {
+  text-align: center; /* Center the header */
+  color: #333; /* Header text color */
 }
