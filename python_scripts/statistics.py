@@ -13,8 +13,9 @@ from python_scripts.saved_paths import *
 # FUNCTIONS
 
 
-def total_points_per_player(filter_active=True, date=None):
-    total_points_per_player_time_series2(1)
+def total_points_per_player(
+    filter_active=True, specific_date=None, specific_player_id=None
+):
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
@@ -29,6 +30,12 @@ def total_points_per_player(filter_active=True, date=None):
         .size()
         .reset_index(name="no_team_members")
     )
+
+    if specific_date is not None:
+        rounds = rounds[rounds["date"].str.slice(stop=10) == specific_date]
+
+    if specific_player_id is not None:
+        players = players[players["player_id"] == specific_player_id]
 
     # joins teams with players
     data = players.merge(players_teams, on="player_id").merge(
@@ -81,7 +88,8 @@ def total_points_per_player(filter_active=True, date=None):
     data = data.groupby(["player_id", "name", "start_points"]).sum().reset_index()
     data["winrate"] = round(data["won"] / data["played"], 4)
     data["mean_points"] = round(data["points"] / data["played"], 3)
-    data["points"] += data["start_points"]
+    if specific_date is None:
+        data["points"] += data["start_points"]
 
     # drop unimportant cols
     data = data[["player_id", "name", "points", "winrate", "mean_points"]]
@@ -89,7 +97,8 @@ def total_points_per_player(filter_active=True, date=None):
     # # if a player has not played a round yet, they will not be shown in the table
     # # to fix this, we add them with their initial points
     data = players.merge(data, on=["player_id", "name"], how="left")
-    data.loc[data["points"].isnull(), "points"] = data["start_points"]
+    if specific_date is None:
+        data.loc[data["points"].isnull(), "points"] = data["start_points"]
     data.loc[data["winrate"].isnull(), "winrate"] = -1
 
     # lastly, drop players who are inactive
@@ -97,18 +106,17 @@ def total_points_per_player(filter_active=True, date=None):
         data = data[data["active"]]
 
     # drop unimportant cols
-    if date is None:
+    if specific_date is None:
         data = data[["name", "points", "winrate", "mean_points"]]
+        data = data.sort_values(by=["points"], ascending=False)
     else:
-        data = data[["name", "points", "winrate", "player_id", "mean_points"]]
-
-    data = data.sort_values(by=["points"], ascending=False)
+        data = data[["name", "points", "player_id"]]
 
     return data
 
 
-def total_points_per_player_time_series2(specific_player_id=None):
-    # import data
+def total_points_per_player_time_series(specific_player_id=None):
+
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
     teams = pd.read_csv(csv_file_teams, index_col=False)
@@ -140,88 +148,33 @@ def total_points_per_player_time_series2(specific_player_id=None):
 
     data = data[data["active"]]
 
-    # check if game was won
-    data.loc[data["party"] != data["winning_party"], "points"] *= -1
-
-    # check if game was solo, if so triple points for Re party
-
-    solos = [
-        "Trumpfsolo",
-        "Damensolo",
-        "Bubensolo",
-        "Fleischloses",
-        "Knochenloses",
-        "Schlanker Martin",
-        # "Kontrasolo",  kontrasolo is only solo where kontra points get tripled!!
-        "Stille Hochzeit",
-    ]
-
-    data.loc[(data["game_type"].isin(solos)) & (data["party"] == "Re"), "points"] *= 3
-    data.loc[
-        (data["game_type"] == "Kontrasolo") & (data["party"] == "Kontra"), "points"
-    ] *= 3
-
-    # check if game was won
-    data["won"] = np.where(data["party"] == data["winning_party"], True, False)
-
-    # add to count games
-    data["played"] = 1
-
-    # divide points by team members
-    data = data.astype({"points": float})
-    data.loc[:, "points"] /= data["no_team_members"]
-
-    data.loc[:, "date"] = pd.to_datetime(data["date"]).dt.date
-    data = data[["player_id", "name", "start_points", "date", "points"]]
-
-    data = (
-        data.groupby(["player_id", "name", "start_points", "date"]).sum().reset_index()
-    )
-
-    # noch jeden Tag hinzufügen, damit wir eine konsistente zeitreihe haben
-
-    help_data = data[["player_id", "name", "start_points"]].drop_duplicates()
-
-    # Step 1: Create a complete list of dates from the first to the last date
-    date_range = pd.date_range(
-        start=data["date"].min(), end=data["date"].max(), freq="D"
-    )
-
-    # Step 2: Create a new DataFrame with the full date range
-    full_df = pd.DataFrame({"date": date_range})
-
-    help_data = help_data.merge(full_df, how="cross")
-    help_data.loc[:, "date"] = pd.to_datetime(help_data["date"]).dt.date
-
-    data["points"].fillna(0, inplace=True)
-
-    data = data[["player_id", "name", "start_points", "date", "points"]]
-
-    data["cumulative_points"] = data.groupby("player_id")["points"].cumsum()
-    data["cumulative_points"] += data["start_points"]
-
-    # print(data)
-    return data
-
-
-def total_points_per_player_time_series():
-
-    rounds = pd.read_csv(csv_file_rounds, index_col=False)
-    players = pd.read_csv(csv_file_players, index_col=False)
-
     time_series = players.rename(columns={"start_points": "points"})[
         players["active"]
     ].drop("active", axis=1)
     time_series["date"] = dt.datetime(2024, 7, 11)
     time_series = time_series[["player_id", "name", "date", "points"]]
 
-    for datum in pd.to_datetime(rounds["date"]):
-        df = total_points_per_player(date=datum).drop("winrate", axis=1)
-        df["date"] = datum.replace(second=0)
-        df = df[["player_id", "name", "date", "points"]]
+    intresting_dates = data.sort_values(by=["date"])["date"].str.slice(stop=10).unique()
 
+    for datum in intresting_dates:
+        if specific_player_id is not None:
+            df = total_points_per_player(
+                specific_date=datum, specific_player_id=specific_player_id
+            )
+        else:
+            df = total_points_per_player(specific_date=datum)
+        df["date"] = datum
+        df = df[["player_id", "name", "date", "points"]]
         time_series = pd.concat([time_series, df], ignore_index=True)
-    print(time_series)
+
+    if specific_player_id is None:
+        time_series["date"] = pd.to_datetime(time_series["date"])
+        time_series = time_series.sort_values(by=["player_id", "date"])
+        time_series.fillna(0, inplace=True)
+        time_series["points"] = time_series.groupby("player_id")["points"].cumsum()
+
+    else:
+        time_series["points"] = time_series["points"].cumsum()
     return time_series
 
 

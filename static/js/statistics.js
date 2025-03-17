@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderTSPlotly(data) {
     const traces = [];
     const players = [...new Set(data.map((item) => item.name))];
-
     players.forEach((player) => {
       const playerData = data.filter((item) => item.name === player);
       const trace = {

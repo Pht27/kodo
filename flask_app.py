@@ -243,7 +243,7 @@ def get_daytime_stats_for_specific_player(player_id):
 
 @app.route("/api/stats/timeseries/<int:player_id>", methods=["GET"])
 def get_ts_for_specific_player(player_id):
-    data = total_points_per_player_time_series2(player_id).to_dict(orient="records")
+    data = total_points_per_player_time_series(player_id).to_dict(orient="records")
     return jsonify(data)
 
 
