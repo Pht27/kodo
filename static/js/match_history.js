@@ -96,7 +96,7 @@ function displayMatches() {
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
 <div class="match-column points" id="points-${match[0]}">
     <span class="points-display">${match[16]}</span>
-    <input type="number" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
+    <input type="text" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
     <button class="edit-btn" onclick="enableEdit('${match[0]}', event)">✏️</button>
     <button class="save-btn" onclick="savePoints('${match[0]}', event)" style="display:none;">💾</button>
 </div>
@@ -127,7 +127,7 @@ function displayMatches() {
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
 <div class="match-column points" id="points-${match[0]}">
     <span class="points-display">${match[16]}</span>
-    <input type="number" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
+    <input type="text" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
     <button class="edit-btn" onclick="enableEdit('${match[0]}', event)">✏️</button>
     <button class="save-btn" onclick="savePoints('${match[0]}', event)" style="display:none;">💾</button>
 </div>
