@@ -247,5 +247,14 @@ def get_ts_for_specific_player(player_id):
     return jsonify(data)
 
 
+@app.route("/api/stats/update_points", methods=["POST"])
+def update_points():
+    data = request.get_json()
+    match_id = int(data["match_id"])
+    new_points = int(data["points"])
+    change_points_of_round(match_id, new_points)
+    return jsonify({"success": True})
+
+
 if __name__ == "__main__":
     app.run(debug=True)

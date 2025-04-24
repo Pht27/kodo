@@ -94,7 +94,12 @@ function displayMatches() {
                     </div>
                 </div>
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
-                <div class="match-column points">${match[16]}</div> <!-- Points -->
+<div class="match-column points" id="points-${match[0]}">
+    <span class="points-display">${match[16]}</span>
+    <input type="number" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
+    <button class="edit-btn" onclick="enableEdit('${match[0]}', event)">✏️</button>
+    <button class="save-btn" onclick="savePoints('${match[0]}', event)" style="display:none;">💾</button>
+</div>
             </div>
         `;
 
@@ -120,7 +125,12 @@ function displayMatches() {
                     </div>
                 </div>
                 <div class="match-column">${match[15]}</div> <!-- Winning Party -->
-                <div class="match-column points">${match[16]}</div> <!-- Points -->
+<div class="match-column points" id="points-${match[0]}">
+    <span class="points-display">${match[16]}</span>
+    <input type="number" class="points-input" value="${match[16]}" style="display:none; width:60px;" />
+    <button class="edit-btn" onclick="enableEdit('${match[0]}', event)">✏️</button>
+    <button class="save-btn" onclick="savePoints('${match[0]}', event)" style="display:none;">💾</button>
+</div>
             </div>
         `;
     }
@@ -138,3 +148,43 @@ function displayMatches() {
 
 // Event listener für den "Mehr laden"-Button
 loadMoreBtn.addEventListener("click", () => loadRounds(roundData.length));
+
+function enableEdit(matchId, event) {
+  event.stopPropagation(); // Prevent opening the match page
+  const container = document.getElementById(`points-${matchId}`);
+  container.querySelector(".points-display").style.display = "none";
+  container.querySelector(".points-input").style.display = "inline-block";
+  container.querySelector(".edit-btn").style.display = "none";
+  container.querySelector(".save-btn").style.display = "inline-block";
+}
+
+function savePoints(matchId, event) {
+  event.stopPropagation(); // Prevent opening the match page
+  const container = document.getElementById(`points-${matchId}`);
+  const input = container.querySelector(".points-input");
+  const newPoints = input.value;
+
+  fetch(`/api/stats/update_points`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ match_id: matchId, points: newPoints }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        container.querySelector(".points-display").textContent = newPoints;
+        container.querySelector(".points-display").style.display = "inline";
+        input.style.display = "none";
+        container.querySelector(".edit-btn").style.display = "inline";
+        container.querySelector(".save-btn").style.display = "none";
+      } else {
+        alert("Fehler beim Aktualisieren der Punkte.");
+      }
+    })
+    .catch((err) => {
+      console.error("Update error:", err);
+      alert("Fehler beim Aktualisieren.");
+    });
+}

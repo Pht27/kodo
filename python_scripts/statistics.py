@@ -1,6 +1,4 @@
 import datetime as dt
-import os
-from datetime import date
 
 import numpy as np
 import pandas as pd
@@ -116,7 +114,6 @@ def total_points_per_player(
 
 
 def total_points_per_player_time_series(specific_player_id=None):
-
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
     teams = pd.read_csv(csv_file_teams, index_col=False)
@@ -699,7 +696,6 @@ def calc_player_stats_for_specific_player(specific_player_id, up_to=20):
 
 
 def calc_winrates_with_cards(specific_player_id):
-
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
@@ -767,7 +763,6 @@ def calc_winrates_with_cards(specific_player_id):
 
 
 def calc_winrates_with_cards_total():
-
     # import data
     players = pd.read_csv(csv_file_players, index_col=False)
     players_teams = pd.read_csv(csv_file_player_team, index_col=False)
